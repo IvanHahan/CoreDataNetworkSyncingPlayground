@@ -14,7 +14,7 @@ import CoreData
 final public class Employee: NSManagedObject, Codable {
 
     private enum CodingKeys: String, CodingKey {
-        case name, position, salary
+        case name, position, salary, department
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -28,11 +28,12 @@ final public class Employee: NSManagedObject, Codable {
             let entity = NSEntityDescription.entity(forEntityName: Employee.identifier, in: managedObjectContext) else {
                 fatalError("Failed to decode \(Employee.identifier)!")
         }
-        super.init(entity: entity, insertInto: nil)
+        super.init(entity: entity, insertInto: managedObjectContext)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
         position = try container.decode(String.self, forKey: .position)
         salary = try container.decode(Double.self, forKey: .salary)
+        department = try container.decode(Department.self, forKey: .department)
     }
     
     public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
@@ -40,21 +41,27 @@ final public class Employee: NSManagedObject, Codable {
     }
     
     @discardableResult
-    static func insert(name: String, position: String, salary: Double, into context: NSManagedObjectContext) -> Employee {
+    static func insert(name: String, position: String, salary: Double, department: Department, into context: NSManagedObjectContext) -> Employee {
         let employee: Employee = context.new()
         employee.name = name
         employee.position = position
         employee.salary = salary
+        employee.department = department
+        department.employees?.insert(employee)
         return employee
     }
 }
 
 extension Employee: Managed {
     
-    var sortDescriptors: [NSSortDescriptor] {
+    static var sortDescriptors: [NSSortDescriptor] {
         return [
             NSSortDescriptor(key: #keyPath(name), ascending: true)
         ]
+    }
+    
+    static func predicate(for department: Department) -> NSPredicate {
+        return NSPredicate(format: "department == %@", department)
     }
 }
 

@@ -9,22 +9,27 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController {
+class EmployeesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var fetchController: NSFetchedResultsController<Employee>!
     var context: NSManagedObjectContext!
+    var department: Department!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self)
-        
-        context = (UIApplication.shared.delegate as! AppDelegate).dataController.container.viewContext
+
         
         let request = Employee.sortedFetchRequest
-        fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        let predicate = Employee.predicate(for: department)
+        request.predicate = predicate
+        fetchController = NSFetchedResultsController(fetchRequest: request,
+                                                     managedObjectContext: context,
+                                                     sectionNameKeyPath: nil,
+                                                     cacheName: nil)
         try? fetchController.performFetch()
         tableView.reloadData()
     }
@@ -36,6 +41,7 @@ class ViewController: UIViewController {
                 Employee.insert(name: vc.nameField.text!,
                                 position: vc.positionField.text!,
                                 salary: Double(vc.salaryField.text!)!,
+                                department: self.department,
                                 into: self.context)
             }
             
@@ -49,7 +55,7 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: UITableViewDataSource {
+extension EmployeesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchController.fetchedObjects?.count ?? 0
     }
@@ -63,6 +69,6 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-extension ViewController: UITableViewDelegate {
+extension EmployeesViewController: UITableViewDelegate {
     
 }

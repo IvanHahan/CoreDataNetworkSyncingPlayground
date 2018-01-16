@@ -20,5 +20,5 @@ extension Employee {
     @NSManaged public var name: String?
     @NSManaged public var position: String?
     @NSManaged public var salary: Double
-
+    @NSManaged public var department: Department?
 }

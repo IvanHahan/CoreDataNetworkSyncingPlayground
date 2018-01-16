@@ -9,8 +9,11 @@
 /* Begin PBXBuildFile section */
 		9270F7C4200DF8AA007C04F6 /* SessionOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9270F7C3200DF8AA007C04F6 /* SessionOperation.swift */; };
 		9270F7C8200E036D007C04F6 /* PersistentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9270F7C7200E036D007C04F6 /* PersistentModel.swift */; };
+		9270F7CB200E1E30007C04F6 /* DepartmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9270F7CA200E1E30007C04F6 /* DepartmentsViewController.swift */; };
+		9270F7CD200E1E44007C04F6 /* EditDepartmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9270F7CC200E1E44007C04F6 /* EditDepartmentController.swift */; };
+		9270F7CF200E3231007C04F6 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9270F7CE200E3231007C04F6 /* TableViewDataSource.swift */; };
 		929E0742200CAC5B004F8BA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E0741200CAC5B004F8BA1 /* AppDelegate.swift */; };
-		929E0744200CAC5B004F8BA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E0743200CAC5B004F8BA1 /* ViewController.swift */; };
+		929E0744200CAC5B004F8BA1 /* EmployeesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E0743200CAC5B004F8BA1 /* EmployeesViewController.swift */; };
 		929E0747200CAC5C004F8BA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 929E0745200CAC5B004F8BA1 /* Main.storyboard */; };
 		929E0749200CAC5C004F8BA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 929E0748200CAC5C004F8BA1 /* Assets.xcassets */; };
 		929E074C200CAC5C004F8BA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 929E074A200CAC5C004F8BA1 /* LaunchScreen.storyboard */; };
@@ -51,9 +54,13 @@
 /* Begin PBXFileReference section */
 		9270F7C3200DF8AA007C04F6 /* SessionOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionOperation.swift; sourceTree = "<group>"; };
 		9270F7C7200E036D007C04F6 /* PersistentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentModel.swift; sourceTree = "<group>"; };
+		9270F7C9200E170C007C04F6 /* Company 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Company 2.xcdatamodel"; sourceTree = "<group>"; };
+		9270F7CA200E1E30007C04F6 /* DepartmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentsViewController.swift; sourceTree = "<group>"; };
+		9270F7CC200E1E44007C04F6 /* EditDepartmentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDepartmentController.swift; sourceTree = "<group>"; };
+		9270F7CE200E3231007C04F6 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		929E073E200CAC5B004F8BA1 /* CoreDataNetworkLayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataNetworkLayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		929E0741200CAC5B004F8BA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		929E0743200CAC5B004F8BA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		929E0743200CAC5B004F8BA1 /* EmployeesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesViewController.swift; sourceTree = "<group>"; };
 		929E0746200CAC5B004F8BA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		929E0748200CAC5C004F8BA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		929E074B200CAC5C004F8BA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -151,8 +158,11 @@
 				9270F7C6200DFC84007C04F6 /* CoreDataNetworkLayer */,
 				929E077C200CAF69004F8BA1 /* Models */,
 				929E0741200CAC5B004F8BA1 /* AppDelegate.swift */,
-				929E0743200CAC5B004F8BA1 /* ViewController.swift */,
+				929E0743200CAC5B004F8BA1 /* EmployeesViewController.swift */,
 				929E07A7200CD3F7004F8BA1 /* EditEmployeeController.swift */,
+				9270F7CA200E1E30007C04F6 /* DepartmentsViewController.swift */,
+				9270F7CC200E1E44007C04F6 /* EditDepartmentController.swift */,
+				9270F7CE200E3231007C04F6 /* TableViewDataSource.swift */,
 				929E07A5200CD0AF004F8BA1 /* Constants.swift */,
 				929E079D200CC182004F8BA1 /* Extensions */,
 				929E079E200CC187004F8BA1 /* Protocol */,
@@ -373,11 +383,14 @@
 				929E07A8200CD3F7004F8BA1 /* EditEmployeeController.swift in Sources */,
 				929E0795200CBED9004F8BA1 /* Employee+CoreDataProperties.swift in Sources */,
 				9270F7C8200E036D007C04F6 /* PersistentModel.swift in Sources */,
-				929E0744200CAC5B004F8BA1 /* ViewController.swift in Sources */,
+				929E0744200CAC5B004F8BA1 /* EmployeesViewController.swift in Sources */,
+				9270F7CF200E3231007C04F6 /* TableViewDataSource.swift in Sources */,
 				929E0793200CBED9004F8BA1 /* Department+CoreDataClass.swift in Sources */,
 				9270F7C4200DF8AA007C04F6 /* SessionOperation.swift in Sources */,
 				929E079A200CBFE4004F8BA1 /* Identifiable.swift in Sources */,
+				9270F7CD200E1E44007C04F6 /* EditDepartmentController.swift in Sources */,
 				929E0773200CAE08004F8BA1 /* Company.xcdatamodeld in Sources */,
+				9270F7CB200E1E30007C04F6 /* DepartmentsViewController.swift in Sources */,
 				92FB09BB200D0CB8003C898B /* SessionManager.swift in Sources */,
 				929E07A6200CD0AF004F8BA1 /* Constants.swift in Sources */,
 				929E0796200CBED9004F8BA1 /* Employee+CoreDataClass.swift in Sources */,
@@ -681,9 +694,10 @@
 		929E0771200CAE08004F8BA1 /* Company.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				9270F7C9200E170C007C04F6 /* Company 2.xcdatamodel */,
 				929E0772200CAE08004F8BA1 /* Company.xcdatamodel */,
 			);
-			currentVersion = 929E0772200CAE08004F8BA1 /* Company.xcdatamodel */;
+			currentVersion = 9270F7C9200E170C007C04F6 /* Company 2.xcdatamodel */;
 			path = Company.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -18,7 +18,7 @@ extension Department {
     }
 
     @NSManaged public var name: String?
-    @NSManaged public var employees: NSOrderedSet?
+    @NSManaged public var employees: Set<Employee>?
     @NSManaged public var head: Employee?
 
 }

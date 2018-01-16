@@ -13,7 +13,7 @@
         <!--Employees-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CoreDataNetworkLayer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="EmployeesViewController" customModule="CoreDataNetworkLayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,6 +46,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="428" y="97.601199400299862"/>
+        </scene>
+        <!--Create Department-->
+        <scene sceneID="rSV-64-DF2">
+            <objects>
+                <viewController id="eF9-2l-07u" customClass="EditDepartmentController" customModule="CoreDataNetworkLayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="io1-RF-0It">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mBA-4I-hQx">
+                                <rect key="frame" x="0.0" y="136" width="375" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JK5-JS-qZ1">
+                                <rect key="frame" x="139" y="318" width="97" height="30"/>
+                                <state key="normal" title="add employee"/>
+                                <connections>
+                                    <segue destination="hjI-sP-9K7" kind="show" id="bdt-mc-GFM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mBA-4I-hQx" firstAttribute="top" secondItem="IVh-xI-jJD" secondAttribute="top" constant="72" id="88O-di-5f5"/>
+                            <constraint firstItem="JK5-JS-qZ1" firstAttribute="centerX" secondItem="io1-RF-0It" secondAttribute="centerX" id="Ew0-C2-txp"/>
+                            <constraint firstItem="JK5-JS-qZ1" firstAttribute="centerY" secondItem="io1-RF-0It" secondAttribute="centerY" id="Fvu-43-hEp"/>
+                            <constraint firstItem="IVh-xI-jJD" firstAttribute="trailing" secondItem="mBA-4I-hQx" secondAttribute="trailing" id="JI2-SM-inA"/>
+                            <constraint firstItem="mBA-4I-hQx" firstAttribute="leading" secondItem="IVh-xI-jJD" secondAttribute="leading" id="baf-GX-LcD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IVh-xI-jJD"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create Department" id="IW4-zw-AlN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="WME-Dr-WO4">
+                            <connections>
+                                <segue destination="yA9-sq-c6d" kind="unwind" unwindAction="unwindToDepartments:" id="HKN-xl-5QH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameField" destination="mBA-4I-hQx" id="KBM-pT-a9R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EqN-f7-POk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="yA9-sq-c6d" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-527" y="812"/>
         </scene>
         <!--Create Employee-->
         <scene sceneID="xcx-1g-kgr">
@@ -91,7 +139,7 @@
                     <navigationItem key="navigationItem" title="Create Employee" id="Xdv-zs-DP2">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="LSJ-kG-8fr">
                             <connections>
-                                <segue destination="Vhe-pf-6Cc" kind="unwind" unwindAction="unwind:" id="kNA-oe-hEs"/>
+                                <segue destination="Vhe-pf-6Cc" kind="unwind" unwindAction="unwindWithSender:" id="S9Y-gh-Mya"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -104,7 +152,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fia-8N-C8t" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Vhe-pf-6Cc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1228" y="98"/>
+            <point key="canvasLocation" x="428" y="812"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YZo-Lc-aXg">
@@ -117,12 +165,55 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Mas-in-YYq"/>
+                        <segue destination="amD-dG-w7y" kind="relationship" relationship="rootViewController" id="qLX-bG-sbV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hKC-vV-BKI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-346" y="98"/>
+            <point key="canvasLocation" x="-1426" y="98"/>
+        </scene>
+        <!--Departments-->
+        <scene sceneID="V5r-u1-75R">
+            <objects>
+                <viewController id="amD-dG-w7y" customClass="DepartmentsViewController" customModule="CoreDataNetworkLayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ucf-aI-k2w">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gyn-jv-apl">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="nGf-kn-Dal" firstAttribute="trailing" secondItem="gyn-jv-apl" secondAttribute="trailing" id="Aqp-Dx-XeA"/>
+                            <constraint firstItem="gyn-jv-apl" firstAttribute="top" secondItem="nGf-kn-Dal" secondAttribute="top" id="CWh-Fl-UPV"/>
+                            <constraint firstItem="nGf-kn-Dal" firstAttribute="bottom" secondItem="gyn-jv-apl" secondAttribute="bottom" id="IOT-lq-aBv"/>
+                            <constraint firstItem="gyn-jv-apl" firstAttribute="leading" secondItem="nGf-kn-Dal" secondAttribute="leading" id="lIH-id-S9G"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nGf-kn-Dal"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Departments" id="X3G-Rv-72x">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="DWq-au-5eI">
+                            <connections>
+                                <segue destination="eF9-2l-07u" kind="show" id="8KM-zc-ObO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="gyn-jv-apl" id="51G-p9-7f7"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="employees" id="VzL-mZ-mBD"/>
+                        <segue destination="eF9-2l-07u" kind="show" id="FVd-Q4-1XD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fou-I8-BE7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-526" y="98"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="bdt-mc-GFM"/>
+        <segue reference="8KM-zc-ObO"/>
+    </inferredMetricsTieBreakers>
 </document>

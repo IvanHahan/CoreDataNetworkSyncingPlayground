@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oda-8c-T0C">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Employees-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CoreDataNetworkLayer" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bqe-jk-01q">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
@@ -32,10 +32,97 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Employees" id="shE-k8-wdq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jIi-1I-0qJ">
+                            <connections>
+                                <segue destination="hjI-sP-9K7" kind="show" id="of9-zh-3oP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Bqe-jk-01q" id="xEK-n5-fhw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="90" y="98"/>
+            <point key="canvasLocation" x="428" y="97.601199400299862"/>
+        </scene>
+        <!--Create Employee-->
+        <scene sceneID="xcx-1g-kgr">
+            <objects>
+                <viewController id="hjI-sP-9K7" customClass="EditEmployeeController" customModule="CoreDataNetworkLayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EPB-jY-DgY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QMR-xO-8XI">
+                                <rect key="frame" x="0.0" y="156" width="375" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="position" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gyw-7C-Syk">
+                                <rect key="frame" x="0.0" y="186" width="375" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="salary" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oWT-1J-B03">
+                                <rect key="frame" x="0.0" y="216" width="375" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="oWT-1J-B03" firstAttribute="top" secondItem="gyw-7C-Syk" secondAttribute="bottom" id="2v5-oe-a3j"/>
+                            <constraint firstItem="QMR-xO-8XI" firstAttribute="leading" secondItem="xHa-EY-VRd" secondAttribute="leading" id="9Mt-Wn-bS5"/>
+                            <constraint firstItem="gyw-7C-Syk" firstAttribute="leading" secondItem="xHa-EY-VRd" secondAttribute="leading" id="AEf-Gj-Zx7"/>
+                            <constraint firstItem="gyw-7C-Syk" firstAttribute="top" secondItem="QMR-xO-8XI" secondAttribute="bottom" id="FPT-j1-s5G"/>
+                            <constraint firstItem="oWT-1J-B03" firstAttribute="trailing" secondItem="xHa-EY-VRd" secondAttribute="trailing" id="aOn-83-aKh"/>
+                            <constraint firstItem="oWT-1J-B03" firstAttribute="leading" secondItem="xHa-EY-VRd" secondAttribute="leading" id="gYA-Ag-ko3"/>
+                            <constraint firstItem="xHa-EY-VRd" firstAttribute="trailing" secondItem="gyw-7C-Syk" secondAttribute="trailing" id="lG5-39-9UP"/>
+                            <constraint firstItem="xHa-EY-VRd" firstAttribute="trailing" secondItem="QMR-xO-8XI" secondAttribute="trailing" id="o9K-uD-CO0"/>
+                            <constraint firstItem="QMR-xO-8XI" firstAttribute="top" secondItem="xHa-EY-VRd" secondAttribute="top" constant="92" id="sVm-1M-64i"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xHa-EY-VRd"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create Employee" id="Xdv-zs-DP2">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="LSJ-kG-8fr">
+                            <connections>
+                                <segue destination="Vhe-pf-6Cc" kind="unwind" unwindAction="unwind:" id="kNA-oe-hEs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameField" destination="QMR-xO-8XI" id="Zwl-Ee-dhy"/>
+                        <outlet property="positionField" destination="gyw-7C-Syk" id="T5r-S8-vom"/>
+                        <outlet property="salaryField" destination="oWT-1J-B03" id="9PR-Pf-RLC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fia-8N-C8t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Vhe-pf-6Cc" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1228" y="98"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YZo-Lc-aXg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oda-8c-T0C" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LAp-cX-eB8">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Mas-in-YYq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hKC-vV-BKI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-346" y="98"/>
         </scene>
     </scenes>
 </document>

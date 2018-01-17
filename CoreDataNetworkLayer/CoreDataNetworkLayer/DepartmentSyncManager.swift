@@ -17,10 +17,11 @@ class DepartmentSyncManager {
     
     let context: NSManagedObjectContext
     private let sessionManager: SessionManager = SessionManager(baseUrl: "https://com.example.blat/", config: URLSessionConfiguration.default)
-    
     private var changing: ChangeType?
+    private let requestCacher: RequestCacheManager
 
-    init(context: NSManagedObjectContext, completion: Closure<Void>? = nil) {
+    init(context: NSManagedObjectContext, requestCacher: RequestCacheManager) {
+        self.requestCacher = requestCacher
         self.context = context
         NotificationCenter.default.addObserver(forName: Notification.Name.NSManagedObjectContextWillSave,
                                                object: nil,
@@ -38,9 +39,9 @@ class DepartmentSyncManager {
                                                 guard let changing = self?.changing else { return }
                                                 switch changing {
                                                 case .insert(let department):
-                                                    self?.sessionManager.execute(NetworkRequest.department.create(department: department))
+                                                    self?.requestCacher.enqueue(NetworkRequest.department.create(department: department))
                                                 case .update(let department):
-                                                    self?.sessionManager.execute(NetworkRequest.department.update(department: department))
+                                                    self?.requestCacher.enqueue(NetworkRequest.department.update(department: department))
                                                 }
                                                 self?.changing = nil
         }

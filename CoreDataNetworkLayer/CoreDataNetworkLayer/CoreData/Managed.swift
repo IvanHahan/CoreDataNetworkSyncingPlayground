@@ -12,6 +12,7 @@ import CoreData
 protocol Managed: NSFetchRequestResult, Identifiable {
     static var defaultSortDescriptors: [NSSortDescriptor] { get }
     static var sortedFetchRequest: NSFetchRequest<Self> { get }
+    static func findOrFetchFirst(in context: NSManagedObjectContext) -> Self?
 }
 
 extension Managed where Self: NSManagedObject {
@@ -21,9 +22,26 @@ extension Managed where Self: NSManagedObject {
     }
     
     static var sortedFetchRequest: NSFetchRequest<Self> {
-        let request = NSFetchRequest<Self>(entityName: Self.identifier)
+        let request = NSFetchRequest<Self>(entityName: Self.entity().name ?? Self.identifier)
         request.sortDescriptors = defaultSortDescriptors
         return request
+    }
+    
+    static func fetchRequest(configured: Closure<NSFetchRequest<Self>>) -> NSFetchRequest<Self> {
+        let request = self.sortedFetchRequest
+        configured(request)
+        return request
+    }
+    
+    static func findOrFetchFirst(in context: NSManagedObjectContext) -> Self? {
+        if let last = context.registeredObjects.first(where: {$0 is Self}) as? Self {
+            return last
+        } else {
+            return try! context.fetch(Self.fetchRequest {
+                $0.fetchLimit = 1
+                $0.includesPropertyValues = true
+            }).first
+        }
     }
 }
 

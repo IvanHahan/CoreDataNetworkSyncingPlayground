@@ -20,7 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         loadPersistentStore { container in
             let backgroundContext = container.newBackgroundContext()
-            self.departmentSyncManager = DepartmentSyncManager(context: backgroundContext)
+            let requestCacheManager = RequestCacheManager(context: backgroundContext)
+            self.departmentSyncManager = DepartmentSyncManager(context: backgroundContext, requestCacher: requestCacheManager)
             self.container = container
         }
         return true

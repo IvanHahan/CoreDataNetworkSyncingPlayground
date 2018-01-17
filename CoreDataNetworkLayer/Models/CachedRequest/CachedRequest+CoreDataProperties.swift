@@ -1,0 +1,30 @@
+//
+//  CachedRequest+CoreDataProperties.swift
+//  CoreDataNetworkLayer
+//
+//  Created by  Ivan Hahanov on 1/17/18.
+//  Copyright © 2018  Ivan Hahanov. All rights reserved.
+//
+//
+
+import Foundation
+import CoreData
+
+
+extension CachedRequest {
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<CachedRequest> {
+        return NSFetchRequest<CachedRequest>(entityName: "CachedRequest")
+    }
+
+    @NSManaged public var pathOptional: String?
+    @NSManaged public var body: [String: Any]?
+    @NSManaged public var methodString: String?
+}
+
+extension CachedRequest: Request {
+    typealias Model = Void
+
+    var method: Method { return Method(rawValue: methodString!)! }
+    var path: String { return pathOptional! }
+}

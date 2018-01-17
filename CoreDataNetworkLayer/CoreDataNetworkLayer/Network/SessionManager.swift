@@ -27,19 +27,17 @@ class SessionManager {
     }
     
     @discardableResult
-    func execute<R: DecodableResultRequest>(_ request: R, completion: ResultClosure<R.Model>? = nil) -> Cancellable {
+    func execute<R: Request>(_ request: R, completion: ResultClosure<R.Model>? = nil) -> Cancellable {
         var task: URLSessionDataTask!
         task = session.dataTask(with: request.asURLRequest(baseUrl: baseUrl)) { [weak self] (data, response, error) in
             self?.executingTasks.remove(task)
             if let error = error {
                 completion?(.failure(error))
             } else if let data = data {
-                let decoder = JSONDecoder()
-                do {
-                    let model = try decoder.decode(R.Model.self, from: data)
+                if let model = request.map(from: data) {
                     completion?(.success(model))
-                } catch {
-                    completion?(.failure(error))
+                } else {
+                    completion?(.failure(NSError()))
                 }
             }
         }

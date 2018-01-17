@@ -57,5 +57,18 @@ enum NetworkRequest {
                 
             }
         }
+        
+        struct update: DecodableResultRequest {
+            
+            typealias Model = Department
+            
+            let path: String = ""
+            let method: Method = .post
+            let body: Parameters? = [:]
+            
+            init(department: Department) {
+                
+            }
+        }
     }
 }

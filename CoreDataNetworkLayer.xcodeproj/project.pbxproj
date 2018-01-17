@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		926E4C83200F4129006F39A3 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926E4C82200F4129006F39A3 /* CoreDataStack.swift */; };
 		9270F7C4200DF8AA007C04F6 /* SessionOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9270F7C3200DF8AA007C04F6 /* SessionOperation.swift */; };
 		9270F7C8200E036D007C04F6 /* PersistentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9270F7C7200E036D007C04F6 /* PersistentModel.swift */; };
 		9270F7CB200E1E30007C04F6 /* DepartmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9270F7CA200E1E30007C04F6 /* DepartmentsViewController.swift */; };
@@ -28,7 +29,7 @@
 		929E0798200CBFB8004F8BA1 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E0797200CBFB8004F8BA1 /* UITableViewExtensions.swift */; };
 		929E079A200CBFE4004F8BA1 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E0799200CBFE3004F8BA1 /* Identifiable.swift */; };
 		929E07A0200CC4C4004F8BA1 /* Managed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E079F200CC4C4004F8BA1 /* Managed.swift */; };
-		929E07A4200CD072004F8BA1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E07A3200CD072004F8BA1 /* DataController.swift */; };
+		929E07A4200CD072004F8BA1 /* DepartmentSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E07A3200CD072004F8BA1 /* DepartmentSyncManager.swift */; };
 		929E07A6200CD0AF004F8BA1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E07A5200CD0AF004F8BA1 /* Constants.swift */; };
 		929E07A8200CD3F7004F8BA1 /* EditEmployeeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E07A7200CD3F7004F8BA1 /* EditEmployeeController.swift */; };
 		92FB09B9200D0A30003C898B /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB09B8200D0A30003C898B /* Request.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		926E4C82200F4129006F39A3 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		9270F7C3200DF8AA007C04F6 /* SessionOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionOperation.swift; sourceTree = "<group>"; };
 		9270F7C7200E036D007C04F6 /* PersistentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentModel.swift; sourceTree = "<group>"; };
 		9270F7C9200E170C007C04F6 /* Company 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Company 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -81,7 +83,7 @@
 		929E0797200CBFB8004F8BA1 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
 		929E0799200CBFE3004F8BA1 /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		929E079F200CC4C4004F8BA1 /* Managed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managed.swift; sourceTree = "<group>"; };
-		929E07A3200CD072004F8BA1 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		929E07A3200CD072004F8BA1 /* DepartmentSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentSyncManager.swift; sourceTree = "<group>"; };
 		929E07A5200CD0AF004F8BA1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		929E07A7200CD3F7004F8BA1 /* EditEmployeeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEmployeeController.swift; sourceTree = "<group>"; };
 		92FB09B8200D0A30003C898B /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -127,7 +129,7 @@
 		9270F7C6200DFC84007C04F6 /* CoreDataNetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
-				929E07A3200CD072004F8BA1 /* DataController.swift */,
+				929E07A3200CD072004F8BA1 /* DepartmentSyncManager.swift */,
 				9270F7C7200E036D007C04F6 /* PersistentModel.swift */,
 				9270F7C5200DFC76007C04F6 /* Network */,
 				92FB09B7200D09A4003C898B /* CoreData */,
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				929E079F200CC4C4004F8BA1 /* Managed.swift */,
+				926E4C82200F4129006F39A3 /* CoreDataStack.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -382,9 +385,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				929E0794200CBED9004F8BA1 /* Department+CoreDataProperties.swift in Sources */,
-				929E07A4200CD072004F8BA1 /* DataController.swift in Sources */,
+				929E07A4200CD072004F8BA1 /* DepartmentSyncManager.swift in Sources */,
 				929E07A8200CD3F7004F8BA1 /* EditEmployeeController.swift in Sources */,
 				929E0795200CBED9004F8BA1 /* Employee+CoreDataProperties.swift in Sources */,
+				926E4C83200F4129006F39A3 /* CoreDataStack.swift in Sources */,
 				9270F7C8200E036D007C04F6 /* PersistentModel.swift in Sources */,
 				929E0744200CAC5B004F8BA1 /* EmployeesViewController.swift in Sources */,
 				9270F7CF200E3231007C04F6 /* TableViewDataSource.swift in Sources */,

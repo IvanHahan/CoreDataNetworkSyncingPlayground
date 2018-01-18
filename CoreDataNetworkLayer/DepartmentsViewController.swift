@@ -22,7 +22,7 @@ class DepartmentsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        context = (UIApplication.shared.delegate as! AppDelegate).container.viewContext
+        context = (UIApplication.shared.delegate as! AppDelegate).domainContainer.viewContext
         tableViewDataSource = TableViewDataSource<Department, UITableViewCell>(tableView: tableView,
                                                                                context: context,
                                                                                cellConfiguration: { (cell, department) in

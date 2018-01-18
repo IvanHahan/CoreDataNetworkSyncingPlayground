@@ -9,8 +9,8 @@
 import Foundation
 import CoreData
 
-func loadPersistentStore(completion: @escaping Closure<NSPersistentContainer>) {
-    let container = NSPersistentContainer(name: "Company")
+func loadPersistentStore(_ model: String, completion: @escaping Closure<NSPersistentContainer>) {
+    let container = NSPersistentContainer(name: model)
     container.loadPersistentStores { (store, error) in
         if error != nil {
             fatalError("Could not load persistent store")

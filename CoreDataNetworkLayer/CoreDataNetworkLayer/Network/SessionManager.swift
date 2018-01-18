@@ -14,6 +14,10 @@ protocol Cancellable {
 
 extension URLSessionDataTask: Cancellable {}
 
+enum NetworkError: LocalizedError {
+    case couldNotParseJSON
+}
+
 class SessionManager {
     
     private let session: URLSession
@@ -31,16 +35,18 @@ class SessionManager {
         var task: URLSessionDataTask!
         task = session.dataTask(with: request.asURLRequest(baseUrl: baseUrl)) { [weak self] (data, response, error) in
             self?.executingTasks.remove(task)
+            debugPrint(response)
             if let error = error {
                 completion?(.failure(error))
             } else if let data = data {
                 if let model = request.map(from: data) {
                     completion?(.success(model))
                 } else {
-                    completion?(.failure(NSError()))
+                    completion?(.failure(NetworkError.couldNotParseJSON))
                 }
             }
         }
+        task.resume()
         executingTasks.insert(task)
         return task
     }

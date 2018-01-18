@@ -12,7 +12,7 @@ import CoreData
 typealias Parameters = [String: Any]
 
 enum Method: String {
-    case get, post, put, delete
+    case get = "GET", post = "POST", put = "PUT", delete = "DELETE"
 }
 
 protocol Model {
@@ -24,7 +24,7 @@ protocol Request {
     
     var path: String { get }
     var method: Method { get }
-    var body: Parameters? { get }
+    var body: Data? { get }
     
     func asURLRequest(baseUrl: String) -> URLRequest
     func map(from data: Data) -> Model?
@@ -32,7 +32,7 @@ protocol Request {
 
 extension Request {
     var method: Method { return .get }
-    var body: Parameters? { return nil }
+    var body: Data? { return nil }
     
     func map(from data: Data) -> Model? {
         return nil
@@ -40,7 +40,11 @@ extension Request {
     
     func asURLRequest(baseUrl: String) -> URLRequest {
         let fullPath = baseUrl.appending(path)
-        let request = URLRequest(url: URL(string: fullPath)!)
+        var request = URLRequest(url: URL(string: fullPath)!)
+        request.httpBody = body
+        request.httpMethod = method.rawValue
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         return request
     }
 

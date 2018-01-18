@@ -18,7 +18,7 @@ extension CachedRequest {
     }
 
     @NSManaged public var pathOptional: String?
-    @NSManaged public var body: [String: Any]?
+    @NSManaged public var body: Data?
     @NSManaged public var methodString: String?
 }
 

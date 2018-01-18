@@ -18,9 +18,9 @@ class BackendlessManager {
     
     let backendless: Backendless
     
-    init(baseUrl: String) {
+    init() {
         self.backendless = Backendless.sharedInstance()
-        backendless.hostURL = baseUrl
+        backendless.hostURL = "https://api.backendless.com"
         backendless.initApp("50F43BB7-8B2B-0509-FF7B-3665F066E500", apiKey: "665536C6-6AD9-86EF-FF87-349DACBBCF00")
     }
     

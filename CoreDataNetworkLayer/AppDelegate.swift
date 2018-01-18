@@ -14,15 +14,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var departmentSyncManager: DepartmentSyncManager!
-    var container: NSPersistentContainer!
+    var employeeSyncManager: EmployeeSyncManager!
+    var domainContainer: NSPersistentContainer!
+    var cachingContainer: NSPersistentContainer!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        loadPersistentStore { container in
+        loadPersistentStore("Company") { container in
+            let backgroundContext = container.newBackgroundContext()
+            self.departmentSyncManager = DepartmentSyncManager(context: backgroundContext)
+            self.employeeSyncManager = EmployeeSyncManager(context: backgroundContext)
+            self.domainContainer = container
+        }
+        loadPersistentStore("Caching") { container in
             let backgroundContext = container.newBackgroundContext()
             let requestCacheManager = RequestCacheManager(context: backgroundContext)
-            self.departmentSyncManager = DepartmentSyncManager(context: backgroundContext, requestCacher: requestCacheManager)
-            self.container = container
+            requestCacheManager.run()
+            self.departmentSyncManager.requestCacher = requestCacheManager
+            self.employeeSyncManager.requestCacher = requestCacheManager
+            self.cachingContainer = container
         }
         return true
     }

@@ -9,20 +9,23 @@
 import Foundation
 import CoreData
 
-let baseUrl = "https://com.example.blat/"
+let baseUrl = "https://api.backendless.com/50F43BB7-8B2B-0509-FF7B-3665F066E500/7D915167-68FB-B6C8-FF9D-2EE480B58F00/"
 
 class RequestCacheManager {
     
-    private let context: NSManagedObjectContext
-    private let sessionManager = SessionManager(baseUrl: baseUrl, config: URLSessionConfiguration.default)
-    private var isSuspended = false
     var errorHandler: Closure<Error>?
+    var completion: Closure<Void>?
+    let sessionManager = SessionManager(baseUrl: baseUrl, config: URLSessionConfiguration.default)
+    
+    private let context: NSManagedObjectContext
+    private(set) var isSuspended = true
     
     init(context: NSManagedObjectContext) {
         self.context = context
     }
     
     func run() {
+        guard isSuspended else { return }
         isSuspended = false
         context.perform { [weak self] in
             self?.executeNext()
@@ -33,17 +36,23 @@ class RequestCacheManager {
         isSuspended = true
     }
     
-    func enqueue<R: DecodableResultRequest>(_ request: R) {
-        context.performChanges {
+    func enqueue<R: Request>(_ request: R) {
+        context.perform {
             request.cache(into: self.context)
+            try? self.context.save()
+            guard self.isSuspended else { return }
             self.run()
         }
     }
     
     private func executeNext() {
-        guard let request = CachedRequest.findOrFetchFirst(in: context), !isSuspended else { return }
+        guard let request = CachedRequest.findOrFetchFirst(in: context), !isSuspended else {
+            self.isSuspended = true
+            return
+        }
         execute(request) { [weak self] in
             self?.context.delete(request)
+            try? self?.context.save()
             self?.executeNext()
         }
     }
@@ -53,7 +62,7 @@ class RequestCacheManager {
         guard !isSuspended else { return }
         sessionManager.execute(request) { [weak self] result in
             guard !isSuspended else { return }
-            if case let .failure(error) = result {
+            if case let .failure(error) = result, (error as? NetworkError) != NetworkError.couldNotParseJSON {
                 self?.errorHandler?(error)
                 self?.sessionManager.execute(request)
             } else {

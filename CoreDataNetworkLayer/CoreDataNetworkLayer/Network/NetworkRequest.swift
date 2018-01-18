@@ -10,13 +10,20 @@ import Foundation
 
 enum NetworkRequest {
     enum employee {
-        struct create: DecodableResultRequest {
+        
+        private static let path = "data/Employee"
+        
+        struct create: Request {
             
-            typealias Model = Employee
+            typealias Model = Void
             
-            let path: String = ""
+            let path: String = employee.path
             let method: Method = .post
-            let body: Parameters? = [:]
+            let body: Data?
+            
+            init(employee: Employee) {
+                body = try! JSONEncoder().encode(employee)
+            }
         }
         
         struct update: DecodableResultRequest {
@@ -25,7 +32,7 @@ enum NetworkRequest {
             
             let path: String = ""
             let method: Method = .put
-            let body: Parameters? = [:]
+            let body: Data?
         }
         
         struct get: DecodableResultRequest {
@@ -35,7 +42,7 @@ enum NetworkRequest {
             let path: String = ""
         }
         
-        struct delete: DecodableResultRequest {
+        struct delete: DecodableResultRequest {            
             
             typealias Model = Employee
             
@@ -45,16 +52,18 @@ enum NetworkRequest {
     }
     
     enum department {
-        struct create: DecodableResultRequest {
+        private static let path = "data/Department"
+        
+        struct create: Request {
             
             typealias Model = Department
             
-            let path: String = ""
+            let path: String = department.path
             let method: Method = .post
-            let body: Parameters? = [:]
+            let body: Data?
             
             init(department: Department) {
-                
+                body = try! JSONEncoder().encode(department)
             }
         }
         
@@ -62,12 +71,15 @@ enum NetworkRequest {
             
             typealias Model = Department
             
-            let path: String = ""
+            var path: String { return department.path + "\(id)" }
             let method: Method = .post
-            let body: Parameters? = [:]
+            let body: Data?
             
-            init(department: Department) {
-                
+            private let id: String
+            
+            init(id: String, department: Department) {
+                self.id = id
+                body = try! JSONEncoder().encode(department)
             }
         }
     }

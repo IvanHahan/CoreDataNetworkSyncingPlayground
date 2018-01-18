@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CachedBackendlessRequest" representedClassName="CachedBackendlessRequest" syncable="YES">
+        <attribute name="method" attributeType="String" syncable="YES"/>
+        <attribute name="parameters" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="table" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="CachedRequest" representedClassName="CachedRequest" syncable="YES">
-        <attribute name="body" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="body" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="methodString" attributeType="String" syncable="YES"/>
         <attribute name="pathOptional" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="CachedRequest" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="CachedBackendlessRequest" positionX="-63" positionY="9" width="128" height="90"/>
     </elements>
 </model>

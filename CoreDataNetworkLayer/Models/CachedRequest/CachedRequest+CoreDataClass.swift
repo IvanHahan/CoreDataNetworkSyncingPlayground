@@ -13,4 +13,9 @@ import CoreData
 @objc(CachedRequest)
 final public class CachedRequest: NSManagedObject, Managed {
 
+    static var defaultSortDescriptors: [NSSortDescriptor] {
+        return [
+            NSSortDescriptor(key: #keyPath(priorityRaw), ascending: false)
+        ]
+    }
 }

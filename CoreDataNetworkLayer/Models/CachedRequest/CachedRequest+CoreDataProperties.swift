@@ -20,6 +20,7 @@ extension CachedRequest {
     @NSManaged public var pathOptional: String?
     @NSManaged public var body: Data?
     @NSManaged public var methodString: String?
+    @NSManaged public var priorityRaw: Int16
 }
 
 extension CachedRequest: Request {

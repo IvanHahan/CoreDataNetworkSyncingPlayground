@@ -18,6 +18,9 @@ enum Method: String {
 protocol Model {
 }
 
+enum Priority: Int16 {
+    case low, medium, high
+}
 
 protocol Request {
     associatedtype Model
@@ -25,6 +28,7 @@ protocol Request {
     var path: String { get }
     var method: Method { get }
     var body: Data? { get }
+    var priority: Priority { get }
     
     func asURLRequest(baseUrl: String) -> URLRequest
     func map(from data: Data) -> Model?
@@ -33,6 +37,7 @@ protocol Request {
 extension Request {
     var method: Method { return .get }
     var body: Data? { return nil }
+    var priority: Priority { return .medium }
     
     func map(from data: Data) -> Model? {
         return nil
@@ -57,6 +62,7 @@ extension Request {
         cached.body = body
         cached.methodString = method.rawValue
         cached.pathOptional = path
+        cached.priorityRaw = priority.rawValue
         return cached
     }
 }

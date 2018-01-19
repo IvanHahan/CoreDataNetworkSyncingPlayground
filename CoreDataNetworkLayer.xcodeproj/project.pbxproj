@@ -24,6 +24,7 @@
 		928BEE702010D3A300FA564F /* EmployeeSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BEE6F2010D3A300FA564F /* EmployeeSyncManager.swift */; };
 		92901585201203960006AF5F /* RequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92901584201203960006AF5F /* RequestOperation.swift */; };
 		92901587201221070006AF5F /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92901586201221070006AF5F /* SyncManager.swift */; };
+		929015892012498B0006AF5F /* ChangeProcessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929015882012498B0006AF5F /* ChangeProcessors.swift */; };
 		929E0742200CAC5B004F8BA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E0741200CAC5B004F8BA1 /* AppDelegate.swift */; };
 		929E0744200CAC5B004F8BA1 /* EmployeesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E0743200CAC5B004F8BA1 /* EmployeesViewController.swift */; };
 		929E0747200CAC5C004F8BA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 929E0745200CAC5B004F8BA1 /* Main.storyboard */; };
@@ -85,6 +86,7 @@
 		928BEE6F2010D3A300FA564F /* EmployeeSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSyncManager.swift; sourceTree = "<group>"; };
 		92901584201203960006AF5F /* RequestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestOperation.swift; sourceTree = "<group>"; };
 		92901586201221070006AF5F /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
+		929015882012498B0006AF5F /* ChangeProcessors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProcessors.swift; sourceTree = "<group>"; };
 		929E073E200CAC5B004F8BA1 /* CoreDataNetworkLayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataNetworkLayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		929E0741200CAC5B004F8BA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		929E0743200CAC5B004F8BA1 /* EmployeesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				9286F7BB200F9AAD00312903 /* BackendlessManager.swift */,
 				9270F7C3200DF8AA007C04F6 /* SessionOperation.swift */,
 				9270F7D4200E5FE6007C04F6 /* NetworkRequest.swift */,
+				929015882012498B0006AF5F /* ChangeProcessors.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 				929E0793200CBED9004F8BA1 /* Department+CoreDataClass.swift in Sources */,
 				9270F7C4200DF8AA007C04F6 /* SessionOperation.swift in Sources */,
 				928BEE702010D3A300FA564F /* EmployeeSyncManager.swift in Sources */,
+				929015892012498B0006AF5F /* ChangeProcessors.swift in Sources */,
 				929E079A200CBFE4004F8BA1 /* Identifiable.swift in Sources */,
 				9270F7CD200E1E44007C04F6 /* EditDepartmentController.swift in Sources */,
 				929E0773200CAE08004F8BA1 /* Company.xcdatamodeld in Sources */,

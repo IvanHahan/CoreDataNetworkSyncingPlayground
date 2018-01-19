@@ -10,3 +10,7 @@ import Foundation
 
 
 typealias PersistentModel = Managed & Codable
+
+protocol SyncedModel {
+    var remoteId: String { get }
+}

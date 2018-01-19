@@ -17,7 +17,6 @@ class DepartmentSyncManager {
     
     private let context: NSManagedObjectContext
     private var changing: ChangeType?
-//    var child: Emplos
     var requestCacher: RequestCacheManager?
     
 
@@ -26,7 +25,7 @@ class DepartmentSyncManager {
         NotificationCenter.default.addObserver(forName: Notification.Name.NSManagedObjectContextWillSave,
                                                object: nil,
                                                queue: nil) { [weak self] note in
-                                                guard let context = note.object as? NSManagedObjectContext else { return }
+                                                guard let context = note.object as? NSManagedObjectContext, context === self?.context else { return }
                                                 if let department = context.insertedObjects.first(where: { $0 is Department }) as? Department {
                                                     self?.changing = .insert(department)
                                                 } else if let department = context.updatedObjects.first(where: { $0 is Department }) as? Department {

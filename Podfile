@@ -6,7 +6,6 @@ target 'CoreDataNetworkLayer' do
   use_frameworks!
 
   # Pods for CoreDataNetworkLayer
-pod 'Backendless', '~> 4.0'
 
   target 'CoreDataNetworkLayerTests' do
     inherit! :search_paths

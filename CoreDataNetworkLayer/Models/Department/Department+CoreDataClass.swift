@@ -14,7 +14,7 @@ import CoreData
 final public class Department: NSManagedObject, Codable, Managed {
 
     private enum CodingKeys: String, CodingKey {
-        case name, employees, head
+        case name, employees, head, id = "objectId"
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -45,7 +45,5 @@ final public class Department: NSManagedObject, Codable, Managed {
         let department: Department = context.new()
         department.employees = employees
         department.head = head
-        head.department = department
-        employees.forEach { $0.department = department }
     }
 }

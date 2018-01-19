@@ -20,7 +20,7 @@ extension Department {
     @NSManaged public var name: String?
     @NSManaged public var employees: Set<Employee>?
     @NSManaged public var head: Employee?
-    @NSManaged public var id: String?
+    @NSManaged public var remoteId: String?
 
 }
 

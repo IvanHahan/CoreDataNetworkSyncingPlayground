@@ -39,7 +39,7 @@ class EmployeeSyncManager {
                                                 switch changing {
                                                 case .insert(let employees):
                                                     for employee in employees {
-                                                        self?.requestCacher?.enqueue(NetworkRequest.employee.create(employee: employee))
+                                                        self?.createEmployeeRemotely(employee: employee)
                                                     }
                                                 case .update(let employee):
                                                     break
@@ -49,4 +49,16 @@ class EmployeeSyncManager {
         }
     }
     
+    private func createEmployeeRemotely(employee: Employee) {
+//        self.requestCacher?.enqueue(NetworkRequest.employee.create(employee: employee)) { [weak self] result in
+//            switch result {
+//            case .success(let model):
+//                self?.context.performChanges {
+//                    employee.id = model.id
+//                }
+//            case .failure(let error):
+//                break
+//            }
+//        }
+    }
 }

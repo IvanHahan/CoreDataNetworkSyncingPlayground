@@ -19,11 +19,22 @@ enum NetworkError: LocalizedError {
 }
 
 class SessionManager {
+
+    enum State {
+        case pending, executing, cancelled, finished
+    }
+    
+    var didChangeState: Closure<State>?
     
     private let session: URLSession
     private let baseUrl: String
     private var executingTasks = Set<URLSessionDataTask>()
     private let syncGroup = DispatchGroup()
+    private(set) var state = State.pending {
+        didSet {
+            didChangeState?(state)
+        }
+    }
     
     init(baseUrl: String, config: URLSessionConfiguration) {
         session = URLSession(configuration: config)
@@ -32,6 +43,7 @@ class SessionManager {
     
     @discardableResult
     func execute<R: Request>(_ request: R, completion: ResultClosure<R.Model>? = nil) -> Cancellable {
+        state = .executing
         var task: URLSessionDataTask!
         task = session.dataTask(with: request.asURLRequest(baseUrl: baseUrl)) { [weak self] (data, response, error) in
             self?.executingTasks.remove(task)
@@ -45,10 +57,16 @@ class SessionManager {
                     completion?(.failure(NetworkError.couldNotParseJSON))
                 }
             }
+            self?.state = .finished
         }
         task.resume()
         executingTasks.insert(task)
         return task
+    }
+    
+    func cancel() {
+        executingTasks.forEach { $0.cancel() }
+        state = .cancelled
     }
     
     func synchronize<R: DecodableResultRequest>(_ requests: [R], completion: Closure<Void>? = nil) {

@@ -15,7 +15,7 @@ enum NetworkRequest {
         
         struct create: Request {
             
-            typealias Model = Void
+            typealias Model = Employee
             
             let path: String = employee.path
             let method: Method = .post

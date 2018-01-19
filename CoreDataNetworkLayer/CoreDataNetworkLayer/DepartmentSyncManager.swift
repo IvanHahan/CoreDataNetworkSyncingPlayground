@@ -15,9 +15,11 @@ class DepartmentSyncManager {
         case insert(Department), update(Department)
     }
     
-    let context: NSManagedObjectContext
+    private let context: NSManagedObjectContext
     private var changing: ChangeType?
+//    var child: Emplos
     var requestCacher: RequestCacheManager?
+    
 
     init(context: NSManagedObjectContext) {
         self.context = context
@@ -37,7 +39,9 @@ class DepartmentSyncManager {
                                                 guard let changing = self?.changing else { return }
                                                 switch changing {
                                                 case .insert(let department):
-                                                    self?.requestCacher?.enqueue(NetworkRequest.department.create(department: department))
+                                                    self?.requestCacher?.enqueue(NetworkRequest.department.create(department: department)) { result in
+                                                        
+                                                    }
                                                 case .update(let department):
                                                     self?.requestCacher?.enqueue(NetworkRequest.department.update(id: "", department: department))
                                                 }
@@ -45,4 +49,21 @@ class DepartmentSyncManager {
         }
     }
 
+    private func createDepartmentRemotely(department: Department) {
+//        self.requestCacher?.enqueue(NetworkRequest.department.create(department: department)) { [weak self] result in
+//            switch result {
+//            case .success(let model):
+//                self?.context.performChanges {
+//                    department.id = model.id
+//                    self?.establishRelationsWithEmployeesRemotely(deparment: department)
+//                }
+//            case .failure(let error):
+//                break
+//            }
+//        }
+    }
+    
+    private func establishRelationsWithEmployeesRemotely(deparment: Department) {
+//        self.requestCacher
+    }
 }

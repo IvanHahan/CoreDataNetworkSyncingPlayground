@@ -19,6 +19,7 @@ class RequestCacheManager {
     
     private let context: NSManagedObjectContext
     private(set) var isSuspended = true
+    private let queue = OperationQueue()
     
     init(context: NSManagedObjectContext) {
         self.context = context
@@ -36,12 +37,15 @@ class RequestCacheManager {
         isSuspended = true
     }
     
-    func enqueue<R: Request>(_ request: R) {
-        context.perform {
-            request.cache(into: self.context)
-            try? self.context.save()
-            guard self.isSuspended else { return }
-            self.run()
+    func enqueue<R: Request>(_ request: R, shouldCache: Bool = false, completion: ResultClosure<R.Model>? = nil) {
+        if shouldCache {
+            context.perform {
+                request.cache(into: self.context)
+                try? self.context.save()
+                self.run()
+            }
+        } else {
+            execute(request, completion: completion)
         }
     }
     
@@ -50,24 +54,15 @@ class RequestCacheManager {
             self.isSuspended = true
             return
         }
-        execute(request) { [weak self] in
+        execute(request) { [weak self] result in
             self?.context.delete(request)
             try? self?.context.save()
             self?.executeNext()
         }
     }
     
-    private func execute<R: Request>(_ request: R, successCompletion: @escaping Closure<Void>) {
-        let isSuspended = self.isSuspended
-        guard !isSuspended else { return }
-        sessionManager.execute(request) { [weak self] result in
-            guard !isSuspended else { return }
-            if case let .failure(error) = result, (error as? NetworkError) != NetworkError.couldNotParseJSON {
-                self?.errorHandler?(error)
-                self?.sessionManager.execute(request)
-            } else {
-                successCompletion(())
-            }
-        }
+    private func execute<R: Request>(_ request: R, completion: ResultClosure<R.Model>? = nil) {
+        let operation = RequestOperation(request: request, service: sessionManager, completion: completion)
+        queue.addOperation(operation)
     }
 }

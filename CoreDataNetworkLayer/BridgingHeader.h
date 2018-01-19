@@ -9,6 +9,5 @@
 #ifndef BridgingHeader_h
 #define BridgingHeader_h
 
-#import "Backendless.h"
 
 #endif /* BridgingHeader_h */

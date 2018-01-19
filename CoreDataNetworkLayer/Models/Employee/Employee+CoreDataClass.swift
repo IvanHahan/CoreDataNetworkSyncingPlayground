@@ -14,7 +14,7 @@ import CoreData
 final public class Employee: NSManagedObject, Codable {
 
     private enum CodingKeys: String, CodingKey {
-        case name, position, salary, department
+        case name, position, salary, id = "objectId"
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -33,7 +33,6 @@ final public class Employee: NSManagedObject, Codable {
         name = try container.decode(String.self, forKey: .name)
         position = try container.decode(String.self, forKey: .position)
         salary = try container.decode(Double.self, forKey: .salary)
-        department = try container.decode(Department.self, forKey: .department)
     }
     
     public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
@@ -46,7 +45,6 @@ final public class Employee: NSManagedObject, Codable {
         employee.name = name
         employee.position = position
         employee.salary = salary
-        employee.department = department
         department.employees?.insert(employee)
         return employee
     }

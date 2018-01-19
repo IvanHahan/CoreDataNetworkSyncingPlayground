@@ -82,5 +82,20 @@ enum NetworkRequest {
                 body = try! JSONEncoder().encode(department)
             }
         }
+        
+        struct establishRelationsWithEmployees: Request {
+            typealias Model = Void
+            
+            var path: String { return department.path.appending("/\(id)/employees") }
+            let method: Method = .post
+            let body: Data?
+            
+            private let id: String
+            
+            init(id: String, department: Department) {
+                self.id = id
+                body = try! JSONEncoder().encode(department)
+            }
+        }
     }
 }

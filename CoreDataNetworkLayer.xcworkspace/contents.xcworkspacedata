@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:CachedBackendlessRequest+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:CachedBackendlessRequest+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:CoreDataNetworkLayer.xcodeproj">
    </FileRef>
    <FileRef

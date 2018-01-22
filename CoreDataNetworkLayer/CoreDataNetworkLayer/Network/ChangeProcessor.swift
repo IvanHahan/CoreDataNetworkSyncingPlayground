@@ -9,10 +9,10 @@
 import Foundation
 
 protocol ChangeProcessor {
-    associatedtype T
+    associatedtype Model
     
     var comlpetion: Closure<Void>? { get set }
-    func process(_ models: [T])
+    func process(_ models: [Model])
 }
 
 

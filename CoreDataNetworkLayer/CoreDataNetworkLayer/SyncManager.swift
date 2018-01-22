@@ -49,9 +49,9 @@ where Saver.Model: SyncedModel, Updater.Model: SyncedModel, Remover.Model: Synce
                                                object: nil,
                                                queue: nil) { [weak self] note in
                                                 guard let context = note.object as? NSManagedObjectContext else { return }
-                                                let inserted = context.insertedObjects.flatMap{ $0 as? Saver.Model }
-                                                let updated = context.updatedObjects.flatMap { $0 as? Updater.Model }
-                                                let deleted = context.deletedObjects.flatMap { $0 as? Remover.Model }
+                                                let inserted = context.insertedObjects.flatMap{ $0 as? Saver.Model }.flatMap { $0.remoteId == nil ? $0 : nil }
+                                                let updated = context.updatedObjects.flatMap { $0 as? Updater.Model }.flatMap { $0.remoteId != nil ? $0 : nil }
+                                                let deleted = context.deletedObjects.flatMap { $0 as? Remover.Model }.flatMap { $0.remoteId != nil ? $0 : nil }
                                                 if !inserted.isEmpty {
                                                     self?.state = .pending
                                                     self?.changes.append(.create(inserted))

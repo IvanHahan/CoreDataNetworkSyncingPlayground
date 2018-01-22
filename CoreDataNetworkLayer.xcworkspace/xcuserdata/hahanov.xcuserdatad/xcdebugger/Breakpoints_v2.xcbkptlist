@@ -10,7 +10,86 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/SyncManager.swift"
-            timestampString = "538312186.4645489"
+            timestampString = "538320678.106214"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "init(context:saver:updater:remover:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/Network/DepartmentProcessors.swift"
+            timestampString = "538320678.107133"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "process(_:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CoreDataNetworkLayer.DepartmentProcessor.Saver.process(Swift.Array&lt;CoreDataNetworkLayer.Department&gt;, completion: Swift.Optional&lt;(CoreDataNetworkLayer.Result&lt;CoreDataNetworkLayer.Department&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "CoreDataNetworkLayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hahanov/Documents/Private/CoreDataNetworkLayer/CoreDataNetworkLayer/CoreDataNetworkLayer/Network/DepartmentProcessors.swift"
+                  timestampString = "538320678.216925"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "345">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (CoreDataNetworkLayer.Result&lt;CoreDataNetworkLayer.Department&gt;) -&gt; () in CoreDataNetworkLayer.DepartmentProcessor.Saver.process(Swift.Array&lt;CoreDataNetworkLayer.Department&gt;, completion: Swift.Optional&lt;(CoreDataNetworkLayer.Result&lt;CoreDataNetworkLayer.Department&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "CoreDataNetworkLayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hahanov/Documents/Private/CoreDataNetworkLayer/CoreDataNetworkLayer/CoreDataNetworkLayer/Network/DepartmentProcessors.swift"
+                  timestampString = "538320678.221089"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "43">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (CoreDataNetworkLayer.Result&lt;CoreDataNetworkLayer.Department&gt;) -&gt; () in CoreDataNetworkLayer.DepartmentProcessor.Saver.process(Swift.Array&lt;CoreDataNetworkLayer.Department&gt;, completion: Swift.Optional&lt;(CoreDataNetworkLayer.Result&lt;CoreDataNetworkLayer.Department&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "CoreDataNetworkLayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hahanov/Documents/Private/CoreDataNetworkLayer/CoreDataNetworkLayer/CoreDataNetworkLayer/Network/DepartmentProcessors.swift"
+                  timestampString = "538320678.225641"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "21">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/SyncManager.swift"
+            timestampString = "538320678.107211"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "114"
@@ -26,11 +105,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/SyncManager.swift"
-            timestampString = "538312186.465058"
+            timestampString = "538320678.107733"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "init(context:saver:updater:remover:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -41,93 +120,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/Network/EmployeeProcessors.swift"
-            timestampString = "538312186.465348"
+            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/SyncManager.swift"
+            timestampString = "538320770.875728"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "process(_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/Network/EmployeeProcessors.swift"
-            timestampString = "538312186.465412"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "process(_:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (CoreDataNetworkLayer.Result&lt;CoreDataNetworkLayer.Employee&gt;) -&gt; () in CoreDataNetworkLayer.EmployeeProcessor.Saver.process(Swift.Array&lt;CoreDataNetworkLayer.Employee&gt;, completion: Swift.Optional&lt;(CoreDataNetworkLayer.Result&lt;CoreDataNetworkLayer.Employee&gt;) -&gt; ()&gt;) -&gt; ()"
-                  moduleName = "CoreDataNetworkLayer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hahanov/Documents/Private/CoreDataNetworkLayer/CoreDataNetworkLayer/CoreDataNetworkLayer/Network/EmployeeProcessors.swift"
-                  timestampString = "538312186.636929"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "123">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 (CoreDataNetworkLayer.Result&lt;CoreDataNetworkLayer.Employee&gt;) -&gt; () in CoreDataNetworkLayer.EmployeeProcessor.Saver.process(Swift.Array&lt;CoreDataNetworkLayer.Employee&gt;, completion: Swift.Optional&lt;(CoreDataNetworkLayer.Result&lt;CoreDataNetworkLayer.Employee&gt;) -&gt; ()&gt;) -&gt; ()"
-                  moduleName = "CoreDataNetworkLayer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hahanov/Documents/Private/CoreDataNetworkLayer/CoreDataNetworkLayer/CoreDataNetworkLayer/Network/EmployeeProcessors.swift"
-                  timestampString = "538312186.6414829"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CoreDataNetworkLayer/Models/Employee/Employee+CoreDataClass.swift"
-            timestampString = "538312186.465475"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "init(from:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CoreDataNetworkLayer/Models/Employee/Employee+CoreDataClass.swift"
-            timestampString = "538312186.465536"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "init(from:)"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "init(context:saver:updater:remover:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -26,7 +26,7 @@ enum EmployeeProcessor {
                             self?.group.leave()
                         }
                     case .failure(let error):
-                        break
+                        self?.group.leave()
                     }
                     completion?(result)
                 }

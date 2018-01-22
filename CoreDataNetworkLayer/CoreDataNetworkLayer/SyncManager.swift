@@ -48,7 +48,7 @@ where Saver.Model: SyncedModel, Updater.Model: SyncedModel, Remover.Model: Synce
         NotificationCenter.default.addObserver(forName: Notification.Name.NSManagedObjectContextWillSave,
                                                object: nil,
                                                queue: nil) { [weak self] note in
-                                                guard let context = note.object as? NSManagedObjectContext else { return }
+                                                guard let context = note.object as? NSManagedObjectContext, context !== self?.context else { return }
                                                 let inserted = context.insertedObjects.flatMap{ $0 as? Saver.Model }.flatMap { $0.remoteId == nil ? $0 : nil }
                                                 let updated = context.updatedObjects.flatMap { $0 as? Updater.Model }.flatMap { $0.remoteId != nil ? $0 : nil }
                                                 let deleted = context.deletedObjects.flatMap { $0 as? Remover.Model }.flatMap { $0.remoteId != nil ? $0 : nil }
@@ -69,18 +69,21 @@ where Saver.Model: SyncedModel, Updater.Model: SyncedModel, Remover.Model: Synce
                                                object: nil,
                                                queue: nil) { [weak self] note in
                                                 self?.perform {
+                                                    guard let context = note.object as? NSManagedObjectContext, context !== self?.context else { return }
+                                                    guard let strongSelf = self else { return }
                                                     self?.changes.forEach {
                                                         self?.state = .executing
                                                         switch $0 {
                                                         case .create(let models):
-                                                            self?.remoteSaver.process(models, completion: nil)
+                                                            self?.remoteSaver.process(models, context: strongSelf.context, completion: nil)
                                                         case .update(let models):
-                                                            self?.remoteUpdater.process(models, completion: nil)
+                                                            self?.remoteUpdater.process(models, context: strongSelf.context, completion: nil)
                                                         case .delete(let models):
-                                                            self?.remoteRemover.process(models, completion: nil)
+                                                            self?.remoteRemover.process(models, context: strongSelf.context, completion: nil)
                                                         }
                                                     }
                                                     self?.changes = []
+                                                    context.reset()
                                                 }
         }
     }
@@ -94,8 +97,9 @@ where Saver.Model: SyncedModel, Updater.Model: SyncedModel, Remover.Model: Synce
         dependencies.remove(at: index)
     }
     
-    private let dispatchGroup = DispatchGroup()
+    private var dispatchGroup: DispatchGroup!
     private func perform(block: @escaping ()->()) {
+        dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
         dependencies.forEach { dependency in
             if dependency.state != .finished {

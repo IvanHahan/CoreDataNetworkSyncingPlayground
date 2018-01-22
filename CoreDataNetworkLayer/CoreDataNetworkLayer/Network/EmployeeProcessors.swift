@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 enum EmployeeProcessor {
     class Saver: ChangeProcessor {
@@ -15,14 +16,16 @@ enum EmployeeProcessor {
         private let requestCacher: RequestCacheManager
         private let group = DispatchGroup()
         
-        func process(_ models: [Employee], completion: ResultClosure<Employee>? = nil) {
+        func process(_ models: [Employee], context: NSManagedObjectContext, completion: ResultClosure<Employee>? = nil) {
             for model in models {
                 group.enter()
-                requestCacher.enqueue(NetworkRequest.employee.create(employee: model, context: model.managedObjectContext!)) { [weak self] result in
+                requestCacher.enqueue(NetworkRequest.employee.create(employee: model, context: context)) { [weak self] result in
                     switch result {
                     case .success(let employee):
-                        model.managedObjectContext?.performChanges {
-                            model.remoteId = employee.remoteId
+                        model.remoteId = employee.remoteId
+                        let mapped = model.remap(to: context)
+                        context.performChanges {
+                            mapped.remoteId = employee.remoteId
                             self?.group.leave()
                         }
                     case .failure(let error):
@@ -47,7 +50,7 @@ enum EmployeeProcessor {
         private let requestCacher: RequestCacheManager
         private let group = DispatchGroup()
         
-        func process(_ models: [Employee], completion: ResultClosure<Employee>? = nil) {
+        func process(_ models: [Employee], context: NSManagedObjectContext, completion: ResultClosure<Employee>? = nil) {
             for model in models {
                 group.enter()
 //                requestCacher.enqueue(NetworkRequest.employee.update(employee: model)) { [weak self] result in
@@ -71,7 +74,7 @@ enum EmployeeProcessor {
         private let requestCacher: RequestCacheManager
         private let group = DispatchGroup()
         
-        func process(_ models: [Employee], completion: ResultClosure<Employee>? = nil) {
+        func process(_ models: [Employee], context: NSManagedObjectContext, completion: ResultClosure<Employee>? = nil) {
             for model in models {
                 group.enter()
                 requestCacher.enqueue(NetworkRequest.employee.delete(employeeId: model.remoteId!)) { [weak self] result in

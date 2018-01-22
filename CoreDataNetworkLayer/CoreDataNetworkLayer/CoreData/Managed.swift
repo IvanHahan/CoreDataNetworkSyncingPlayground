@@ -43,6 +43,11 @@ extension Managed where Self: NSManagedObject {
             }).first
         }
     }
+    
+    func remap(to context: NSManagedObjectContext) -> Self {
+        guard managedObjectContext !== context else { return self }
+        return context.object(with: objectID) as! Self
+    }
 }
 
 extension NSManagedObjectContext {

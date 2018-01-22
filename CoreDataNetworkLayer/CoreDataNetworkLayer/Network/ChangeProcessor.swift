@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import CoreData
 
 protocol ChangeProcessor {
     associatedtype Model
     
     var comlpetion: Closure<Void>? { get set }
-    func process(_ models: [Model], completion: ResultClosure<Model>?)
+    func process(_ models: [Model], context: NSManagedObjectContext, completion: ResultClosure<Model>?)
 }

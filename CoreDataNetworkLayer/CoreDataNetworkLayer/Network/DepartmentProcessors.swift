@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 enum DepartmentProcessor {
     class Saver: ChangeProcessor {
@@ -15,14 +16,15 @@ enum DepartmentProcessor {
         private let requestCacher: RequestCacheManager
         private let group = DispatchGroup()
         
-        func process(_ models: [Department], completion: ResultClosure<Department>? = nil) {
+        func process(_ models: [Department], context: NSManagedObjectContext, completion: ResultClosure<Department>? = nil) {
             for model in models {
                 group.enter()
                 requestCacher.enqueue(NetworkRequest.department.create(department: model, context: model.managedObjectContext!)) { [weak self] result in
                     self?.group.leave()
                     switch result {
                     case .success(let department):
-                        model.managedObjectContext?.performChanges {
+                        let mapped = model.remap(to: context)
+                        context.performChanges {
                             model.remoteId = department.remoteId
                             self?.establishRelationshipsWithEmployees(model: model)
                         }
@@ -55,7 +57,7 @@ enum DepartmentProcessor {
         private let requestCacher: RequestCacheManager
         private let group = DispatchGroup()
         
-        func process(_ models: [Department], completion: ResultClosure<Department>? = nil) {
+        func process(_ models: [Department], context: NSManagedObjectContext, completion: ResultClosure<Department>? = nil) {
             for model in models {
                 group.enter()
                 requestCacher.enqueue(NetworkRequest.department.update(id: model.remoteId!, department: model)) { [weak self] result in
@@ -79,7 +81,7 @@ enum DepartmentProcessor {
         private let requestCacher: RequestCacheManager
         private let group = DispatchGroup()
         
-        func process(_ models: [Employee], completion: ResultClosure<Employee>? = nil) {
+        func process(_ models: [Employee], context: NSManagedObjectContext, completion: ResultClosure<Employee>? = nil) {
             for model in models {
                 group.enter()
                 requestCacher.enqueue(NetworkRequest.employee.delete(employeeId: model.remoteId!)) { [weak self] result in

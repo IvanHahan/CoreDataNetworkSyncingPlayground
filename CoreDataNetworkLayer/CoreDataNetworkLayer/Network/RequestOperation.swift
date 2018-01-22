@@ -40,13 +40,13 @@ class RequestOperation<Resource: Request>: Operation {
         self.service = service
         self.completion = completion
         super.init()
-        self.service.didChangeState = { [unowned self] _ in
-            self.willChangeValue(forKey: "isFinished")
-            self.willChangeValue(forKey: "isExecuting")
-            self.willChangeValue(forKey: "isCancelled")
-            self.didChangeValue(forKey: "isFinished")
-            self.didChangeValue(forKey: "isExecuting")
-            self.didChangeValue(forKey: "isCancelled")
+        self.service.didChangeState = { [weak self] _ in
+            self?.willChangeValue(forKey: "isFinished")
+            self?.willChangeValue(forKey: "isExecuting")
+            self?.willChangeValue(forKey: "isCancelled")
+            self?.didChangeValue(forKey: "isFinished")
+            self?.didChangeValue(forKey: "isExecuting")
+            self?.didChangeValue(forKey: "isCancelled")
         }
     }
     

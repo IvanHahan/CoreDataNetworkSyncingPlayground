@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 @objc(Employee)
-final public class Employee: NSManagedObject, Codable {
+final public class Employee: NSManagedObject, Codable, SyncedModel {
 
     private enum CodingKeys: String, CodingKey {
         case name, position, salary, id = "objectId"
@@ -20,6 +20,9 @@ final public class Employee: NSManagedObject, Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
+        try container.encode(position, forKey: .position)
+        try container.encode(salary, forKey: .salary)
+        try container.encode(remoteId, forKey: .id)
     }
     
     public required init(from decoder: Decoder) throws {
@@ -33,6 +36,7 @@ final public class Employee: NSManagedObject, Codable {
         name = try container.decode(String.self, forKey: .name)
         position = try container.decode(String.self, forKey: .position)
         salary = try container.decode(Double.self, forKey: .salary)
+        remoteId = try container.decode(String.self, forKey: .id)
     }
     
     public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {

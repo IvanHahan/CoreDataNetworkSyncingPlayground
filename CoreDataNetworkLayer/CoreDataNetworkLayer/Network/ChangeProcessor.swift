@@ -1,5 +1,5 @@
 //
-//  ChangeProcessors.swift
+//  ChangeProcessor.swift
 //  CoreDataNetworkLayer
 //
 //  Created by  Ivan Hahanov on 1/19/18.
@@ -12,7 +12,5 @@ protocol ChangeProcessor {
     associatedtype Model
     
     var comlpetion: Closure<Void>? { get set }
-    func process(_ models: [Model])
+    func process(_ models: [Model], completion: ResultClosure<Model>?)
 }
-
-

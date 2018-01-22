@@ -13,7 +13,7 @@ enum NetworkRequest {
         
         private static let path = "data/Employee"
         
-        struct create: Request {
+        struct create: DecodableResultRequest {
             
             typealias Model = Employee
             
@@ -48,13 +48,17 @@ enum NetworkRequest {
             
             let path: String = ""
             let method: Method = .delete
+            
+            init(employeeId id: String) {
+                
+            }
         }
     }
     
     enum department {
         private static let path = "data/Department"
         
-        struct create: Request {
+        struct create: DecodableResultRequest {
             
             typealias Model = Department
             
@@ -65,6 +69,7 @@ enum NetworkRequest {
             init(department: Department) {
                 body = try! JSONEncoder().encode(department)
             }
+            
         }
         
         struct update: DecodableResultRequest {
@@ -92,9 +97,9 @@ enum NetworkRequest {
             
             private let id: String
             
-            init(id: String, department: Department) {
+            init(id: String, employees: [String]) {
                 self.id = id
-                body = try! JSONEncoder().encode(department)
+                body = try! JSONEncoder().encode(employees)
             }
         }
     }

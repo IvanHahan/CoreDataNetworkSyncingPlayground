@@ -77,3 +77,16 @@ extension DecodableResultRequest {
         return try? decoder.decode(Model.self, from: data)
     }
 }
+
+protocol DecodableManagedResultRequest: DecodableResultRequest where Model: NSManagedObject & Managed {
+    func map(from data: Data, into context: NSManagedObjectContext) -> Model?
+}
+
+extension DecodableManagedResultRequest {
+    func map(from data: Data, into context: NSManagedObjectContext) -> Model? {
+        guard let key = CodingUserInfoKey.context else { return nil }
+        let decoder = JSONDecoder()
+        decoder.userInfo = [key: context]
+        return try? decoder.decode(Model.self, from: data)
+    }
+}

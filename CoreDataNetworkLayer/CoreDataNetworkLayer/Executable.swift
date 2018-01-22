@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+enum State {
+    case pending, executing, finished
+}
+
+protocol Executable: class {
+    var state: State { get set }
+    var didChangeState: Closure<State>? { get set }
+}

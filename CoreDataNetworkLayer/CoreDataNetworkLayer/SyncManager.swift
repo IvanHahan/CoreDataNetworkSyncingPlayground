@@ -9,61 +9,110 @@
 import Foundation
 import CoreData
 
-class SyncManager<P: ChangeProcessor where P.> {
+class SyncManager<Saver: ChangeProcessor, Updater: ChangeProcessor, Remover: ChangeProcessor>: Executable
+where Saver.Model: SyncedModel, Updater.Model: SyncedModel, Remover.Model: SyncedModel {
     
     enum Change {
-        case create([T]), update([T]), delete([String])
+        case create([Saver.Model]), update([Updater.Model]), delete([Remover.Model])
     }
     
+    var didChangeState: Closure<State>?
+    
+    private var dependencies: [Executable] = []
     private var changes: [Change] = []
     private let context: NSManagedObjectContext
-    private let remoteSaver: ChangeProcessor<T>
-    private let remoteUpdater: Closure<(String, T)>
-    private let remoteRemover: Closure<[String]>
+    private var remoteSaver: Saver
+    private var remoteUpdater: Updater
+    private var remoteRemover: Remover
     
-    private(set) var isExecutiong: Bool = false
+    var state: State = .finished {
+        didSet {
+            didChangeState?(state)
+        }
+    }
     
     init(context: NSManagedObjectContext,
-         saver: @escaping Closure<[T]>,
-         updater: @escaping Closure<(String, T)>,
-         remover: @escaping Closure<[String]>) {
+         saver: Saver,
+         updater: Updater,
+         remover: Remover) {
         self.context = context
         self.remoteSaver = saver
         self.remoteRemover = remover
         self.remoteUpdater = updater
-        
+        let completion: Closure<Void> = { [weak self] _ in
+            self?.state = .finished
+        }
+        remoteRemover.comlpetion = completion
+        remoteSaver.comlpetion = completion
+        remoteUpdater.comlpetion = completion
         NotificationCenter.default.addObserver(forName: Notification.Name.NSManagedObjectContextWillSave,
                                                object: nil,
                                                queue: nil) { [weak self] note in
                                                 guard let context = note.object as? NSManagedObjectContext else { return }
-                                                let inserted = context.insertedObjects.flatMap{ $0 as? T }
-                                                let updated = context.updatedObjects.flatMap { $0 as? T }.first
-                                                let deleted = context.deletedObjects.flatMap { $0 as? T }.map{ $0.remoteId }
+                                                let inserted = context.insertedObjects.flatMap{ $0 as? Saver.Model }
+                                                let updated = context.updatedObjects.flatMap { $0 as? Updater.Model }
+                                                let deleted = context.deletedObjects.flatMap { $0 as? Remover.Model }
                                                 if !inserted.isEmpty {
+                                                    self?.state = .pending
                                                     self?.changes.append(.create(inserted))
                                                 }
-                                                if let updated = updated {
-                                                    self?.changes.append(.update(id: updated.remoteId, model: updated))
+                                                if !updated.isEmpty {
+                                                    self?.state = .pending
+                                                    self?.changes.append(.update(updated))
                                                 }
                                                 if !deleted.isEmpty {
+                                                    self?.state = .pending
                                                     self?.changes.append(.delete(deleted))
                                                 }
         }
         NotificationCenter.default.addObserver(forName: Notification.Name.NSManagedObjectContextDidSave,
                                                object: nil,
                                                queue: nil) { [weak self] note in
-                                                self?.isExecutiong = true
-                                                self?.changes.forEach {
-                                                    switch $0 {
-                                                    case .create(let models):
-                                                        self?.remoteSaver(models)
-                                                    case .update(let id, let model):
-                                                        self?.remoteUpdater((id, model))
-                                                    case .delete(let models):
-                                                        self?.remoteRemover(models)
+                                                self?.perform {
+                                                    self?.changes.forEach {
+                                                        self?.state = .executing
+                                                        switch $0 {
+                                                        case .create(let models):
+                                                            self?.remoteSaver.process(models, completion: nil)
+                                                        case .update(let models):
+                                                            self?.remoteUpdater.process(models, completion: nil)
+                                                        case .delete(let models):
+                                                            self?.remoteRemover.process(models, completion: nil)
+                                                        }
                                                     }
+                                                    self?.changes = []
                                                 }
-                                                self?.changes = []
         }
     }
+    
+    func addDependency(_ dependency: Executable) {
+        dependencies.append(dependency)
+    }
+    
+    func removeDependency(_ dependency: Executable) {
+        guard let index = dependencies.index(where: { dependency === $0 }) else { return }
+        dependencies.remove(at: index)
+    }
+    
+    private let dispatchGroup = DispatchGroup()
+    private func perform(block: @escaping ()->()) {
+        dispatchGroup.enter()
+        dependencies.forEach { dependency in
+            if dependency.state != .finished {
+                dispatchGroup.enter()
+            } else {
+                return
+            }
+            dependency.didChangeState = { [weak self] state in
+                if state == .finished {
+                    self?.dispatchGroup.leave()
+                }
+            }
+        }
+        dispatchGroup.leave()
+        dispatchGroup.notify(queue: .main) {
+            block()
+        }
+    }
+    
 }

@@ -13,25 +13,30 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var departmentSyncManager: DepartmentSyncManager!
-    var employeeSyncManager: EmployeeSyncManager!
+    var departmentSyncManager: SyncManager<DepartmentProcessor.Saver, DepartmentProcessor.Updater, DepartmentProcessor.Remover>!
+    var employeeSyncManager: SyncManager<EmployeeProcessor.Saver, EmployeeProcessor.Updater, EmployeeProcessor.Remover>!
     var domainContainer: NSPersistentContainer!
     var cachingContainer: NSPersistentContainer!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         loadPersistentStore("Company") { container in
-            let backgroundContext = container.newBackgroundContext()
-            self.departmentSyncManager = DepartmentSyncManager(context: backgroundContext)
-            self.employeeSyncManager = EmployeeSyncManager(context: backgroundContext)
             self.domainContainer = container
         }
         loadPersistentStore("Caching") { container in
-            let backgroundContext = container.newBackgroundContext()
-            let requestCacheManager = RequestCacheManager(context: backgroundContext)
+            let cacherContext = container.newBackgroundContext()
+            let domainContext = self.domainContainer.newBackgroundContext()
+            let requestCacheManager = RequestCacheManager(context: cacherContext)
             requestCacheManager.run()
-            self.departmentSyncManager.requestCacher = requestCacheManager
-            self.employeeSyncManager.requestCacher = requestCacheManager
+            self.departmentSyncManager = SyncManager(context: domainContext,
+                                                     saver: DepartmentProcessor.Saver(requestCacher: requestCacheManager),
+                                                     updater: DepartmentProcessor.Updater(requestCacher: requestCacheManager),
+                                                     remover: DepartmentProcessor.Remover(requestCacher: requestCacheManager))
+            self.employeeSyncManager = SyncManager(context: domainContext,
+                                                   saver: EmployeeProcessor.Saver(requestCacher: requestCacheManager),
+                                                   updater: EmployeeProcessor.Updater(requestCacher: requestCacheManager),
+                                                   remover: EmployeeProcessor.Remover(requestCacher: requestCacheManager))
+            self.departmentSyncManager.addDependency(self.employeeSyncManager)
             self.cachingContainer = container
         }
         return true

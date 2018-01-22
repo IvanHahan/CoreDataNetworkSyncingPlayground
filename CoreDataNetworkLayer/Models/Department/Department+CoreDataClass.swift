@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 @objc(Department)
-final public class Department: NSManagedObject, Codable, Managed {
+final public class Department: NSManagedObject, Codable, Managed, SyncedModel {
 
     private enum CodingKeys: String, CodingKey {
         case name, employees, head, id = "objectId"
@@ -22,12 +22,13 @@ final public class Department: NSManagedObject, Codable, Managed {
         try container.encode(name, forKey: .name)
         try container.encode(employees, forKey: .employees)
         try container.encode(head, forKey: .head)
+        try container.encode(remoteId, forKey: .id)
     }
     
     public required init(from decoder: Decoder) throws {
         guard let contextUserInfoKey = CodingUserInfoKey.context,
             let managedObjectContext = decoder.userInfo[contextUserInfoKey] as? NSManagedObjectContext,
-            let entity = NSEntityDescription.entity(forEntityName: Department.identifier, in: managedObjectContext) else {
+            let entity = NSEntityDescription.entity(forEntityName: Department.entity().name!, in: managedObjectContext) else {
                 fatalError("Failed to decode \(Employee.identifier)!")
         }
         super.init(entity: entity, insertInto: managedObjectContext)
@@ -35,6 +36,7 @@ final public class Department: NSManagedObject, Codable, Managed {
         name = try container.decode(String.self, forKey: .name)
         employees = try container.decode(Set<Employee>?.self, forKey: .employees)
         head = try container.decode(Employee.self, forKey: .head)
+        remoteId = try container.decode(String.self, forKey: .id)
     }
     
     public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {

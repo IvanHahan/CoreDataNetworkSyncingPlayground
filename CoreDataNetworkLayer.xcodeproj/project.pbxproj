@@ -24,7 +24,7 @@
 		928BEE702010D3A300FA564F /* EmployeeSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928BEE6F2010D3A300FA564F /* EmployeeSyncManager.swift */; };
 		92901585201203960006AF5F /* RequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92901584201203960006AF5F /* RequestOperation.swift */; };
 		92901587201221070006AF5F /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92901586201221070006AF5F /* SyncManager.swift */; };
-		929015892012498B0006AF5F /* ChangeProcessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929015882012498B0006AF5F /* ChangeProcessors.swift */; };
+		929015892012498B0006AF5F /* ChangeProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929015882012498B0006AF5F /* ChangeProcessor.swift */; };
 		929E0742200CAC5B004F8BA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E0741200CAC5B004F8BA1 /* AppDelegate.swift */; };
 		929E0744200CAC5B004F8BA1 /* EmployeesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E0743200CAC5B004F8BA1 /* EmployeesViewController.swift */; };
 		929E0747200CAC5C004F8BA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 929E0745200CAC5B004F8BA1 /* Main.storyboard */; };
@@ -43,6 +43,9 @@
 		929E07A4200CD072004F8BA1 /* DepartmentSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E07A3200CD072004F8BA1 /* DepartmentSyncManager.swift */; };
 		929E07A6200CD0AF004F8BA1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E07A5200CD0AF004F8BA1 /* Constants.swift */; };
 		929E07A8200CD3F7004F8BA1 /* EditEmployeeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E07A7200CD3F7004F8BA1 /* EditEmployeeController.swift */; };
+		92AF72892015D3840000E4FC /* DepartmentProcessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF72882015D3840000E4FC /* DepartmentProcessors.swift */; };
+		92AF728B2015D38F0000E4FC /* EmployeeProcessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF728A2015D38F0000E4FC /* EmployeeProcessors.swift */; };
+		92AF728D2015E9C60000E4FC /* Executable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AF728C2015E9C60000E4FC /* Executable.swift */; };
 		92FB09B9200D0A30003C898B /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB09B8200D0A30003C898B /* Request.swift */; };
 		92FB09BB200D0CB8003C898B /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB09BA200D0CB8003C898B /* SessionManager.swift */; };
 		9C7AE18C25851A1D93118E04 /* Pods_CoreDataNetworkLayerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0ED42193CEB0885251C9280 /* Pods_CoreDataNetworkLayerTests.framework */; };
@@ -86,7 +89,7 @@
 		928BEE6F2010D3A300FA564F /* EmployeeSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSyncManager.swift; sourceTree = "<group>"; };
 		92901584201203960006AF5F /* RequestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestOperation.swift; sourceTree = "<group>"; };
 		92901586201221070006AF5F /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
-		929015882012498B0006AF5F /* ChangeProcessors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProcessors.swift; sourceTree = "<group>"; };
+		929015882012498B0006AF5F /* ChangeProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProcessor.swift; sourceTree = "<group>"; };
 		929E073E200CAC5B004F8BA1 /* CoreDataNetworkLayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataNetworkLayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		929E0741200CAC5B004F8BA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		929E0743200CAC5B004F8BA1 /* EmployeesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +114,9 @@
 		929E07A3200CD072004F8BA1 /* DepartmentSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentSyncManager.swift; sourceTree = "<group>"; };
 		929E07A5200CD0AF004F8BA1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		929E07A7200CD3F7004F8BA1 /* EditEmployeeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEmployeeController.swift; sourceTree = "<group>"; };
+		92AF72882015D3840000E4FC /* DepartmentProcessors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentProcessors.swift; sourceTree = "<group>"; };
+		92AF728A2015D38F0000E4FC /* EmployeeProcessors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeProcessors.swift; sourceTree = "<group>"; };
+		92AF728C2015E9C60000E4FC /* Executable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Executable.swift; sourceTree = "<group>"; };
 		92FB09B8200D0A30003C898B /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		92FB09BA200D0CB8003C898B /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		B57D6678FD71CA626F5E840E /* Pods_CoreDataNetworkLayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreDataNetworkLayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,7 +177,9 @@
 				9286F7BB200F9AAD00312903 /* BackendlessManager.swift */,
 				9270F7C3200DF8AA007C04F6 /* SessionOperation.swift */,
 				9270F7D4200E5FE6007C04F6 /* NetworkRequest.swift */,
-				929015882012498B0006AF5F /* ChangeProcessors.swift */,
+				929015882012498B0006AF5F /* ChangeProcessor.swift */,
+				92AF72882015D3840000E4FC /* DepartmentProcessors.swift */,
+				92AF728A2015D38F0000E4FC /* EmployeeProcessors.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -184,6 +192,7 @@
 				92901586201221070006AF5F /* SyncManager.swift */,
 				9270F7C7200E036D007C04F6 /* PersistentModel.swift */,
 				9286F7B4200F5A4A00312903 /* RequestCacheManager.swift */,
+				92AF728C2015E9C60000E4FC /* Executable.swift */,
 				9270F7C5200DFC76007C04F6 /* Network */,
 				92FB09B7200D09A4003C898B /* CoreData */,
 			);
@@ -634,18 +643,21 @@
 				929E0793200CBED9004F8BA1 /* Department+CoreDataClass.swift in Sources */,
 				9270F7C4200DF8AA007C04F6 /* SessionOperation.swift in Sources */,
 				928BEE702010D3A300FA564F /* EmployeeSyncManager.swift in Sources */,
-				929015892012498B0006AF5F /* ChangeProcessors.swift in Sources */,
+				929015892012498B0006AF5F /* ChangeProcessor.swift in Sources */,
 				929E079A200CBFE4004F8BA1 /* Identifiable.swift in Sources */,
 				9270F7CD200E1E44007C04F6 /* EditDepartmentController.swift in Sources */,
 				929E0773200CAE08004F8BA1 /* Company.xcdatamodeld in Sources */,
 				9270F7CB200E1E30007C04F6 /* DepartmentsViewController.swift in Sources */,
 				92FB09BB200D0CB8003C898B /* SessionManager.swift in Sources */,
 				929E07A6200CD0AF004F8BA1 /* Constants.swift in Sources */,
+				92AF728B2015D38F0000E4FC /* EmployeeProcessors.swift in Sources */,
 				929E0796200CBED9004F8BA1 /* Employee+CoreDataClass.swift in Sources */,
 				9286F7BC200F9AAD00312903 /* BackendlessManager.swift in Sources */,
 				9286F7B8200F5E8200312903 /* CachedRequest+CoreDataClass.swift in Sources */,
 				929E0742200CAC5B004F8BA1 /* AppDelegate.swift in Sources */,
+				92AF72892015D3840000E4FC /* DepartmentProcessors.swift in Sources */,
 				92FB09B9200D0A30003C898B /* Request.swift in Sources */,
+				92AF728D2015E9C60000E4FC /* Executable.swift in Sources */,
 				929E0798200CBFB8004F8BA1 /* UITableViewExtensions.swift in Sources */,
 				929E07A0200CC4C4004F8BA1 /* Managed.swift in Sources */,
 			);

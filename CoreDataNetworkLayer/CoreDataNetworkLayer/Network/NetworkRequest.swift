@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 enum NetworkRequest {
     enum employee {
@@ -21,8 +22,18 @@ enum NetworkRequest {
             let method: Method = .post
             let body: Data?
             
-            init(employee: Employee) {
+            private let context: NSManagedObjectContext
+            
+            init(employee: Employee, context: NSManagedObjectContext) {
+                self.context = context
                 body = try! JSONEncoder().encode(employee)
+            }
+            
+            func map(from data: Data) -> Employee? {
+                guard let key = CodingUserInfoKey.context else { return nil }
+                let decoder = JSONDecoder()
+                decoder.userInfo[key] = context
+                return try? decoder.decode(Model.self, from: data)
             }
         }
         
@@ -65,11 +76,19 @@ enum NetworkRequest {
             let path: String = department.path
             let method: Method = .post
             let body: Data?
+            private let context: NSManagedObjectContext
             
-            init(department: Department) {
+            init(department: Department, context: NSManagedObjectContext) {
                 body = try! JSONEncoder().encode(department)
+                self.context = context
             }
             
+            func map(from data: Data) -> Department? {
+                guard let key = CodingUserInfoKey.context else { return nil }
+                let decoder = JSONDecoder()
+                decoder.userInfo[key] = context
+                return try? decoder.decode(Model.self, from: data)
+            }
         }
         
         struct update: DecodableResultRequest {

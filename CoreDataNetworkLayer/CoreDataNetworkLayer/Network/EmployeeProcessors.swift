@@ -18,7 +18,7 @@ enum EmployeeProcessor {
         func process(_ models: [Employee], completion: ResultClosure<Employee>? = nil) {
             for model in models {
                 group.enter()
-                requestCacher.enqueue(NetworkRequest.employee.create(employee: model)) { [weak self] result in
+                requestCacher.enqueue(NetworkRequest.employee.create(employee: model, context: model.managedObjectContext!)) { [weak self] result in
                     switch result {
                     case .success(let employee):
                         model.managedObjectContext?.performChanges {
@@ -50,10 +50,10 @@ enum EmployeeProcessor {
         func process(_ models: [Employee], completion: ResultClosure<Employee>? = nil) {
             for model in models {
                 group.enter()
-                requestCacher.enqueue(NetworkRequest.employee.create(employee: model)) { [weak self] result in
-                    self?.group.leave()
-                    completion?(result)
-                }
+//                requestCacher.enqueue(NetworkRequest.employee.update(employee: model)) { [weak self] result in
+//                    self?.group.leave()
+//                    completion?(result)
+//                }
             }
             group.notify(queue: .main) {
                 self.comlpetion?()

@@ -18,7 +18,7 @@ enum DepartmentProcessor {
         func process(_ models: [Department], completion: ResultClosure<Department>? = nil) {
             for model in models {
                 group.enter()
-                requestCacher.enqueue(NetworkRequest.department.create(department: model)) { [weak self] result in
+                requestCacher.enqueue(NetworkRequest.department.create(department: model, context: model.managedObjectContext!)) { [weak self] result in
                     self?.group.leave()
                     switch result {
                     case .success(let department):

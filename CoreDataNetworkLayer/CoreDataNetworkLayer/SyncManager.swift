@@ -69,6 +69,7 @@ where Saver.Model: SyncedModel, Updater.Model: SyncedModel, Remover.Model: Synce
                                                object: nil,
                                                queue: nil) { [weak self] note in
                                                 self?.perform {
+                                                    print(self?.changes)
                                                     guard let context = note.object as? NSManagedObjectContext, context !== self?.context else { return }
                                                     guard let strongSelf = self else { return }
                                                     self?.changes.forEach {
@@ -83,7 +84,6 @@ where Saver.Model: SyncedModel, Updater.Model: SyncedModel, Remover.Model: Synce
                                                         }
                                                     }
                                                     self?.changes = []
-                                                    context.reset()
                                                 }
         }
     }

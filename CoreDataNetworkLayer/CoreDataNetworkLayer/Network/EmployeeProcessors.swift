@@ -19,13 +19,13 @@ enum EmployeeProcessor {
         func process(_ models: [Employee], context: NSManagedObjectContext, completion: ResultClosure<Employee>? = nil) {
             for model in models {
                 group.enter()
+                let mapped = model.remap(to: context)
                 requestCacher.enqueue(NetworkRequest.employee.create(employee: model, context: context)) { [weak self] result in
                     switch result {
                     case .success(let employee):
-                        model.remoteId = employee.remoteId
-                        let mapped = model.remap(to: context)
                         context.performChanges {
                             mapped.remoteId = employee.remoteId
+                            context.delete(employee)
                             self?.group.leave()
                         }
                     case .failure(let error):

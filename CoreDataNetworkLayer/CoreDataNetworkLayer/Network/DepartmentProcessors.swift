@@ -20,7 +20,7 @@ enum DepartmentProcessor {
             for model in models {
                 group.enter()
                 let mapped = model.remap(to: context)
-                requestCacher.enqueue(NetworkRequest.department.create(department: model, context: model.managedObjectContext!)) { [weak self] result in
+                requestCacher.enqueue(NetworkRequest.department.create(department: model, context: context)) { [weak self] result in
                     self?.group.leave()
                     switch result {
                     case .success(let department):

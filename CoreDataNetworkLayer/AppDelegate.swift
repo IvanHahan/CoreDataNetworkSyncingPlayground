@@ -28,11 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let domainContext = self.domainContainer.newBackgroundContext()
             let requestCacheManager = RequestCacheManager(context: cacherContext)
             requestCacheManager.run()
-            self.departmentSyncManager = SyncManager(context: domainContext,
+            self.departmentSyncManager = SyncManager(name: "department",
+                                                     context: domainContext,
                                                      saver: DepartmentProcessor.Saver(requestCacher: requestCacheManager),
                                                      updater: DepartmentProcessor.Updater(requestCacher: requestCacheManager),
                                                      remover: DepartmentProcessor.Remover(requestCacher: requestCacheManager))
-            self.employeeSyncManager = SyncManager(context: domainContext,
+            self.employeeSyncManager = SyncManager(name: "employee",
+                                                   context: domainContext,
                                                    saver: EmployeeProcessor.Saver(requestCacher: requestCacheManager),
                                                    updater: EmployeeProcessor.Updater(requestCacher: requestCacheManager),
                                                    remover: EmployeeProcessor.Remover(requestCacher: requestCacheManager))

@@ -25,16 +25,20 @@ where Saver.Model: SyncedModel, Updater.Model: SyncedModel, Remover.Model: Synce
     private var remoteUpdater: Updater
     private var remoteRemover: Remover
     
+    let name: String
+    
     var state: State = .finished {
         didSet {
             didChangeState?(state)
         }
     }
     
-    init(context: NSManagedObjectContext,
+    init(name: String,
+         context: NSManagedObjectContext,
          saver: Saver,
          updater: Updater,
          remover: Remover) {
+        self.name = name
         self.context = context
         self.remoteSaver = saver
         self.remoteRemover = remover
@@ -68,10 +72,9 @@ where Saver.Model: SyncedModel, Updater.Model: SyncedModel, Remover.Model: Synce
         NotificationCenter.default.addObserver(forName: Notification.Name.NSManagedObjectContextDidSave,
                                                object: nil,
                                                queue: nil) { [weak self] note in
+                                                guard let context = note.object as? NSManagedObjectContext, context !== self?.context else { return }
+                                                guard let strongSelf = self else { return }
                                                 self?.perform {
-                                                    print(self?.changes)
-                                                    guard let context = note.object as? NSManagedObjectContext, context !== self?.context else { return }
-                                                    guard let strongSelf = self else { return }
                                                     self?.changes.forEach {
                                                         self?.state = .executing
                                                         switch $0 {

@@ -34,8 +34,8 @@ final public class Department: NSManagedObject, Codable, Managed, SyncedModel {
         super.init(entity: entity, insertInto: managedObjectContext)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
-        employees = try container.decode(Set<Employee>?.self, forKey: .employees)
-        head = try container.decode(Employee.self, forKey: .head)
+        employees = try? container.decode(Set<Employee>.self, forKey: .employees)
+        head = try? container.decode(Employee.self, forKey: .head)
         remoteId = try container.decode(String.self, forKey: .id)
     }
     

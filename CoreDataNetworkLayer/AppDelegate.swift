@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let cacherContext = container.newBackgroundContext()
             let domainContext = self.domainContainer.newBackgroundContext()
             let requestCacheManager = RequestCacheManager(context: cacherContext)
-            requestCacheManager.run()
+            requestCacheManager.runCached()
             self.departmentSyncManager = SyncManager(name: "department",
                                                      context: domainContext,
                                                      saver: DepartmentProcessor.Saver(requestCacher: requestCacheManager),

@@ -18,7 +18,9 @@ class RequestCacheManager {
     let sessionManager = SessionManager(baseUrl: baseUrl, config: URLSessionConfiguration.default)
     
     private let context: NSManagedObjectContext
-    private(set) var isSuspended = true
+    var isSuspended: Bool {
+        return queue.isSuspended
+    }
     private let queue = OperationQueue()
     
     init(context: NSManagedObjectContext) {
@@ -26,43 +28,50 @@ class RequestCacheManager {
     }
     
     func run() {
-        guard isSuspended else { return }
-        isSuspended = false
+        queue.isSuspended = false
+    }
+    
+    func runCached() {
+        queue.isSuspended = false
         context.perform { [weak self] in
             self?.executeNext()
         }
     }
     
     func stop() {
-        isSuspended = true
+        queue.isSuspended = true
     }
     
-    func enqueue<R: Request>(_ request: R, shouldCache: Bool = false, completion: ResultClosure<R.Model>? = nil) {
-        if shouldCache {
-            context.perform {
-                request.cache(into: self.context)
-                try? self.context.save()
-                self.run()
+    func enqueueSecured<R: Request>(_ request: R, completion: Closure<R.Model>? = nil) {
+        enqueue(request) { [weak self] result in
+            switch result {
+            case .success(let model):
+                completion?(model)
+            case .failure:
+                self?.enqueue(request)
             }
-        } else {
-            execute(request, completion: completion)
+        }
+    }
+    
+    func enqueue<R: Request>(_ request: R, completion: ResultClosure<R.Model>? = nil) {
+        let operation = RequestOperation(request: request, service: sessionManager, completion: completion)
+        queue.addOperation(operation)
+    }
+    
+    func enqueueCached<R: Request>(_ request: R) {
+        context.perform {
+            request.cache(into: self.context)
+            try? self.context.save()
+            self.runCached()
         }
     }
     
     private func executeNext() {
-        guard let request = CachedRequest.findOrFetchFirst(in: context), !isSuspended else {
-            self.isSuspended = true
-            return
-        }
-        execute(request) { [weak self] result in
+        guard let request = CachedRequest.findOrFetchFirst(in: context) else { return }
+        enqueue(request) { [weak self] result in
             self?.context.delete(request)
             try? self?.context.save()
             self?.executeNext()
         }
-    }
-    
-    private func execute<R: Request>(_ request: R, completion: ResultClosure<R.Model>? = nil) {
-        let operation = RequestOperation(request: request, service: sessionManager, completion: completion)
-        queue.addOperation(operation)
     }
 }

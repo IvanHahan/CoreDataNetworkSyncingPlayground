@@ -16,21 +16,15 @@ enum EmployeeProcessor {
         private let requestCacher: RequestCacheManager
         private let group = DispatchGroup()
         
-        func process(_ models: [Employee], context: NSManagedObjectContext, completion: ResultClosure<Employee>? = nil) {
+        func process(_ models: [Employee], context: NSManagedObjectContext) {
             for model in models {
                 group.enter()
-                requestCacher.enqueue(NetworkRequest.employee.create(employee: model, context: context)) { [weak self] result in
-                    switch result {
-                    case .success(let employee):
-                        context.performChanges {
-                            model.remoteId = employee.remoteId
-                            context.delete(employee)
-                            self?.group.leave()
-                        }
-                    case .failure(let error):
+                requestCacher.enqueueSecured(NetworkRequest.employee.create(employee: model, context: context)) { [weak self] employee in
+                    context.performChanges {
+                        model.remoteId = employee.remoteId
+                        context.delete(employee)
                         self?.group.leave()
                     }
-                    completion?(result)
                 }
             }
             group.notify(queue: .main) {
@@ -49,7 +43,7 @@ enum EmployeeProcessor {
         private let requestCacher: RequestCacheManager
         private let group = DispatchGroup()
         
-        func process(_ models: [Employee], context: NSManagedObjectContext, completion: ResultClosure<Employee>? = nil) {
+        func process(_ models: [Employee], context: NSManagedObjectContext) {
             for model in models {
                 group.enter()
 //                requestCacher.enqueue(NetworkRequest.employee.update(employee: model)) { [weak self] result in
@@ -73,12 +67,11 @@ enum EmployeeProcessor {
         private let requestCacher: RequestCacheManager
         private let group = DispatchGroup()
         
-        func process(_ models: [Employee], context: NSManagedObjectContext, completion: ResultClosure<Employee>? = nil) {
+        func process(_ models: [Employee], context: NSManagedObjectContext) {
             for model in models {
                 group.enter()
                 requestCacher.enqueue(NetworkRequest.employee.delete(employeeId: model.remoteId!)) { [weak self] result in
                     self?.group.leave()
-                    completion?(result)
                 }
             }
             group.notify(queue: .main) {

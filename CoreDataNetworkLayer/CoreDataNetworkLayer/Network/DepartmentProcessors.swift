@@ -16,22 +16,16 @@ enum DepartmentProcessor {
         private let requestCacher: RequestCacheManager
         private let group = DispatchGroup()
         
-        func process(_ models: [Department], context: NSManagedObjectContext, completion: ResultClosure<Department>? = nil) {
+        func process(_ models: [Department], context: NSManagedObjectContext) {
             for model in models {
                 group.enter()
-                requestCacher.enqueue(NetworkRequest.department.create(department: model, context: context)) { [weak self] result in
+                requestCacher.enqueueSecured(NetworkRequest.department.create(department: model, context: context)) { [weak self] department in
                     self?.group.leave()
-                    switch result {
-                    case .success(let department):
-                        context.performChanges {
-                            model.remoteId = department.remoteId
-                            context.delete(department)
-                            self?.establishRelationshipsWithEmployees(model: model)
-                        }
-                    case .failure(let error):
-                        break
+                    context.performChanges {
+                        model.remoteId = department.remoteId
+                        context.delete(department)
+                        self?.establishRelationshipsWithEmployees(model: model)
                     }
-                    completion?(result)
                 }
             }
             group.notify(queue: .main) {
@@ -41,9 +35,8 @@ enum DepartmentProcessor {
         
         private func establishRelationshipsWithEmployees(model: Department) {
             guard let ids = model.employees?.flatMap({ $0.remoteId }), !ids.isEmpty else { return }
-            self.requestCacher.enqueue(NetworkRequest.department.establishRelationsWithEmployees(id: model.remoteId!,
-                                                                                                 employees: ids),
-                                       shouldCache: true)
+            self.requestCacher.enqueueCached(NetworkRequest.department.establishRelationsWithEmployees(id: model.remoteId!,
+                                                                                                       employees: ids))
         }
         
         init(requestCacher: RequestCacheManager) {
@@ -57,12 +50,11 @@ enum DepartmentProcessor {
         private let requestCacher: RequestCacheManager
         private let group = DispatchGroup()
         
-        func process(_ models: [Department], context: NSManagedObjectContext, completion: ResultClosure<Department>? = nil) {
+        func process(_ models: [Department], context: NSManagedObjectContext) {
             for model in models {
                 group.enter()
                 requestCacher.enqueue(NetworkRequest.department.update(id: model.remoteId!, department: model)) { [weak self] result in
                     self?.group.leave()
-                    completion?(result)
                 }
             }
             group.notify(queue: .main) {
@@ -81,12 +73,11 @@ enum DepartmentProcessor {
         private let requestCacher: RequestCacheManager
         private let group = DispatchGroup()
         
-        func process(_ models: [Employee], context: NSManagedObjectContext, completion: ResultClosure<Employee>? = nil) {
+        func process(_ models: [Employee], context: NSManagedObjectContext) {
             for model in models {
                 group.enter()
                 requestCacher.enqueue(NetworkRequest.employee.delete(employeeId: model.remoteId!)) { [weak self] result in
                     self?.group.leave()
-                    completion?(result)
                 }
             }
             group.notify(queue: .main) {

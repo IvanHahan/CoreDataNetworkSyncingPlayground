@@ -83,11 +83,11 @@ where Saver.Model: SyncedModel, Updater.Model: SyncedModel, Remover.Model: Synce
                                                         self?.state = .executing
                                                         switch $0 {
                                                         case .create(let models):
-                                                            self?.remoteSaver.process(models, context: strongSelf.context, completion: nil)
+                                                            self?.remoteSaver.process(models, context: strongSelf.context)
                                                         case .update(let models):
-                                                            self?.remoteUpdater.process(models, context: strongSelf.context, completion: nil)
+                                                            self?.remoteUpdater.process(models, context: strongSelf.context)
                                                         case .delete(let models):
-                                                            self?.remoteRemover.process(models, context: strongSelf.context, completion: nil)
+                                                            self?.remoteRemover.process(models, context: strongSelf.context)
                                                         }
                                                     }
                                                     self?.changes = []

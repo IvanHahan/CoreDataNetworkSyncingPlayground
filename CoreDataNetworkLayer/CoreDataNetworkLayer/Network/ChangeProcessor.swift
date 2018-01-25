@@ -13,5 +13,5 @@ protocol ChangeProcessor {
     associatedtype Model: NSManagedObject, Managed
     
     var comlpetion: Closure<Void>? { get set }
-    func process(_ models: [Model], context: NSManagedObjectContext, completion: ResultClosure<Model>?)
+    func process(_ models: [Model], context: NSManagedObjectContext)
 }

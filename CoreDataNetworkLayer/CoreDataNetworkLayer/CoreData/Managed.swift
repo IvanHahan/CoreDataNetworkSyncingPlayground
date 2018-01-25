@@ -50,6 +50,12 @@ extension Managed where Self: NSManagedObject {
     }
 }
 
+extension Sequence where Iterator.Element: NSManagedObject & Managed {
+    func remap(to context: NSManagedObjectContext) -> [Self.Element] {
+        return map { $0.remap(to: context) }
+    }
+}
+
 extension NSManagedObjectContext {
     func new<T: NSManagedObject>() -> T {
         return NSEntityDescription.insertNewObject(forEntityName: T.identifier, into: self) as! T

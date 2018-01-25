@@ -19,15 +19,14 @@ enum DepartmentProcessor {
         func process(_ models: [Department], context: NSManagedObjectContext, completion: ResultClosure<Department>? = nil) {
             for model in models {
                 group.enter()
-                let mapped = model.remap(to: context)
                 requestCacher.enqueue(NetworkRequest.department.create(department: model, context: context)) { [weak self] result in
                     self?.group.leave()
                     switch result {
                     case .success(let department):
                         context.performChanges {
-                            mapped.remoteId = department.remoteId
+                            model.remoteId = department.remoteId
                             context.delete(department)
-                            self?.establishRelationshipsWithEmployees(model: mapped)
+                            self?.establishRelationshipsWithEmployees(model: model)
                         }
                     case .failure(let error):
                         break

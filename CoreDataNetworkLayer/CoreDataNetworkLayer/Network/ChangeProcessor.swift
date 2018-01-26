@@ -13,5 +13,7 @@ protocol ChangeProcessor {
     associatedtype Model: NSManagedObject, Managed
     
     var comlpetion: Closure<Void>? { get set }
-    func process(_ models: [Model], context: NSManagedObjectContext)
+    func save(_ models: [Model])
+    func update(_ models: [Model])
+    func delete(_ ids: [String])
 }

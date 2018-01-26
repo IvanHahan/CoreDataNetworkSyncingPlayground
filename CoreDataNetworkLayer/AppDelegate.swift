@@ -13,13 +13,12 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var departmentSyncManager: SyncManager<DepartmentProcessor.Saver, DepartmentProcessor.Updater, DepartmentProcessor.Remover>!
-    var employeeSyncManager: SyncManager<EmployeeProcessor.Saver, EmployeeProcessor.Updater, EmployeeProcessor.Remover>!
+    var departmentSyncManager: SyncManager<DepartmentProcessor>!
+    var employeeSyncManager: SyncManager<EmployeeProcessor>!
     var domainContainer: NSPersistentContainer!
     var cachingContainer: NSPersistentContainer!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         loadPersistentStore("Company") { container in
             self.domainContainer = container
         }
@@ -30,14 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             requestCacheManager.runCached()
             self.departmentSyncManager = SyncManager(name: "department",
                                                      context: domainContext,
-                                                     saver: DepartmentProcessor.Saver(requestCacher: requestCacheManager),
-                                                     updater: DepartmentProcessor.Updater(requestCacher: requestCacheManager),
-                                                     remover: DepartmentProcessor.Remover(requestCacher: requestCacheManager))
+                                                     changeProcessor: DepartmentProcessor(requestCacher: requestCacheManager))
             self.employeeSyncManager = SyncManager(name: "employee",
                                                    context: domainContext,
-                                                   saver: EmployeeProcessor.Saver(requestCacher: requestCacheManager),
-                                                   updater: EmployeeProcessor.Updater(requestCacher: requestCacheManager),
-                                                   remover: EmployeeProcessor.Remover(requestCacher: requestCacheManager))
+                                                   changeProcessor: EmployeeProcessor(requestCacher: requestCacheManager))
             self.departmentSyncManager.addDependency(self.employeeSyncManager)
             self.cachingContainer = container
         }

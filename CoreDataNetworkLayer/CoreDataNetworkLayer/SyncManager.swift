@@ -9,11 +9,11 @@
 import Foundation
 import CoreData
 
-class SyncManager<Saver: ChangeProcessor, Updater: ChangeProcessor, Remover: ChangeProcessor>: Executable
-where Saver.Model: SyncedModel, Updater.Model: SyncedModel, Remover.Model: SyncedModel {
+class SyncManager<CP: ChangeProcessor>: Executable
+where CP.Model: SyncedModel {
     
     enum Change {
-        case create([Saver.Model]), update([Updater.Model]), delete([Remover.Model])
+        case create([CP.Model]), update([CP.Model]), delete([String])
     }
     
     var didChangeState: Closure<State>?
@@ -21,9 +21,7 @@ where Saver.Model: SyncedModel, Updater.Model: SyncedModel, Remover.Model: Synce
     private var dependencies: [Executable] = []
     private var changes: [Change] = []
     private let context: NSManagedObjectContext
-    private var remoteSaver: Saver
-    private var remoteUpdater: Updater
-    private var remoteRemover: Remover
+    private var changeProcessor: CP
     
     let name: String
     
@@ -35,31 +33,25 @@ where Saver.Model: SyncedModel, Updater.Model: SyncedModel, Remover.Model: Synce
     
     init(name: String,
          context: NSManagedObjectContext,
-         saver: Saver,
-         updater: Updater,
-         remover: Remover) {
+         changeProcessor: CP) {
         self.name = name
         self.context = context
-        self.remoteSaver = saver
-        self.remoteRemover = remover
-        self.remoteUpdater = updater
+        self.changeProcessor = changeProcessor
         let completion: Closure<Void> = { [weak self] _ in
             self?.state = .finished
         }
-        remoteRemover.comlpetion = completion
-        remoteSaver.comlpetion = completion
-        remoteUpdater.comlpetion = completion
+        self.changeProcessor.comlpetion = completion
         NotificationCenter.default.addObserver(forName: Notification.Name.NSManagedObjectContextWillSave,
                                                object: nil,
                                                queue: nil) { [weak self] note in
                                                 guard let context = note.object as? NSManagedObjectContext, context !== self?.context else { return }
                                                 guard let strongSelf = self else { return }
-                                                let inserted = context.insertedObjects.flatMap{ $0 as? Saver.Model }
+                                                let inserted = context.insertedObjects.flatMap{ $0 as? CP.Model }
                                                     .flatMap { $0.remoteId == nil ? $0 : nil }.remap(to: strongSelf.context)
-                                                let updated = context.updatedObjects.flatMap { $0 as? Updater.Model }
+                                                let updated = context.updatedObjects.flatMap { $0 as? CP.Model }
                                                     .flatMap { $0.remoteId != nil ? $0 : nil }.remap(to: strongSelf.context)
-                                                let deleted = context.deletedObjects.flatMap { $0 as? Remover.Model }
-                                                    .flatMap { $0.remoteId != nil ? $0 : nil }.remap(to: strongSelf.context)
+                                                let deleted = context.deletedObjects.flatMap { $0 as? CP.Model }
+                                                    .flatMap { $0.remoteId }
                                                 if !inserted.isEmpty {
                                                     self?.state = .pending
                                                     self?.changes.append(.create(inserted))
@@ -83,11 +75,11 @@ where Saver.Model: SyncedModel, Updater.Model: SyncedModel, Remover.Model: Synce
                                                         self?.state = .executing
                                                         switch $0 {
                                                         case .create(let models):
-                                                            self?.remoteSaver.process(models, context: strongSelf.context)
+                                                            self?.changeProcessor.save(models)
                                                         case .update(let models):
-                                                            self?.remoteUpdater.process(models, context: strongSelf.context)
-                                                        case .delete(let models):
-                                                            self?.remoteRemover.process(models, context: strongSelf.context)
+                                                            self?.changeProcessor.update(models)
+                                                        case .delete(let ids):
+                                                            self?.changeProcessor.delete(ids)
                                                         }
                                                     }
                                                     self?.changes = []

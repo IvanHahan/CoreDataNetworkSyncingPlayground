@@ -14,7 +14,6 @@ let baseUrl = "https://api.backendless.com/50F43BB7-8B2B-0509-FF7B-3665F066E500/
 class RequestCacheManager {
     
     var errorHandler: Closure<Error>?
-    var completion: Closure<Void>?
     let sessionManager = SessionManager(baseUrl: baseUrl, config: URLSessionConfiguration.default)
     
     private let context: NSManagedObjectContext
@@ -42,20 +41,38 @@ class RequestCacheManager {
         queue.isSuspended = true
     }
     
-    func enqueueSecured<R: Request>(_ request: R, completion: Closure<R.Model>? = nil) {
-        enqueue(request) { [weak self] result in
+    func synchronize<R>(_ operations: [RequestOperation<R>], completion: @escaping Closure<Void>) {
+        stop()
+        let completionOperation = BlockOperation { completion(()) }
+        operations.forEach {
+            completionOperation.addDependency($0)
+            queue.addOperation($0)
+        }
+        queue.addOperation(completionOperation)
+        run()
+    }
+    
+    @discardableResult
+    func enqueueSecured<R: Request>(_ request: R, completion: Closure<R.Model>? = nil) -> Operation {
+        return enqueue(request) { [weak self] result in
             switch result {
             case .success(let model):
                 completion?(model)
             case .failure:
-                self?.enqueue(request)
+                self?.enqueueSecured(request, completion: completion)
             }
         }
     }
     
-    func enqueue<R: Request>(_ request: R, completion: ResultClosure<R.Model>? = nil) {
-        let operation = RequestOperation(request: request, service: sessionManager, completion: completion)
+    func operation<R>(_ request: R, completion: ResultClosure<R.Model>? = nil) -> RequestOperation<R> {
+        return RequestOperation(request: request, service: sessionManager, completion: completion)
+    }
+    
+    @discardableResult
+    func enqueue<R: Request>(_ request: R, completion: ResultClosure<R.Model>? = nil) -> Operation {
+        let operation = self.operation(request, completion: completion)
         queue.addOperation(operation)
+        return operation
     }
     
     func enqueueCached<R: Request>(_ request: R) {

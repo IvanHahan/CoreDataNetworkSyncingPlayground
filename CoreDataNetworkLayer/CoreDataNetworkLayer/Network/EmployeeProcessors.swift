@@ -9,78 +9,37 @@
 import Foundation
 import CoreData
 
-enum EmployeeProcessor {
-    class Saver: ChangeProcessor {
-        var comlpetion: (() -> ())?
-        
-        private let requestCacher: RequestCacheManager
-        private let group = DispatchGroup()
-        
-        func process(_ models: [Employee], context: NSManagedObjectContext) {
-            for model in models {
-                group.enter()
-                requestCacher.enqueueSecured(NetworkRequest.employee.create(employee: model, context: context)) { [weak self] employee in
-                    context.performChanges {
-                        model.remoteId = employee.remoteId
-                        context.delete(employee)
-                        self?.group.leave()
-                    }
-                }
-            }
-            group.notify(queue: .main) {
-                self.comlpetion?()
-            }
-        }
-        
-        init(requestCacher: RequestCacheManager) {
-            self.requestCacher = requestCacher
-        }
+class EmployeeProcessor: ChangeProcessor {
+    
+    var comlpetion: Closure<Void>?
+    private let requestCacher: RequestCacheManager
+    private let group = DispatchGroup()
+    
+    init(requestCacher: RequestCacheManager) {
+        self.requestCacher = requestCacher
     }
     
-    class Updater: ChangeProcessor {
-        var comlpetion: (() -> ())?
-        
-        private let requestCacher: RequestCacheManager
-        private let group = DispatchGroup()
-        
-        func process(_ models: [Employee], context: NSManagedObjectContext) {
-            for model in models {
-                group.enter()
-//                requestCacher.enqueue(NetworkRequest.employee.update(employee: model)) { [weak self] result in
-//                    self?.group.leave()
-//                    completion?(result)
-//                }
-            }
-            group.notify(queue: .main) {
-                self.comlpetion?()
-            }
-        }
-        
-        init(requestCacher: RequestCacheManager) {
-            self.requestCacher = requestCacher
-        }
-    }
-    
-    class Remover: ChangeProcessor {
-        var comlpetion: (() -> ())?
-        
-        private let requestCacher: RequestCacheManager
-        private let group = DispatchGroup()
-        
-        func process(_ models: [Employee], context: NSManagedObjectContext) {
-            for model in models {
-                group.enter()
-                requestCacher.enqueue(NetworkRequest.employee.delete(employeeId: model.remoteId!)) { [weak self] result in
+    func save(_ models: [Employee]) {
+        for model in models {
+            group.enter()
+            requestCacher.enqueueSecured(NetworkRequest.employee.create(employee: model, context: model.managedObjectContext!)) { [weak self] employee in
+                model.managedObjectContext?.performChanges {
+                    model.remoteId = employee.remoteId
+                    model.managedObjectContext?.delete(employee)
                     self?.group.leave()
                 }
             }
-            group.notify(queue: .main) {
-                self.comlpetion?()
-            }
         }
+        group.notify(queue: .main) {
+            self.comlpetion?(())
+        }
+    }
+    
+    func update(_ models: [Employee]) {
         
-        init(requestCacher: RequestCacheManager) {
-            self.requestCacher = requestCacher
-        }
+    }
+    
+    func delete(_ ids: [String]) {
+        
     }
 }

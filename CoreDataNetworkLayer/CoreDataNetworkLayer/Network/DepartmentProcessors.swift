@@ -9,84 +9,47 @@
 import Foundation
 import CoreData
 
-enum DepartmentProcessor {
-    class Saver: ChangeProcessor {
-        var comlpetion: (() -> ())?
-        
-        private let requestCacher: RequestCacheManager
-        private let group = DispatchGroup()
-        
-        func process(_ models: [Department], context: NSManagedObjectContext) {
-            for model in models {
-                group.enter()
-                requestCacher.enqueueSecured(NetworkRequest.department.create(department: model, context: context)) { [weak self] department in
-                    self?.group.leave()
-                    context.performChanges {
-                        model.remoteId = department.remoteId
-                        context.delete(department)
-                        self?.establishRelationshipsWithEmployees(model: model)
-                    }
+class DepartmentProcessor: ChangeProcessor {
+    
+    var comlpetion: (() -> ())?
+    private let requestCacher: RequestCacheManager
+    private let group = DispatchGroup()
+    
+    init(requestCacher: RequestCacheManager) {
+        self.requestCacher = requestCacher
+    }
+    
+    func save(_ models: [Department]) {
+        for model in models {
+            group.enter()
+            requestCacher.enqueueSecured(NetworkRequest.department.create(department: model, context: model.managedObjectContext!)) { [weak self] department in
+                self?.group.leave()
+                model.managedObjectContext?.performChanges {
+                    model.remoteId = department.remoteId
+                    model.managedObjectContext?.delete(department)
+                    self?.establishRelationshipsWithEmployees(model: model)
                 }
             }
-            group.notify(queue: .main) {
-                self.comlpetion?()
-            }
         }
-        
-        private func establishRelationshipsWithEmployees(model: Department) {
-            guard let ids = model.employees?.flatMap({ $0.remoteId }), !ids.isEmpty else { return }
-            self.requestCacher.enqueueCached(NetworkRequest.department.establishRelationsWithEmployees(id: model.remoteId!,
-                                                                                                       employees: ids))
-        }
-        
-        init(requestCacher: RequestCacheManager) {
-            self.requestCacher = requestCacher
+        group.notify(queue: .main) {
+            self.comlpetion?()
         }
     }
     
-    class Updater: ChangeProcessor {
-        var comlpetion: (() -> ())?
+    func update(_ models: [Department]) {
         
-        private let requestCacher: RequestCacheManager
-        private let group = DispatchGroup()
-        
-        func process(_ models: [Department], context: NSManagedObjectContext) {
-            for model in models {
-                group.enter()
-                requestCacher.enqueue(NetworkRequest.department.update(id: model.remoteId!, department: model)) { [weak self] result in
-                    self?.group.leave()
-                }
-            }
-            group.notify(queue: .main) {
-                self.comlpetion?()
-            }
-        }
-        
-        init(requestCacher: RequestCacheManager) {
-            self.requestCacher = requestCacher
-        }
     }
     
-    class Remover: ChangeProcessor {
-        var comlpetion: (() -> ())?
+    func delete(_ ids: [String]) {
         
-        private let requestCacher: RequestCacheManager
-        private let group = DispatchGroup()
-        
-        func process(_ models: [Employee], context: NSManagedObjectContext) {
-            for model in models {
-                group.enter()
-                requestCacher.enqueue(NetworkRequest.employee.delete(employeeId: model.remoteId!)) { [weak self] result in
-                    self?.group.leave()
-                }
-            }
-            group.notify(queue: .main) {
-                self.comlpetion?()
-            }
-        }
-        
-        init(requestCacher: RequestCacheManager) {
-            self.requestCacher = requestCacher
-        }
     }
+    
+    private func establishRelationshipsWithEmployees(model: Department) {
+        guard let ids = model.employees?.flatMap({ $0.remoteId }), !ids.isEmpty else { return }
+        self.requestCacher.enqueueCached(NetworkRequest.department.establishRelationsWithEmployees(id: model.remoteId!,
+                                                                                                   employees: ids))
+    }
+    
 }
+    
+

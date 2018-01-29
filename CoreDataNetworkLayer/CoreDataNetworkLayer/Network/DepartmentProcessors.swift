@@ -21,10 +21,13 @@ class DepartmentProcessor: ChangeProcessor {
     
     func save(_ models: [Department]) {
         for model in models {
-            requestCacher.enqueueCachedSynced(NetworkRequest.department.create(department: model, context: model.managedObjectContext!))
-        }
-        for model in models {
-            establishRelationshipsWithEmployees(model: model)
+            requestCacher.enqueueSecured(NetworkRequest.department.create(department: model, context: model.managedObjectContext!)) { [weak self] remoteId in
+                model.managedObjectContext?.refresh(model, mergeChanges: true)
+                model.managedObjectContext?.performChanges {
+                    model.remoteId = remoteId
+                    self?.establishRelationshipsWithEmployees(model: model)
+                }
+            }
         }
         self.comlpetion?()
     }

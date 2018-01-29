@@ -23,6 +23,8 @@ class RequestCacheManager {
     var isSuspended: Bool {
         return queue.isSuspended
     }
+    private(set) var isRunningCached: Bool = false
+    
     private let queue = OperationQueue()
     
     init(context: NSManagedObjectContext, domainContainer: NSPersistentContainer) {
@@ -36,6 +38,8 @@ class RequestCacheManager {
     }
     
     func runCached() {
+        guard !isRunningCached else { return }
+        isRunningCached = true
         queue.isSuspended = false
         context.perform { [weak self] in
             self?.executeNext()
@@ -104,11 +108,11 @@ class RequestCacheManager {
                     guard let localId = request.localIdOptional,
                         let managedObjectId = self?.container.managedObjectID(from: localId),
                         let object = self?.syncContext.object(with: managedObjectId) as? SyncedModel else { return }
-                    self?.syncContext.performChanges {
-                        object.remoteId = remoteId
-                    }
+
+                    object.remoteId = remoteId
+                    self?.syncContext.saveOrRollback()
                     self?.context.delete(request)
-                    try? self?.context.save()
+                    self?.context.saveOrRollback()
                     self?.executeNext()
                 case .failure:
                     self?.executeNext()
@@ -124,7 +128,8 @@ class RequestCacheManager {
                 }
                 self?.executeNext()
             }
+        } else {
+            isRunningCached = false
         }
-        
     }
 }

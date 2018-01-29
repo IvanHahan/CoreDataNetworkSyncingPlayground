@@ -79,3 +79,9 @@ extension NSManagedObjectContext {
         }
     }
 }
+
+extension NSPersistentContainer {
+    func managedObjectID(from uri: URL) -> NSManagedObjectID? {
+        return persistentStoreCoordinator.managedObjectID(forURIRepresentation: uri)
+    }
+}

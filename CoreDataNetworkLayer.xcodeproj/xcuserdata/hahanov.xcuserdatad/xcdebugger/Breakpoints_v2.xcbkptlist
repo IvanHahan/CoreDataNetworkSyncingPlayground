@@ -2,4 +2,246 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/RequestCacheManager.swift"
+            timestampString = "538924312.7696429"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "executeNext()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CoreDataNetworkLayer.RequestCacheManager.(executeNext in _106D749110BD58DEB9FBA914B166B7F1)() -&gt; ()"
+                  moduleName = "CoreDataNetworkLayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hahanov/Documents/Private/CoreDataNetworkSyncingPlayground/CoreDataNetworkLayer/CoreDataNetworkLayer/RequestCacheManager.swift"
+                  timestampString = "538924312.8002779"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "118"
+                  endingLineNumber = "118"
+                  offsetFromSymbolStart = "719">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (CoreDataNetworkLayer.Result&lt;()&gt;) -&gt; () in CoreDataNetworkLayer.RequestCacheManager.(executeNext in _106D749110BD58DEB9FBA914B166B7F1)() -&gt; ()"
+                  moduleName = "CoreDataNetworkLayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hahanov/Documents/Private/CoreDataNetworkSyncingPlayground/CoreDataNetworkLayer/CoreDataNetworkLayer/RequestCacheManager.swift"
+                  timestampString = "538924312.80533"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "118"
+                  endingLineNumber = "118"
+                  offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/Network/Request.swift"
+            timestampString = "538924312.769745"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "map(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/RequestCacheManager.swift"
+            timestampString = "538924312.769819"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "executeNext()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/RequestCacheManager.swift"
+            timestampString = "538924312.769886"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "executeNext()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (CoreDataNetworkLayer.Result&lt;Swift.String&gt;) -&gt; () in CoreDataNetworkLayer.RequestCacheManager.(executeNext in _106D749110BD58DEB9FBA914B166B7F1)() -&gt; ()"
+                  moduleName = "CoreDataNetworkLayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hahanov/Documents/Private/CoreDataNetworkSyncingPlayground/CoreDataNetworkLayer/CoreDataNetworkLayer/RequestCacheManager.swift"
+                  timestampString = "538924312.948429"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "2553">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (CoreDataNetworkLayer.Result&lt;Swift.String&gt;) -&gt; () in CoreDataNetworkLayer.RequestCacheManager.(executeNext in _106D749110BD58DEB9FBA914B166B7F1)() -&gt; ()"
+                  moduleName = "CoreDataNetworkLayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hahanov/Documents/Private/CoreDataNetworkSyncingPlayground/CoreDataNetworkLayer/CoreDataNetworkLayer/RequestCacheManager.swift"
+                  timestampString = "538924312.962842"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "2711">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/RequestCacheManager.swift"
+            timestampString = "538924312.769955"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "executeNext()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/Network/NetworkRequest.swift"
+            timestampString = "538923567.386731"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "init(employee:context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoreDataNetworkLayer/DepartmentsViewController.swift"
+            timestampString = "538924476.904954"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "unwindToDepartments(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/Network/EmployeeProcessors.swift"
+            timestampString = "538924576.887027"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "save(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/RequestCacheManager.swift"
+            timestampString = "538924643.124855"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "executeNext()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CoreDataNetworkLayer.RequestCacheManager.(executeNext in _106D749110BD58DEB9FBA914B166B7F1)() -&gt; ()"
+                  moduleName = "CoreDataNetworkLayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hahanov/Documents/Private/CoreDataNetworkSyncingPlayground/CoreDataNetworkLayer/CoreDataNetworkLayer/RequestCacheManager.swift"
+                  timestampString = "538924643.135792"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "170">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (CoreDataNetworkLayer.Result&lt;Swift.String&gt;) -&gt; () in CoreDataNetworkLayer.RequestCacheManager.(executeNext in _106D749110BD58DEB9FBA914B166B7F1)() -&gt; ()"
+                  moduleName = "CoreDataNetworkLayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hahanov/Documents/Private/CoreDataNetworkSyncingPlayground/CoreDataNetworkLayer/CoreDataNetworkLayer/RequestCacheManager.swift"
+                  timestampString = "538924643.140015"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "42">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

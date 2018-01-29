@@ -16,14 +16,19 @@ class RequestCacheManager {
     var errorHandler: Closure<Error>?
     let sessionManager = SessionManager(baseUrl: baseUrl, config: URLSessionConfiguration.default)
     
+    private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
+    private let syncContext: NSManagedObjectContext
+    
     var isSuspended: Bool {
         return queue.isSuspended
     }
     private let queue = OperationQueue()
     
-    init(context: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext, domainContainer: NSPersistentContainer) {
+        self.container = domainContainer
         self.context = context
+        self.syncContext = domainContainer.newBackgroundContext()
     }
     
     func run() {
@@ -75,6 +80,14 @@ class RequestCacheManager {
         return operation
     }
     
+    func enqueueCachedSynced<R: ModelSyncRequest>(_ request: R) {
+        context.perform {
+            request.cacheSynced(into: self.context)
+            try? self.context.save()
+            self.runCached()
+        }
+    }
+    
     func enqueueCached<R: Request>(_ request: R) {
         context.perform {
             request.cache(into: self.context)
@@ -84,11 +97,34 @@ class RequestCacheManager {
     }
     
     private func executeNext() {
-        guard let request = CachedRequest.findOrFetchFirst(in: context) else { return }
-        enqueue(request) { [weak self] result in
-            self?.context.delete(request)
-            try? self?.context.save()
-            self?.executeNext()
+        if let request = SyncRequest.findOrFetchFirst(in: context) {
+            enqueue(request) { [weak self] result in
+                switch result {
+                case .success(let remoteId):
+                    guard let localId = request.localIdOptional,
+                        let managedObjectId = self?.container.managedObjectID(from: localId),
+                        let object = self?.syncContext.object(with: managedObjectId) as? SyncedModel else { return }
+                    self?.syncContext.performChanges {
+                        object.remoteId = remoteId
+                    }
+                    self?.context.delete(request)
+                    try? self?.context.save()
+                    self?.executeNext()
+                case .failure:
+                    self?.executeNext()
+                }
+            }
+        } else if let request = CachedRequest.findOrFetchFirst(in: context) {
+            enqueue(request) { [weak self] result in
+                switch result {
+                case .success:
+                    self?.context.delete(request)
+                    try? self?.context.save()
+                default:()
+                }
+                self?.executeNext()
+            }
         }
+        
     }
 }

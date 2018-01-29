@@ -21,18 +21,9 @@ class EmployeeProcessor: ChangeProcessor {
     
     func save(_ models: [Employee]) {
         for model in models {
-            group.enter()
-            requestCacher.enqueueSecured(NetworkRequest.employee.create(employee: model, context: model.managedObjectContext!)) { [weak self] employee in
-                model.managedObjectContext?.performChanges {
-                    model.remoteId = employee.remoteId
-                    model.managedObjectContext?.delete(employee)
-                    self?.group.leave()
-                }
-            }
+            requestCacher.enqueueCachedSynced(NetworkRequest.employee.create(employee: model, context: model.managedObjectContext!))
         }
-        group.notify(queue: .main) {
-            self.comlpetion?(())
-        }
+        self.comlpetion?(())
     }
     
     func update(_ models: [Employee]) {

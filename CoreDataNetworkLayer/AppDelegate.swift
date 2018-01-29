@@ -23,9 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.domainContainer = container
         }
         loadPersistentStore("Caching") { container in
-            let cacherContext = container.newBackgroundContext()
+            let cachingContext = container.newBackgroundContext()
             let domainContext = self.domainContainer.newBackgroundContext()
-            let requestCacheManager = RequestCacheManager(context: cacherContext)
+            let requestCacheManager = RequestCacheManager(context: cachingContext, domainContainer: self.domainContainer)
             requestCacheManager.runCached()
             self.departmentSyncManager = SyncManager(name: "department",
                                                      context: domainContext,

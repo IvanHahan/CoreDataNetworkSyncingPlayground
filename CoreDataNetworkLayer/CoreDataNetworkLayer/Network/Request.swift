@@ -78,6 +78,28 @@ extension DecodableResultRequest {
     }
 }
 
+protocol ModelSyncRequest: Request where Model == String {
+    var localId: URL { get }
+}
+
+extension ModelSyncRequest {
+    func map(from data: Data) -> String? {
+        let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+        return json??["objectId"] as? String
+    }
+    
+    @discardableResult
+    func cacheSynced(into context: NSManagedObjectContext) -> SyncRequest {
+        let cached: SyncRequest = context.new()
+        cached.body = body
+        cached.methodString = method.rawValue
+        cached.pathOptional = path
+        cached.priorityRaw = priority.rawValue
+        cached.localIdOptional = localId
+        return cached
+    }
+}
+
 protocol DecodableManagedResultRequest: DecodableResultRequest where Model: NSManagedObject & Managed {
     func map(from data: Data, into context: NSManagedObjectContext) -> Model?
 }

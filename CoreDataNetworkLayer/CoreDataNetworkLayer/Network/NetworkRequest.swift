@@ -14,27 +14,22 @@ enum NetworkRequest {
         
         private static let path = "data/Employee"
         
-        struct create: DecodableResultRequest {
-            
-            typealias Model = Employee
+        struct create: ModelSyncRequest {
             
             let path: String = employee.path
             let method: Method = .post
             let body: Data?
+            var priority: Priority { return .high }
+            let localId: URL
             
             private let context: NSManagedObjectContext
             
             init(employee: Employee, context: NSManagedObjectContext) {
                 self.context = context
                 body = try! JSONEncoder().encode(employee)
+                self.localId = employee.objectID.uriRepresentation().absoluteURL
             }
-            
-            func map(from data: Data) -> Employee? {
-                guard let key = CodingUserInfoKey.context else { return nil }
-                let decoder = JSONDecoder()
-                decoder.userInfo[key] = context
-                return try? decoder.decode(Model.self, from: data)
-            }
+
         }
         
         struct update: DecodableResultRequest {
@@ -69,26 +64,20 @@ enum NetworkRequest {
     enum department {
         private static let path = "data/Department"
         
-        struct create: DecodableResultRequest {
-            
-            typealias Model = Department
+        struct create: ModelSyncRequest {
             
             let path: String = department.path
             let method: Method = .post
             let body: Data?
             private let context: NSManagedObjectContext
+            let localId: URL
             
             init(department: Department, context: NSManagedObjectContext) {
                 body = try! JSONEncoder().encode(department)
                 self.context = context
+                self.localId = department.objectID.uriRepresentation().absoluteURL
             }
-            
-            func map(from data: Data) -> Department? {
-                guard let key = CodingUserInfoKey.context else { return nil }
-                let decoder = JSONDecoder()
-                decoder.userInfo[key] = context
-                return try? decoder.decode(Model.self, from: data)
-            }
+
         }
         
         struct update: DecodableResultRequest {
@@ -113,6 +102,7 @@ enum NetworkRequest {
             var path: String { return department.path.appending("/\(id)/employees") }
             let method: Method = .post
             let body: Data?
+            var priority: Priority { return .low }
             
             private let id: String
             

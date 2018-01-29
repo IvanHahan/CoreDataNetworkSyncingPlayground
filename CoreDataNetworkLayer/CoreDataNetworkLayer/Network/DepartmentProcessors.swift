@@ -21,19 +21,12 @@ class DepartmentProcessor: ChangeProcessor {
     
     func save(_ models: [Department]) {
         for model in models {
-            group.enter()
-            requestCacher.enqueueSecured(NetworkRequest.department.create(department: model, context: model.managedObjectContext!)) { [weak self] department in
-                self?.group.leave()
-                model.managedObjectContext?.performChanges {
-                    model.remoteId = department.remoteId
-                    model.managedObjectContext?.delete(department)
-                    self?.establishRelationshipsWithEmployees(model: model)
-                }
-            }
+            requestCacher.enqueueCachedSynced(NetworkRequest.department.create(department: model, context: model.managedObjectContext!))
         }
-        group.notify(queue: .main) {
-            self.comlpetion?()
+        for model in models {
+            establishRelationshipsWithEmployees(model: model)
         }
+        self.comlpetion?()
     }
     
     func update(_ models: [Department]) {

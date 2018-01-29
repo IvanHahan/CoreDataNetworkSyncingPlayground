@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92085CB5201F092E00D29D11 /* SyncRequest+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92085CB3201F092E00D29D11 /* SyncRequest+CoreDataClass.swift */; };
+		92085CB6201F092E00D29D11 /* SyncRequest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92085CB4201F092E00D29D11 /* SyncRequest+CoreDataProperties.swift */; };
 		926E4C83200F4129006F39A3 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926E4C82200F4129006F39A3 /* CoreDataStack.swift */; };
 		9270F7C4200DF8AA007C04F6 /* SessionOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9270F7C3200DF8AA007C04F6 /* SessionOperation.swift */; };
 		9270F7C8200E036D007C04F6 /* PersistentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9270F7C7200E036D007C04F6 /* PersistentModel.swift */; };
@@ -66,6 +68,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		92085CB3201F092E00D29D11 /* SyncRequest+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncRequest+CoreDataClass.swift"; sourceTree = "<group>"; };
+		92085CB4201F092E00D29D11 /* SyncRequest+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncRequest+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		926E4C82200F4129006F39A3 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		9270F7C3200DF8AA007C04F6 /* SessionOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionOperation.swift; sourceTree = "<group>"; };
 		9270F7C7200E036D007C04F6 /* PersistentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentModel.swift; sourceTree = "<group>"; };
@@ -140,6 +144,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		92085CB2201F08F100D29D11 /* SyncRequest */ = {
+			isa = PBXGroup;
+			children = (
+				92085CB3201F092E00D29D11 /* SyncRequest+CoreDataClass.swift */,
+				92085CB4201F092E00D29D11 /* SyncRequest+CoreDataProperties.swift */,
+			);
+			path = SyncRequest;
+			sourceTree = "<group>";
+		};
 		9270F7C5200DFC76007C04F6 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +259,7 @@
 		929E077C200CAF69004F8BA1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				92085CB2201F08F100D29D11 /* SyncRequest */,
 				9286F7BA200F5E9300312903 /* CachedRequest */,
 				929E078D200CBED9004F8BA1 /* Department */,
 				929E0790200CBED9004F8BA1 /* Employee */,
@@ -543,6 +557,7 @@
 				929E07A8200CD3F7004F8BA1 /* EditEmployeeController.swift in Sources */,
 				92901587201221070006AF5F /* SyncManager.swift in Sources */,
 				9286F7B5200F5A4A00312903 /* RequestCacheManager.swift in Sources */,
+				92085CB6201F092E00D29D11 /* SyncRequest+CoreDataProperties.swift in Sources */,
 				929E0795200CBED9004F8BA1 /* Employee+CoreDataProperties.swift in Sources */,
 				926E4C83200F4129006F39A3 /* CoreDataStack.swift in Sources */,
 				9270F7C8200E036D007C04F6 /* PersistentModel.swift in Sources */,
@@ -562,6 +577,7 @@
 				92AF728B2015D38F0000E4FC /* EmployeeProcessors.swift in Sources */,
 				929E0796200CBED9004F8BA1 /* Employee+CoreDataClass.swift in Sources */,
 				9286F7BC200F9AAD00312903 /* BackendlessManager.swift in Sources */,
+				92085CB5201F092E00D29D11 /* SyncRequest+CoreDataClass.swift in Sources */,
 				9286F7B8200F5E8200312903 /* CachedRequest+CoreDataClass.swift in Sources */,
 				929E0742200CAC5B004F8BA1 /* AppDelegate.swift in Sources */,
 				92AF72892015D3840000E4FC /* DepartmentProcessors.swift in Sources */,

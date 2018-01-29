@@ -47,9 +47,9 @@ where CP.Model: SyncedModel {
                                                 guard let context = note.object as? NSManagedObjectContext, context !== self?.context else { return }
                                                 guard let strongSelf = self else { return }
                                                 let inserted = context.insertedObjects.flatMap{ $0 as? CP.Model }
-                                                    .flatMap { $0.remoteId == nil ? $0 : nil }.remap(to: strongSelf.context)
+                                                    .flatMap { $0.remoteId == nil ? $0 : nil }
                                                 let updated = context.updatedObjects.flatMap { $0 as? CP.Model }
-                                                    .flatMap { $0.remoteId != nil ? $0 : nil }.remap(to: strongSelf.context)
+                                                    .flatMap { $0.remoteId != nil ? $0 : nil }
                                                 let deleted = context.deletedObjects.flatMap { $0 as? CP.Model }
                                                     .flatMap { $0.remoteId }
                                                 if !inserted.isEmpty {
@@ -75,9 +75,9 @@ where CP.Model: SyncedModel {
                                                         self?.state = .executing
                                                         switch $0 {
                                                         case .create(let models):
-                                                            self?.changeProcessor.save(models)
+                                                            self?.changeProcessor.save(models.remap(to: strongSelf.context))
                                                         case .update(let models):
-                                                            self?.changeProcessor.update(models)
+                                                            self?.changeProcessor.update(models.remap(to: strongSelf.context))
                                                         case .delete(let ids):
                                                             self?.changeProcessor.delete(ids)
                                                         }

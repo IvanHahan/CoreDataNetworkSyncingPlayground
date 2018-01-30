@@ -110,6 +110,10 @@ enum NetworkRequest {
                 self.id = id
                 body = try! JSONEncoder().encode(employees)
             }
+            
+            func map(from data: Data) -> Void? {
+                return ()
+            }
         }
     }
 }

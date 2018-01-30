@@ -28,4 +28,8 @@ extension CachedRequest: Request {
 
     var method: Method { return Method(rawValue: methodString!)! }
     var path: String { return pathOptional! }
+    
+    func map(from data: Data) -> Void? {
+        return ()
+    }
 }

@@ -70,6 +70,7 @@ where CP.Model: SyncedModel {
                                                queue: nil) { [weak self] note in
                                                 guard let context = note.object as? NSManagedObjectContext, context !== self?.context else { return }
                                                 guard let strongSelf = self else { return }
+                                                self?.context.mergeChanges(fromContextDidSave: note)
                                                 self?.perform {
                                                     self?.changes.forEach {
                                                         self?.state = .executing

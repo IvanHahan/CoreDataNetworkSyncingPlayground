@@ -14,17 +14,16 @@ let baseUrl = "https://api.backendless.com/50F43BB7-8B2B-0509-FF7B-3665F066E500/
 class RequestCacheManager {
     
     var errorHandler: Closure<Error>?
+    var syncCompletion: Closure<Void>?
     let sessionManager = SessionManager(baseUrl: baseUrl, config: URLSessionConfiguration.default)
+    var isSuspended: Bool {
+        return queue.isSuspended
+    }
     
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
     private let syncContext: NSManagedObjectContext
-    
-    var isSuspended: Bool {
-        return queue.isSuspended
-    }
     private(set) var isRunningCached: Bool = false
-    
     private let queue = OperationQueue()
     
     init(context: NSManagedObjectContext, domainContainer: NSPersistentContainer) {
@@ -38,8 +37,6 @@ class RequestCacheManager {
     }
     
     func runCached() {
-        guard !isRunningCached else { return }
-        isRunningCached = true
         queue.isSuspended = false
         context.perform { [weak self] in
             self?.executeNext()
@@ -80,7 +77,7 @@ class RequestCacheManager {
     @discardableResult
     func enqueue<R: Request>(_ request: R, completion: ResultClosure<R.Model>? = nil) -> Operation {
         let operation = self.operation(request, completion: completion)
-        queue.addOperation(operation)
+        self.queue.addOperation(operation)
         return operation
     }
     
@@ -88,7 +85,9 @@ class RequestCacheManager {
         context.perform {
             request.cacheSynced(into: self.context)
             try? self.context.save()
-            self.runCached()
+            guard !self.isRunningCached else { return }
+            self.isRunningCached = true
+            self.executeNext()
         }
     }
     
@@ -96,7 +95,9 @@ class RequestCacheManager {
         context.perform {
             request.cache(into: self.context)
             try? self.context.save()
-            self.runCached()
+            guard !self.isRunningCached else { return }
+            self.isRunningCached = true
+            self.executeNext()
         }
     }
     
@@ -130,6 +131,7 @@ class RequestCacheManager {
             }
         } else {
             isRunningCached = false
+            syncCompletion?(())
         }
     }
 }

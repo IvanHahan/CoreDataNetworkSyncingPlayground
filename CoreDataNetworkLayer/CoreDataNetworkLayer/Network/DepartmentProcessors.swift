@@ -21,12 +21,10 @@ class DepartmentProcessor: ChangeProcessor {
     
     func save(_ models: [Department]) {
         for model in models {
-            requestCacher.enqueueSecured(NetworkRequest.department.create(department: model, context: model.managedObjectContext!)) { [weak self] remoteId in
+            requestCacher.enqueueCachedSynced(NetworkRequest.department.create(department: model, context: model.managedObjectContext!))
+            requestCacher.syncCompletion = { [weak self] _ in
                 model.managedObjectContext?.refresh(model, mergeChanges: true)
-                model.managedObjectContext?.performChanges {
-                    model.remoteId = remoteId
-                    self?.establishRelationshipsWithEmployees(model: model)
-                }
+                self?.establishRelationshipsWithEmployees(model: model)
             }
         }
         self.comlpetion?()
@@ -44,6 +42,7 @@ class DepartmentProcessor: ChangeProcessor {
         guard let ids = model.employees?.flatMap({ $0.remoteId }), !ids.isEmpty else { return }
         self.requestCacher.enqueueCached(NetworkRequest.department.establishRelationsWithEmployees(id: model.remoteId!,
                                                                                                    employees: ids))
+        self.requestCacher.syncCompletion = nil
     }
     
 }

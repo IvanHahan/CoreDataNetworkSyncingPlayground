@@ -9,54 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/Network/Request.swift"
-            timestampString = "538924312.769745"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "map(from:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/Network/DepartmentProcessors.swift"
-            timestampString = "538932661.1893179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "save(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/Network/EmployeeProcessors.swift"
-            timestampString = "538930473.043606"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "save(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "CoreDataNetworkLayer/EmployeesViewController.swift"
             timestampString = "538931886.5689189"
             startingColumnNumber = "9223372036854775807"
@@ -73,94 +25,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/Network/DepartmentProcessors.swift"
-            timestampString = "538932661.18989"
+            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/Network/NetworkRequest.swift"
+            timestampString = "539006014.939986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "establishRelationshipsWithEmployees(model:)"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "map(from:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CoreDataNetworkLayer.DepartmentProcessor.(establishRelationshipsWithEmployees in _6BCF04E25E76899F49D0CA6EB05EF526)(model: CoreDataNetworkLayer.Department) -&gt; ()"
-                  moduleName = "CoreDataNetworkLayer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hahanov/Documents/Private/CoreDataNetworkSyncingPlayground/CoreDataNetworkLayer/CoreDataNetworkLayer/Network/DepartmentProcessors.swift"
-                  timestampString = "538932661.375339"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44"
-                  offsetFromSymbolStart = "27">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (CoreDataNetworkLayer.Employee) -&gt; Swift.Optional&lt;Swift.String&gt; in CoreDataNetworkLayer.DepartmentProcessor.(establishRelationshipsWithEmployees in _6BCF04E25E76899F49D0CA6EB05EF526)(model: CoreDataNetworkLayer.Department) -&gt; ()"
-                  moduleName = "CoreDataNetworkLayer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hahanov/Documents/Private/CoreDataNetworkSyncingPlayground/CoreDataNetworkLayer/CoreDataNetworkLayer/Network/DepartmentProcessors.swift"
-                  timestampString = "538932661.379544"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/Network/DepartmentProcessors.swift"
-            timestampString = "538932661.190245"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "save(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.String) -&gt; () in CoreDataNetworkLayer.DepartmentProcessor.save(Swift.Array&lt;CoreDataNetworkLayer.Department&gt;) -&gt; ()"
-                  moduleName = "CoreDataNetworkLayer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hahanov/Documents/Private/CoreDataNetworkSyncingPlayground/CoreDataNetworkLayer/CoreDataNetworkLayer/Network/DepartmentProcessors.swift"
-                  timestampString = "538932661.3885159"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "226">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.String) -&gt; () in CoreDataNetworkLayer.DepartmentProcessor.save(Swift.Array&lt;CoreDataNetworkLayer.Department&gt;) -&gt; ()"
-                  moduleName = "CoreDataNetworkLayer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hahanov/Documents/Private/CoreDataNetworkSyncingPlayground/CoreDataNetworkLayer/CoreDataNetworkLayer/Network/DepartmentProcessors.swift"
-                  timestampString = "538932661.392514"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "29">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

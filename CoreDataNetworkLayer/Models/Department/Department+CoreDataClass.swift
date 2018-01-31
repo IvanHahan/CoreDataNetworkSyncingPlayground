@@ -22,7 +22,6 @@ final public class Department: NSManagedObject, Codable, Managed, SyncedModel {
         try container.encode(name, forKey: .name)
         try container.encode(employees?.flatMap { $0.remoteId }, forKey: .employees)
         try container.encode(head, forKey: .head)
-        try container.encode(remoteId, forKey: .id)
     }
     
     public required init(from decoder: Decoder) throws {

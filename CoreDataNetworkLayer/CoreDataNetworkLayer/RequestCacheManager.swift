@@ -80,16 +80,6 @@ class RequestCacheManager {
         return operation
     }
     
-    func enqueueCachedSynced<R: Request>(_ request: R) {
-        context.perform {
-            request.cache(into: self.context)
-            try? self.context.save()
-            guard !self.isRunningCached else { return }
-            self.isRunningCached = true
-            self.executeNext()
-        }
-    }
-    
     func enqueueCached<R: Request>(_ request: R) {
         context.perform {
             request.cache(into: self.context)

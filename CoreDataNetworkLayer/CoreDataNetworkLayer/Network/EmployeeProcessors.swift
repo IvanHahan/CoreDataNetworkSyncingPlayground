@@ -21,7 +21,7 @@ class EmployeeProcessor: ChangeProcessor {
     
     func save(_ models: [Employee]) {
         for model in models {
-            requestCacher.enqueueCachedSynced(FirebaseRequest.employee.create(employee: model, context: model.managedObjectContext!))
+            requestCacher.enqueueCached(FirebaseRequest.employee.create(employee: model, context: model.managedObjectContext!))
         }
         self.comlpetion?(())
     }

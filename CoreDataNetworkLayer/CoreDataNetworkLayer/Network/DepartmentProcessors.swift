@@ -21,10 +21,10 @@ class DepartmentProcessor: ChangeProcessor {
     
     func save(_ models: [Department]) {
         for model in models {
-            requestCacher.enqueueCachedSynced(FirebaseRequest.department.create(department: model, context: model.managedObjectContext!))
             requestCacher.syncCompletion = { [weak self] _ in
                 model.managedObjectContext?.refresh(model, mergeChanges: true)
-//                self?.establishRelationshipsWithEmployees(model: model)
+                self?.requestCacher.enqueueCached(FirebaseRequest.department.create(department: model, context: model.managedObjectContext!))
+                self?.requestCacher.syncCompletion = nil
             }
         }
         self.comlpetion?()

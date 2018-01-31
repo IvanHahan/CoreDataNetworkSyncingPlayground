@@ -9,13 +9,11 @@
 import Foundation
 import CoreData
 
-let baseUrl = "https://api.backendless.com/50F43BB7-8B2B-0509-FF7B-3665F066E500/7D915167-68FB-B6C8-FF9D-2EE480B58F00/"
-
 class RequestCacheManager {
     
     var errorHandler: Closure<Error>?
     var syncCompletion: Closure<Void>?
-    let sessionManager = SessionManager(baseUrl: baseUrl, config: URLSessionConfiguration.default)
+    let sessionManager: SessionManager
     var isSuspended: Bool {
         return queue.isSuspended
     }
@@ -26,7 +24,8 @@ class RequestCacheManager {
     private(set) var isRunningCached: Bool = false
     private let queue = OperationQueue()
     
-    init(context: NSManagedObjectContext, domainContainer: NSPersistentContainer) {
+    init(environment: Environment, context: NSManagedObjectContext, domainContainer: NSPersistentContainer) {
+        self.sessionManager = SessionManager(baseUrl: environment.baseUrl, config: URLSessionConfiguration.default)
         self.container = domainContainer
         self.context = context
         self.syncContext = domainContainer.newBackgroundContext()
@@ -81,9 +80,9 @@ class RequestCacheManager {
         return operation
     }
     
-    func enqueueCachedSynced<R: ModelSyncRequest>(_ request: R) {
+    func enqueueCachedSynced<R: Request>(_ request: R) {
         context.perform {
-            request.cacheSynced(into: self.context)
+            request.cache(into: self.context)
             try? self.context.save()
             guard !self.isRunningCached else { return }
             self.isRunningCached = true
@@ -102,7 +101,7 @@ class RequestCacheManager {
     }
     
     private func executeNext() {
-        if let request = SyncRequest.findOrFetchFirst(in: context) {
+        if let request = FirebaseSyncRequest.findOrFetchFirst(in: context) {
             enqueue(request) { [weak self] result in
                 switch result {
                 case .success(let remoteId):

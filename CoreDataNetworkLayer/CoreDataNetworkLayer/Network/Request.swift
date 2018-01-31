@@ -32,6 +32,9 @@ protocol Request {
     
     func asURLRequest(baseUrl: String) -> URLRequest
     func map(from data: Data) -> Model?
+    
+    @discardableResult
+    func cache(into context: NSManagedObjectContext) -> NSManagedObject
 }
 
 extension Request {
@@ -52,12 +55,11 @@ extension Request {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         return request
     }
-
 }
 
 extension Request {
     @discardableResult
-    func cache(into context: NSManagedObjectContext) -> CachedRequest {
+    func cache(into context: NSManagedObjectContext) -> NSManagedObject {
         let cached: CachedRequest = context.new()
         cached.body = body
         cached.methodString = method.rawValue
@@ -78,25 +80,52 @@ extension DecodableResultRequest {
     }
 }
 
-protocol ModelSyncRequest: Request where Model == String {
+
+protocol BackendlessModelSyncRequest: Request where Model == String {
     var localId: URL { get }
 }
 
-extension ModelSyncRequest {
+extension BackendlessModelSyncRequest {
     func map(from data: Data) -> String? {
         let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
         return json??["objectId"] as? String
     }
     
     @discardableResult
-    func cacheSynced(into context: NSManagedObjectContext) -> SyncRequest {
-        let cached: SyncRequest = context.new()
-        cached.body = body
-        cached.methodString = method.rawValue
-        cached.pathOptional = path
-        cached.priorityRaw = priority.rawValue
-        cached.localIdOptional = localId
-        return cached
+    func cache(into context: NSManagedObjectContext) -> NSManagedObject {
+        let backendlessRequest: BackendlessSyncRequest = context.new()
+        let request: CachedRequest = context.new()
+        request.body = body
+        request.methodString = method.rawValue
+        request.pathOptional = path
+        request.priorityRaw = priority.rawValue
+        backendlessRequest.localIdOptional = localId
+        backendlessRequest.request = request
+        return backendlessRequest
+    }
+}
+
+protocol FirebaseModelSyncRequest: Request where Model == String {
+    var localId: URL { get }
+}
+
+extension FirebaseModelSyncRequest {
+    func map(from data: Data) -> String? {
+        let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+        return json??["name"] as? String
+    }
+    
+    @discardableResult
+    func cache(into context: NSManagedObjectContext) -> NSManagedObject {
+        let firebaseRequest: FirebaseSyncRequest = context.new()
+        let request: CachedRequest = context.new()
+        request.body = body
+        request.methodString = method.rawValue
+        request.pathOptional = path
+        request.priorityRaw = priority.rawValue
+        firebaseRequest.request = request
+        firebaseRequest.localIdOptional = localId
+        return firebaseRequest
     }
 }
 

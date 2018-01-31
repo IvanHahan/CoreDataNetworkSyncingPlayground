@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         loadPersistentStore("Caching") { container in
             let cachingContext = container.newBackgroundContext()
             let domainContext = self.domainContainer.newBackgroundContext()
-            let requestCacheManager = RequestCacheManager(context: cachingContext, domainContainer: self.domainContainer)
+            let requestCacheManager = RequestCacheManager(environment: .firebase, context: cachingContext, domainContainer: self.domainContainer)
             requestCacheManager.runCached()
             self.departmentSyncManager = SyncManager(name: "department",
                                                      context: domainContext,

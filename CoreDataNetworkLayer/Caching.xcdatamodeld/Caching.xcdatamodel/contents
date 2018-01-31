@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C205" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="CachedBackendlessRequest" representedClassName="CachedBackendlessRequest" syncable="YES">
-        <attribute name="method" attributeType="String" syncable="YES"/>
-        <attribute name="parameters" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="table" attributeType="String" syncable="YES"/>
+    <entity name="BackendlessSyncRequest" representedClassName="BackendlessSyncRequest" syncable="YES">
+        <attribute name="localIdOptional" optional="YES" attributeType="URI" syncable="YES"/>
+        <relationship name="request" maxCount="1" deletionRule="Cascade" destinationEntity="CachedRequest" syncable="YES"/>
     </entity>
     <entity name="CachedRequest" representedClassName="CachedRequest" syncable="YES">
         <attribute name="body" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -11,17 +10,13 @@
         <attribute name="pathOptional" attributeType="String" syncable="YES"/>
         <attribute name="priorityRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
-    <entity name="SyncRequest" representedClassName="SyncRequest" syncable="YES">
-        <attribute name="body" optional="YES" attributeType="Binary" syncable="YES"/>
+    <entity name="FirebaseSyncRequest" representedClassName="FirebaseSyncRequest" syncable="YES">
         <attribute name="localIdOptional" optional="YES" attributeType="URI" syncable="YES"/>
-        <attribute name="methodString" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="pathOptional" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="priorityRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="remoteId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="request" maxCount="1" deletionRule="Cascade" destinationEntity="CachedRequest" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CachedBackendlessRequest" positionX="-63" positionY="9" width="128" height="90"/>
-        <element name="CachedRequest" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="SyncRequest" positionX="-63" positionY="18" width="128" height="135"/>
+        <element name="BackendlessSyncRequest" positionX="-63" positionY="18" width="128" height="75"/>
+        <element name="CachedRequest" positionX="-63" positionY="-18" width="128" height="30"/>
+        <element name="FirebaseSyncRequest" positionX="-54" positionY="27" width="128" height="75"/>
     </elements>
 </model>

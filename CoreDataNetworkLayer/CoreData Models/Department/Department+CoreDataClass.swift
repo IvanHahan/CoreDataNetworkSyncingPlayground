@@ -12,7 +12,7 @@ import CoreData
 
 @objc(Department)
 final public class Department: NSManagedObject, Codable, Managed, SyncedModel {
-
+    
     private enum CodingKeys: String, CodingKey {
         case name, employees, head, id = "objectId"
     }
@@ -20,7 +20,9 @@ final public class Department: NSManagedObject, Codable, Managed, SyncedModel {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
-        try container.encode(employees?.flatMap { $0.remoteId }, forKey: .employees)
+        try container.encode(employees?.reduce(into: [String: Bool](), { (res, emp) in
+            res[emp.remoteId!] = true
+        }), forKey: .employees)
         try container.encode(head, forKey: .head)
     }
     
@@ -34,6 +36,7 @@ final public class Department: NSManagedObject, Codable, Managed, SyncedModel {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
         employees = try? container.decode(Set<Employee>.self, forKey: .employees)
+        employeeRemoteIds = try? container.decode([String: Bool].self, forKey: .employees)
         head = try? container.decode(Employee.self, forKey: .head)
         remoteId = try container.decode(String.self, forKey: .id)
     }

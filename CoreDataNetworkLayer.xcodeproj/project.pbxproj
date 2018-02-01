@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9245961720235B9700C4F591 /* FirebaseListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9245961620235B9700C4F591 /* FirebaseListData.swift */; };
 		929E0757200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E0756200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.swift */; };
 		92B4A78E2022093F00276B3F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7512022093E00276B3F /* Constants.swift */; };
 		92B4A78F2022093F00276B3F /* DepartmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7522022093E00276B3F /* DepartmentsViewController.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9245961620235B9700C4F591 /* FirebaseListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListData.swift; sourceTree = "<group>"; };
 		929E073E200CAC5B004F8BA1 /* CoreDataNetworkLayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataNetworkLayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		929E0752200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataNetworkLayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		929E0756200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataNetworkLayerTests.swift; sourceTree = "<group>"; };
@@ -190,7 +192,7 @@
 				92B4A76B2022093E00276B3F /* Caching.xcdatamodeld */,
 				92B4A76D2022093E00276B3F /* EmployeesViewController.swift */,
 				92B4A76E2022093E00276B3F /* Assets.xcassets */,
-				92B4A76F2022093E00276B3F /* Models */,
+				92B4A76F2022093E00276B3F /* CoreData Models */,
 				92B4A77C2022093E00276B3F /* Protocol */,
 				92B4A77E2022093E00276B3F /* LaunchScreen.storyboard */,
 				92B4A7802022093E00276B3F /* Main.storyboard */,
@@ -232,6 +234,7 @@
 				92B4A7632022093E00276B3F /* SessionManager.swift */,
 				92B4A7642022093E00276B3F /* DepartmentProcessors.swift */,
 				92B4A7652022093E00276B3F /* BackendlessRequest.swift */,
+				9245961620235B9700C4F591 /* FirebaseListData.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -245,7 +248,7 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		92B4A76F2022093E00276B3F /* Models */ = {
+		92B4A76F2022093E00276B3F /* CoreData Models */ = {
 			isa = PBXGroup;
 			children = (
 				92B4A7BC20220A0700276B3F /* FirebaseSyncRequest */,
@@ -254,7 +257,7 @@
 				92B4A7762022093E00276B3F /* Department */,
 				92B4A7792022093E00276B3F /* Employee */,
 			);
-			path = Models;
+			path = "CoreData Models";
 			sourceTree = "<group>";
 		};
 		92B4A7702022093E00276B3F /* CachedRequest */ = {
@@ -566,6 +569,7 @@
 				92B4A7B42022093F00276B3F /* UITableViewExtensions.swift in Sources */,
 				92B4A7BA202209FF00276B3F /* FirebaseSyncRequest+CoreDataClass.swift in Sources */,
 				92B4A7A32022093F00276B3F /* RequestCacheManager.swift in Sources */,
+				9245961720235B9700C4F591 /* FirebaseListData.swift in Sources */,
 				92B4A7972022093F00276B3F /* RequestOperation.swift in Sources */,
 				92B4A7922022093F00276B3F /* SyncManager.swift in Sources */,
 				92B4A7A52022093F00276B3F /* Caching.xcdatamodeld in Sources */,

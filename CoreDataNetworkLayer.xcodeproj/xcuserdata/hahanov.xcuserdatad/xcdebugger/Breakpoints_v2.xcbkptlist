@@ -42,12 +42,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CoreDataNetworkLayer/CoreDataNetworkLayer/Network/Request.swift"
-            timestampString = "539107473.3129081"
+            timestampString = "539167583.620959"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
             endingLineNumber = "63"
             landmarkName = "cache(into:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoreDataNetworkLayer/CoreData Models/Department/Department+CoreDataClass.swift"
+            timestampString = "539190611.762167"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "init(from:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -21,6 +21,7 @@ extension Department {
     @NSManaged public var employees: Set<Employee>?
     @NSManaged public var head: Employee?
     @NSManaged public var remoteId: String?
+    @NSManaged public var employeeRemoteIds: [String: Bool]?
 
 }
 

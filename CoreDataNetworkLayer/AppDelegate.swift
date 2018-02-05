@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let cachingContext = container.newBackgroundContext()
             let domainContext = self.domainContainer.newBackgroundContext()
             let requestCacheManager = RequestCacheManager(environment: .firebase, context: cachingContext, domainContainer: self.domainContainer)
-            requestCacheManager.runCached()
+            requestCacheManager.run()
             self.departmentSyncManager = SyncManager(name: "department",
                                                      context: domainContext,
                                                      changeProcessor: DepartmentProcessor(requestCacher: requestCacheManager))

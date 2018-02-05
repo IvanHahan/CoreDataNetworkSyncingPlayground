@@ -23,7 +23,7 @@ class DepartmentProcessor: ChangeProcessor {
         for model in models {
             requestCacher.syncCompletion = { [weak self] _ in
                 model.managedObjectContext?.refresh(model, mergeChanges: true)
-                self?.requestCacher.enqueueCached(FirebaseRequest.department.create(department: model, context: model.managedObjectContext!))
+                self?.requestCacher.cache(FirebaseRequest.department.create(department: model, context: model.managedObjectContext!))
                 self?.requestCacher.syncCompletion = nil
             }
         }
@@ -40,7 +40,7 @@ class DepartmentProcessor: ChangeProcessor {
     
     private func establishRelationshipsWithEmployees(model: Department) {
         guard let ids = model.employees?.flatMap({ $0.remoteId }), !ids.isEmpty else { return }
-        self.requestCacher.enqueueCached(BackendlessRequest.department.establishRelationsWithEmployees(id: model.remoteId!,
+        self.requestCacher.cache(BackendlessRequest.department.establishRelationsWithEmployees(id: model.remoteId!,
                                                                                                    employees: ids))
         self.requestCacher.syncCompletion = nil
     }

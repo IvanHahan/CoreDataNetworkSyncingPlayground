@@ -20,8 +20,8 @@ class RequestCacheManager {
     private let syncContext: NSManagedObjectContext
     private(set) var isExecuting: Bool = false
     
-    init(environment: Environment, context: NSManagedObjectContext, domainContainer: NSPersistentContainer) {
-        self.sessionManager = SessionManager(baseUrl: environment.baseUrl, config: URLSessionConfiguration.default)
+    init(sessionManager: SessionManager, context: NSManagedObjectContext, domainContainer: NSPersistentContainer) {
+        self.sessionManager = sessionManager
         self.container = domainContainer
         self.context = context
         self.syncContext = domainContainer.newBackgroundContext()

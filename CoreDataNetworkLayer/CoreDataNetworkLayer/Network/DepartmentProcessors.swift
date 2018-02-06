@@ -19,7 +19,7 @@ class DepartmentProcessor: ChangeProcessor {
         self.requestCacher = requestCacher
     }
     
-    func save(_ models: [Department]) {
+    func save(_ models: [DepartmentModel]) {
         for model in models {
             requestCacher.syncCompletion = { [weak self] _ in
                 model.managedObjectContext?.refresh(model, mergeChanges: true)
@@ -30,7 +30,7 @@ class DepartmentProcessor: ChangeProcessor {
         self.comlpetion?()
     }
     
-    func update(_ models: [Department]) {
+    func update(_ models: [DepartmentModel]) {
         
     }
     
@@ -38,7 +38,7 @@ class DepartmentProcessor: ChangeProcessor {
         
     }
     
-    private func establishRelationshipsWithEmployees(model: Department) {
+    private func establishRelationshipsWithEmployees(model: DepartmentModel) {
         guard let ids = model.employees?.flatMap({ $0.remoteId }), !ids.isEmpty else { return }
         self.requestCacher.cache(BackendlessRequest.department.establishRelationsWithEmployees(id: model.remoteId!,
                                                                                                    employees: ids))

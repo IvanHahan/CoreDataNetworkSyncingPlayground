@@ -12,9 +12,9 @@ import CoreData
 class EmployeesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var fetchController: NSFetchedResultsController<Employee>!
+    var fetchController: NSFetchedResultsController<EmployeeModel>!
     var context: NSManagedObjectContext!
-    var department: Department!
+    var department: DepartmentModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +23,8 @@ class EmployeesViewController: UIViewController {
         tableView.register(UITableViewCell.self)
 
         
-        let request = Employee.sortedFetchRequest
-        let predicate = Employee.predicate(for: department)
+        let request = EmployeeModel.sortedFetchRequest
+        let predicate = EmployeeModel.predicate(for: department)
         request.predicate = predicate
         fetchController = NSFetchedResultsController(fetchRequest: request,
                                                      managedObjectContext: context,
@@ -38,7 +38,7 @@ class EmployeesViewController: UIViewController {
         do {
             guard let vc = sender.source as? EditEmployeeController else { return }
             context.performChanges { [unowned self] in
-                Employee.insert(name: vc.nameField.text!,
+                EmployeeModel.insert(name: vc.nameField.text!,
                                 position: vc.positionField.text!,
                                 salary: Double(vc.salaryField.text!)!,
                                 department: self.department,

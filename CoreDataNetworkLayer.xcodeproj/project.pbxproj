@@ -10,6 +10,9 @@
 		52795A851E06309882272307 /* Pods_CoreDataNetworkLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D84CC30091B58AA78E22867 /* Pods_CoreDataNetworkLayer.framework */; };
 		9212C7912028430400B23B09 /* OperationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9212C7902028430400B23B09 /* OperationExtension.swift */; };
 		9245961720235B9700C4F591 /* FirebaseListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9245961620235B9700C4F591 /* FirebaseListData.swift */; };
+		925611CC2029E6E200B25194 /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925611CB2029E6E200B25194 /* Department.swift */; };
+		925611CE2029E6ED00B25194 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925611CD2029E6ED00B25194 /* Employee.swift */; };
+		925611D12029E9AE00B25194 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925611D02029E9AE00B25194 /* Repository.swift */; };
 		929E0757200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E0756200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.swift */; };
 		92B4A78E2022093F00276B3F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7512022093E00276B3F /* Constants.swift */; };
 		92B4A78F2022093F00276B3F /* DepartmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7522022093E00276B3F /* DepartmentsViewController.swift */; };
@@ -80,6 +83,9 @@
 		8C08E25EA287EA8D4F3AEDE9 /* Pods-CoreDataNetworkLayerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreDataNetworkLayerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoreDataNetworkLayerUITests/Pods-CoreDataNetworkLayerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9212C7902028430400B23B09 /* OperationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationExtension.swift; sourceTree = "<group>"; };
 		9245961620235B9700C4F591 /* FirebaseListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListData.swift; sourceTree = "<group>"; };
+		925611CB2029E6E200B25194 /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
+		925611CD2029E6ED00B25194 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		925611D02029E9AE00B25194 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		929E073E200CAC5B004F8BA1 /* CoreDataNetworkLayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataNetworkLayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		929E0752200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataNetworkLayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		929E0756200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataNetworkLayerTests.swift; sourceTree = "<group>"; };
@@ -184,6 +190,15 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
+		925611CF2029E6F200B25194 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				925611CB2029E6E200B25194 /* Department.swift */,
+				925611CD2029E6ED00B25194 /* Employee.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		929E0735200CAC5B004F8BA1 = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +238,8 @@
 				92B4A7522022093E00276B3F /* DepartmentsViewController.swift */,
 				92B4A7532022093E00276B3F /* EditDepartmentController.swift */,
 				92B4A7542022093E00276B3F /* TableViewDataSource.swift */,
+				925611D02029E9AE00B25194 /* Repository.swift */,
+				925611CF2029E6F200B25194 /* Models */,
 				92B4A7552022093E00276B3F /* CoreDataNetworkLayer */,
 				92B4A76B2022093E00276B3F /* Caching.xcdatamodeld */,
 				92B4A76D2022093E00276B3F /* EmployeesViewController.swift */,
@@ -666,12 +683,14 @@
 				92B4A79E2022093F00276B3F /* SessionManager.swift in Sources */,
 				92B4A7B42022093F00276B3F /* UITableViewExtensions.swift in Sources */,
 				92B4A7BA202209FF00276B3F /* FirebaseSyncRequest+CoreDataClass.swift in Sources */,
+				925611CC2029E6E200B25194 /* Department.swift in Sources */,
 				9212C7912028430400B23B09 /* OperationExtension.swift in Sources */,
 				92B4A7A32022093F00276B3F /* RequestCacheManager.swift in Sources */,
 				9245961720235B9700C4F591 /* FirebaseListData.swift in Sources */,
 				92B4A7972022093F00276B3F /* RequestOperation.swift in Sources */,
 				92B4A7922022093F00276B3F /* SyncManager.swift in Sources */,
 				92B4A7A52022093F00276B3F /* Caching.xcdatamodeld in Sources */,
+				925611CE2029E6ED00B25194 /* Employee.swift in Sources */,
 				92B4A7A22022093F00276B3F /* Managed.swift in Sources */,
 				92B4A79B2022093F00276B3F /* ChangeProcessor.swift in Sources */,
 				92B4A79F2022093F00276B3F /* DepartmentProcessors.swift in Sources */,
@@ -692,6 +711,7 @@
 				92B4A7932022093F00276B3F /* Executable.swift in Sources */,
 				92B4A7A12022093F00276B3F /* CoreDataStack.swift in Sources */,
 				92B4A7B62022093F00276B3F /* EditEmployeeController.swift in Sources */,
+				925611D12029E9AE00B25194 /* Repository.swift in Sources */,
 				92B4A7942022093F00276B3F /* DepartmentSyncManager.swift in Sources */,
 				92B4A78E2022093F00276B3F /* Constants.swift in Sources */,
 				92B4A7992022093F00276B3F /* FirebaseRequest.swift in Sources */,

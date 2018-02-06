@@ -19,14 +19,14 @@ class EmployeeProcessor: ChangeProcessor {
         self.requestCacher = requestCacher
     }
     
-    func save(_ models: [Employee]) {
+    func save(_ models: [EmployeeModel]) {
         for model in models {
             requestCacher.cache(FirebaseRequest.employee.create(employee: model, context: model.managedObjectContext!))
         }
         self.comlpetion?(())
     }
     
-    func update(_ models: [Employee]) {
+    func update(_ models: [EmployeeModel]) {
         
     }
     

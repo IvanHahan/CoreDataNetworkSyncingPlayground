@@ -11,10 +11,10 @@ import Foundation
 import CoreData
 
 
-extension Employee {
+extension EmployeeModel {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Employee> {
-        return NSFetchRequest<Employee>(entityName: "Employee")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<EmployeeModel> {
+        return NSFetchRequest<EmployeeModel>(entityName: "Employee")
     }
 
     @NSManaged public var name: String?

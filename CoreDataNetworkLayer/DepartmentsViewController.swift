@@ -18,12 +18,12 @@ class DepartmentsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var context: NSManagedObjectContext!
-    var tableViewDataSource: TableViewDataSource<Department, UITableViewCell>!
+    var tableViewDataSource: TableViewDataSource<DepartmentModel, UITableViewCell>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         context = (UIApplication.shared.delegate as! AppDelegate).domainContainer.viewContext
-        tableViewDataSource = TableViewDataSource<Department, UITableViewCell>(tableView: tableView,
+        tableViewDataSource = TableViewDataSource<DepartmentModel, UITableViewCell>(tableView: tableView,
                                                                                context: context,
                                                                                cellConfiguration: { (cell, department) in
                                                                                 cell.textLabel?.text = department.name
@@ -38,7 +38,7 @@ class DepartmentsViewController: UIViewController {
         if let vc = segue.destination as? EditDepartmentController {
             vc.context = context
         } else if let vc = segue.destination as? EmployeesViewController {
-            vc.department = sender as? Department
+            vc.department = sender as? DepartmentModel
             vc.context = context
         }
     }

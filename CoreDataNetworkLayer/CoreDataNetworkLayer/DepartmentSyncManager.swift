@@ -12,7 +12,7 @@ import CoreData
 class DepartmentSyncManager {
     
     enum ChangeType {
-        case insert(Department), update(Department)
+        case insert(DepartmentModel), update(DepartmentModel)
     }
     
     private let context: NSManagedObjectContext
@@ -48,7 +48,7 @@ class DepartmentSyncManager {
 //        }
     }
 
-    private func createDepartmentRemotely(department: Department) {
+    private func createDepartmentRemotely(department: DepartmentModel) {
 //        self.requestCacher?.enqueue(NetworkRequest.department.create(department: department)) { [weak self] result in
 //            switch result {
 //            case .success(let model):
@@ -62,7 +62,7 @@ class DepartmentSyncManager {
 //        }
     }
     
-    private func establishRelationsWithEmployeesRemotely(deparment: Department) {
+    private func establishRelationsWithEmployeesRemotely(deparment: DepartmentModel) {
 //        self.requestCacher
     }
 }

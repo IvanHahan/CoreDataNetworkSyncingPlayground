@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 @objc(Department)
-final public class Department: NSManagedObject, Codable, Managed, SyncedModel {
+final public class DepartmentModel: NSManagedObject, Codable, Managed, SyncedModel {
     
     private enum CodingKeys: String, CodingKey {
         case name, employees, head, id = "objectId"
@@ -29,15 +29,15 @@ final public class Department: NSManagedObject, Codable, Managed, SyncedModel {
     public required init(from decoder: Decoder) throws {
         guard let contextUserInfoKey = CodingUserInfoKey.context,
             let managedObjectContext = decoder.userInfo[contextUserInfoKey] as? NSManagedObjectContext,
-            let entity = NSEntityDescription.entity(forEntityName: Department.entity().name!, in: managedObjectContext) else {
-                fatalError("Failed to decode \(Employee.identifier)!")
+            let entity = NSEntityDescription.entity(forEntityName: DepartmentModel.entity().name!, in: managedObjectContext) else {
+                fatalError("Failed to decode \(EmployeeModel.identifier)!")
         }
         super.init(entity: entity, insertInto: managedObjectContext)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
-        employees = try? container.decode(Set<Employee>.self, forKey: .employees)
+        employees = try? container.decode(Set<EmployeeModel>.self, forKey: .employees)
         employeeRemoteIds = try? container.decode([String: Bool].self, forKey: .employees)
-        head = try? container.decode(Employee.self, forKey: .head)
+        head = try? container.decode(EmployeeModel.self, forKey: .head)
         remoteId = try container.decode(String.self, forKey: .id)
     }
     
@@ -45,8 +45,8 @@ final public class Department: NSManagedObject, Codable, Managed, SyncedModel {
         super.init(entity: entity, insertInto: context)
     }
     
-    static func insert(name: String, employees: Set<Employee>, head: Employee, into context: NSManagedObjectContext) {
-        let department: Department = context.new()
+    static func insert(name: String, employees: Set<EmployeeModel>, head: EmployeeModel, into context: NSManagedObjectContext) {
+        let department: DepartmentModel = context.new()
         department.employees = employees
         department.head = head
     }

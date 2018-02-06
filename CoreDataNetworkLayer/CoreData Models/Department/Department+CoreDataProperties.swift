@@ -11,46 +11,46 @@ import Foundation
 import CoreData
 
 
-extension Department {
+extension DepartmentModel {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Department> {
-        return NSFetchRequest<Department>(entityName: "Department")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<DepartmentModel> {
+        return NSFetchRequest<DepartmentModel>(entityName: "Department")
     }
 
     @NSManaged public var name: String?
-    @NSManaged public var employees: Set<Employee>?
-    @NSManaged public var head: Employee?
+    @NSManaged public var employees: Set<EmployeeModel>?
+    @NSManaged public var head: EmployeeModel?
     @NSManaged public var remoteId: String?
     @NSManaged public var employeeRemoteIds: [String: Bool]?
 
 }
 
 // MARK: Generated accessors for employees
-extension Department {
+extension DepartmentModel {
 
     @objc(insertObject:inEmployeesAtIndex:)
-    @NSManaged public func insertIntoEmployees(_ value: Employee, at idx: Int)
+    @NSManaged public func insertIntoEmployees(_ value: EmployeeModel, at idx: Int)
 
     @objc(removeObjectFromEmployeesAtIndex:)
     @NSManaged public func removeFromEmployees(at idx: Int)
 
     @objc(insertEmployees:atIndexes:)
-    @NSManaged public func insertIntoEmployees(_ values: [Employee], at indexes: NSIndexSet)
+    @NSManaged public func insertIntoEmployees(_ values: [EmployeeModel], at indexes: NSIndexSet)
 
     @objc(removeEmployeesAtIndexes:)
     @NSManaged public func removeFromEmployees(at indexes: NSIndexSet)
 
     @objc(replaceObjectInEmployeesAtIndex:withObject:)
-    @NSManaged public func replaceEmployees(at idx: Int, with value: Employee)
+    @NSManaged public func replaceEmployees(at idx: Int, with value: EmployeeModel)
 
     @objc(replaceEmployeesAtIndexes:withEmployees:)
-    @NSManaged public func replaceEmployees(at indexes: NSIndexSet, with values: [Employee])
+    @NSManaged public func replaceEmployees(at indexes: NSIndexSet, with values: [EmployeeModel])
 
     @objc(addEmployeesObject:)
-    @NSManaged public func addToEmployees(_ value: Employee)
+    @NSManaged public func addToEmployees(_ value: EmployeeModel)
 
     @objc(removeEmployeesObject:)
-    @NSManaged public func removeFromEmployees(_ value: Employee)
+    @NSManaged public func removeFromEmployees(_ value: EmployeeModel)
 
     @objc(addEmployees:)
     @NSManaged public func addToEmployees(_ values: NSOrderedSet)

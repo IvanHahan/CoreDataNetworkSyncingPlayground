@@ -24,7 +24,7 @@ enum BackendlessRequest {
             
             private let context: NSManagedObjectContext
             
-            init(employee: Employee, context: NSManagedObjectContext) {
+            init(employee: EmployeeModel, context: NSManagedObjectContext) {
                 self.context = context
                 body = try! JSONEncoder().encode(employee)
                 self.localId = employee.objectID.uriRepresentation().absoluteURL
@@ -34,7 +34,7 @@ enum BackendlessRequest {
         
         struct update: DecodableResultRequest {
             
-            typealias Model = Employee
+            typealias Model = EmployeeModel
             
             let path: String = ""
             let method: Method = .put
@@ -43,14 +43,14 @@ enum BackendlessRequest {
         
         struct get: DecodableResultRequest {
             
-            typealias Model = Employee
+            typealias Model = EmployeeModel
             
             let path: String = ""
         }
         
         struct delete: DecodableResultRequest {            
             
-            typealias Model = Employee
+            typealias Model = EmployeeModel
             
             let path: String = ""
             let method: Method = .delete
@@ -72,7 +72,7 @@ enum BackendlessRequest {
             private let context: NSManagedObjectContext
             let localId: URL
             
-            init(department: Department, context: NSManagedObjectContext) {
+            init(department: DepartmentModel, context: NSManagedObjectContext) {
                 body = try! JSONEncoder().encode(department)
                 self.context = context
                 self.localId = department.objectID.uriRepresentation().absoluteURL
@@ -82,7 +82,7 @@ enum BackendlessRequest {
         
         struct update: DecodableResultRequest {
             
-            typealias Model = Department
+            typealias Model = DepartmentModel
             
             var path: String { return department.path + "\(id)" }
             let method: Method = .post

@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 @objc(Employee)
-final public class Employee: NSManagedObject, Codable, SyncedModel {
+final public class EmployeeModel: NSManagedObject, Codable, SyncedModel {
 
     private enum CodingKeys: String, CodingKey {
         case name, position, salary, id = "objectId"
@@ -28,8 +28,8 @@ final public class Employee: NSManagedObject, Codable, SyncedModel {
     public required init(from decoder: Decoder) throws {
         guard let contextUserInfoKey = CodingUserInfoKey.context,
             let managedObjectContext = decoder.userInfo[contextUserInfoKey] as? NSManagedObjectContext,
-            let entity = NSEntityDescription.entity(forEntityName: Employee.identifier, in: managedObjectContext) else {
-                fatalError("Failed to decode \(Employee.identifier)!")
+            let entity = NSEntityDescription.entity(forEntityName: EmployeeModel.identifier, in: managedObjectContext) else {
+                fatalError("Failed to decode \(EmployeeModel.identifier)!")
         }
         super.init(entity: entity, insertInto: managedObjectContext)
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -44,8 +44,8 @@ final public class Employee: NSManagedObject, Codable, SyncedModel {
     }
     
     @discardableResult
-    static func insert(name: String, position: String, salary: Double, department: Department, into context: NSManagedObjectContext) -> Employee {
-        let employee: Employee = context.new()
+    static func insert(name: String, position: String, salary: Double, department: DepartmentModel, into context: NSManagedObjectContext) -> EmployeeModel {
+        let employee: EmployeeModel = context.new()
         employee.name = name
         employee.position = position
         employee.salary = salary
@@ -54,7 +54,7 @@ final public class Employee: NSManagedObject, Codable, SyncedModel {
     }
 }
 
-extension Employee: Managed {
+extension EmployeeModel: Managed {
     
     static var sortDescriptors: [NSSortDescriptor] {
         return [
@@ -62,7 +62,7 @@ extension Employee: Managed {
         ]
     }
     
-    static func predicate(for department: Department) -> NSPredicate {
+    static func predicate(for department: DepartmentModel) -> NSPredicate {
         return NSPredicate(format: "department == %@", department)
     }
 }

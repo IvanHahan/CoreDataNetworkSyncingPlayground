@@ -24,7 +24,7 @@ enum FirebaseRequest {
             
             private let context: NSManagedObjectContext
             
-            init(employee: Employee, context: NSManagedObjectContext) {
+            init(employee: EmployeeModel, context: NSManagedObjectContext) {
                 self.context = context
                 body = try! JSONEncoder().encode(employee)
                 self.localId = employee.objectID.uriRepresentation().absoluteURL
@@ -45,7 +45,7 @@ enum FirebaseRequest {
             private let context: NSManagedObjectContext
             let localId: URL
             
-            init(department: Department, context: NSManagedObjectContext) {
+            init(department: DepartmentModel, context: NSManagedObjectContext) {
                 body = try! JSONEncoder().encode(department)
                 self.context = context
                 self.localId = department.objectID.uriRepresentation().absoluteURL

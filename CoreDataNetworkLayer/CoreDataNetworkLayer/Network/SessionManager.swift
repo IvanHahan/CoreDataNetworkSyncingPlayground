@@ -7,6 +7,21 @@
 //
 
 import Foundation
+import Promise
+
+
+func a() {
+    let promise = Promise(value: 33)
+    
+}
+
+
+
+
+
+
+
+
 
 protocol Cancellable {
     func cancel()

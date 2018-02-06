@@ -9,12 +9,10 @@ target 'CoreDataNetworkLayer' do
 
   target 'CoreDataNetworkLayerTests' do
     inherit! :search_paths
-    # Pods for testing
   end
 
   target 'CoreDataNetworkLayerUITests' do
     inherit! :search_paths
-    # Pods for testing
   end
 
 end

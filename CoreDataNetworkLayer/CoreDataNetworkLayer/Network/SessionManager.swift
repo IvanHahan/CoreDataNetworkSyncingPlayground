@@ -9,20 +9,6 @@
 import Foundation
 import Promise
 
-
-func a() {
-    let promise = Promise(value: 33)
-    
-}
-
-
-
-
-
-
-
-
-
 protocol Cancellable {
     func cancel()
 }
@@ -57,26 +43,29 @@ class SessionManager {
     }
     
     @discardableResult
-    func execute<R: Request>(_ request: R, completion: ResultClosure<R.Model>? = nil) -> Cancellable {
+    func execute<R: Request>(_ request: R) -> (result: Promise<R.Model>, task: Cancellable) {
         state = .executing
         var task: URLSessionDataTask!
-        task = session.dataTask(with: request.asURLRequest(baseUrl: baseUrl)) { [weak self] (data, response, error) in
-            self?.executingTasks.remove(task)
-            debugPrint(response)
-            if let error = error {
-                completion?(.failure(error))
-            } else if let data = data {
-                if let model = request.map(from: data) {
-                    completion?(.success(model))
-                } else {
-                    completion?(.failure(NetworkError.couldNotParseJSON))
+        let result = Promise<R.Model> { [weak self] handle, reject in
+            guard let strongSelf = self else { return }
+            task = strongSelf.session.dataTask(with: request.asURLRequest(baseUrl: strongSelf.baseUrl)) { [weak self] (data, response, error) in
+                strongSelf.executingTasks.remove(task)
+                debugPrint(response)
+                if let error = error {
+                    reject(error)
+                } else if let data = data {
+                    if let model = request.map(from: data) {
+                        handle(model)
+                    } else {
+                        reject(NetworkError.couldNotParseJSON)
+                    }
                 }
+                self?.state = .finished
             }
-            self?.state = .finished
+            task.resume()
+            strongSelf.executingTasks.insert(task)
         }
-        task.resume()
-        executingTasks.insert(task)
-        return task
+        return (result: result, task: task)
     }
     
     func cancel() {
@@ -87,7 +76,7 @@ class SessionManager {
     func synchronize<R: DecodableResultRequest>(_ requests: [R], completion: Closure<Void>? = nil) {
         requests.forEach {
             syncGroup.enter()
-            execute($0) { [weak self] _ in
+            execute($0).result.always { [weak self] in
                 self?.syncGroup.leave()
             }
         }

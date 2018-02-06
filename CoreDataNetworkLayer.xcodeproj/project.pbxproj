@@ -23,9 +23,7 @@
 		92B4A7972022093F00276B3F /* RequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A75C2022093E00276B3F /* RequestOperation.swift */; };
 		92B4A7982022093F00276B3F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A75D2022093E00276B3F /* Environment.swift */; };
 		92B4A7992022093F00276B3F /* FirebaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A75E2022093E00276B3F /* FirebaseRequest.swift */; };
-		92B4A79A2022093F00276B3F /* BackendlessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A75F2022093E00276B3F /* BackendlessManager.swift */; };
 		92B4A79B2022093F00276B3F /* ChangeProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7602022093E00276B3F /* ChangeProcessor.swift */; };
-		92B4A79C2022093F00276B3F /* SessionOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7612022093E00276B3F /* SessionOperation.swift */; };
 		92B4A79D2022093F00276B3F /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7622022093E00276B3F /* Request.swift */; };
 		92B4A79E2022093F00276B3F /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7632022093E00276B3F /* SessionManager.swift */; };
 		92B4A79F2022093F00276B3F /* DepartmentProcessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7642022093E00276B3F /* DepartmentProcessors.swift */; };
@@ -100,9 +98,7 @@
 		92B4A75C2022093E00276B3F /* RequestOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestOperation.swift; sourceTree = "<group>"; };
 		92B4A75D2022093E00276B3F /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		92B4A75E2022093E00276B3F /* FirebaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseRequest.swift; sourceTree = "<group>"; };
-		92B4A75F2022093E00276B3F /* BackendlessManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendlessManager.swift; sourceTree = "<group>"; };
 		92B4A7602022093E00276B3F /* ChangeProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeProcessor.swift; sourceTree = "<group>"; };
-		92B4A7612022093E00276B3F /* SessionOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionOperation.swift; sourceTree = "<group>"; };
 		92B4A7622022093E00276B3F /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		92B4A7632022093E00276B3F /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		92B4A7642022093E00276B3F /* DepartmentProcessors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentProcessors.swift; sourceTree = "<group>"; };
@@ -176,6 +172,16 @@
 				5B91A9337701688CD139EC25 /* Pods_CoreDataNetworkLayerUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		925611CA2029DE7700B25194 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				92B4A75E2022093E00276B3F /* FirebaseRequest.swift */,
+				92B4A7652022093E00276B3F /* BackendlessRequest.swift */,
+				92B4A7622022093E00276B3F /* Request.swift */,
+			);
+			path = Requests;
 			sourceTree = "<group>";
 		};
 		929E0735200CAC5B004F8BA1 = {
@@ -254,14 +260,10 @@
 				92B4A75B2022093E00276B3F /* EmployeeProcessors.swift */,
 				92B4A75C2022093E00276B3F /* RequestOperation.swift */,
 				92B4A75D2022093E00276B3F /* Environment.swift */,
-				92B4A75E2022093E00276B3F /* FirebaseRequest.swift */,
-				92B4A75F2022093E00276B3F /* BackendlessManager.swift */,
 				92B4A7602022093E00276B3F /* ChangeProcessor.swift */,
-				92B4A7622022093E00276B3F /* Request.swift */,
-				92B4A7612022093E00276B3F /* SessionOperation.swift */,
+				925611CA2029DE7700B25194 /* Requests */,
 				92B4A7632022093E00276B3F /* SessionManager.swift */,
 				92B4A7642022093E00276B3F /* DepartmentProcessors.swift */,
-				92B4A7652022093E00276B3F /* BackendlessRequest.swift */,
 				9245961620235B9700C4F591 /* FirebaseListData.swift */,
 				9212C7902028430400B23B09 /* OperationExtension.swift */,
 			);
@@ -676,8 +678,6 @@
 				92B4A7B02022093F00276B3F /* Identifiable.swift in Sources */,
 				92B4A79D2022093F00276B3F /* Request.swift in Sources */,
 				92B4A7AA2022093F00276B3F /* BackendlessSyncRequest+CoreDataClass.swift in Sources */,
-				92B4A79C2022093F00276B3F /* SessionOperation.swift in Sources */,
-				92B4A79A2022093F00276B3F /* BackendlessManager.swift in Sources */,
 				92B4A7AE2022093F00276B3F /* Employee+CoreDataProperties.swift in Sources */,
 				92B4A7AC2022093F00276B3F /* Department+CoreDataClass.swift in Sources */,
 				92B4A7B52022093F00276B3F /* AppDelegate.swift in Sources */,

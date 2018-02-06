@@ -50,30 +50,24 @@ class RequestCacheManager {
     private func executeNext() {
         guard isExecuting else { return }
         if let request = FirebaseSyncRequest.findOrFetchFirst(in: context) {
-            sessionManager.execute(request) { [weak self] result in
-                switch result {
-                case .success(let remoteId):
-                    guard let localId = request.localIdOptional,
-                        let managedObjectId = self?.container.managedObjectID(from: localId),
-                        let object = self?.syncContext.object(with: managedObjectId) as? SyncedModel else { return }
-                    object.remoteId = remoteId
-                    self?.syncContext.saveOrRollback()
-                    self?.context.delete(request)
-                    self?.context.saveOrRollback()
+            sessionManager.execute(request).result.then { [weak self] remoteId in
+                guard let localId = request.localIdOptional,
+                    let managedObjectId = self?.container.managedObjectID(from: localId),
+                    let object = self?.syncContext.object(with: managedObjectId) as? SyncedModel else { return }
+                object.remoteId = remoteId
+                self?.syncContext.saveOrRollback()
+                self?.context.delete(request)
+                self?.context.saveOrRollback()
+                self?.executeNext()
+                }.catch { [weak self] _ in
                     self?.executeNext()
-                case .failure:
-                    self?.executeNext()
-                }
             }
         } else if let request = CachedRequest.findOrFetchFirst(in: context) {
-            sessionManager.execute(request) { [weak self] result in
-                switch result {
-                case .success:
-                    self?.context.delete(request)
-                    try? self?.context.save()
-                default:()
-                }
-                self?.executeNext()
+            sessionManager.execute(request).result.then { [weak self] result in
+                self?.context.delete(request)
+                try? self?.context.save()
+                }.always { [weak self] in
+                    self?.executeNext()
             }
         } else {
             isExecuting = false

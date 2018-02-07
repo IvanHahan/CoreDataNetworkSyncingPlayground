@@ -28,9 +28,7 @@ struct DepartmentRepository {
                 .then { _ in
                     fulfill(())
                 }
-                .catch { error in
-                    reject(error)
-            }
+                .catch(reject)
         }
     }
     

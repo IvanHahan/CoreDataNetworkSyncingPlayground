@@ -18,10 +18,7 @@
 		92B4A78E2022093F00276B3F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7512022093E00276B3F /* Constants.swift */; };
 		92B4A78F2022093F00276B3F /* DepartmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7522022093E00276B3F /* DepartmentsViewController.swift */; };
 		92B4A7902022093F00276B3F /* EditDepartmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7532022093E00276B3F /* EditDepartmentController.swift */; };
-		92B4A7932022093F00276B3F /* Executable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7572022093E00276B3F /* Executable.swift */; };
-		92B4A7942022093F00276B3F /* DepartmentSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7582022093E00276B3F /* DepartmentSyncManager.swift */; };
 		92B4A7952022093F00276B3F /* PersistentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7592022093E00276B3F /* PersistentModel.swift */; };
-		92B4A7972022093F00276B3F /* RequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A75C2022093E00276B3F /* RequestOperation.swift */; };
 		92B4A7982022093F00276B3F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A75D2022093E00276B3F /* Environment.swift */; };
 		92B4A7992022093F00276B3F /* FirebaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A75E2022093E00276B3F /* FirebaseRequest.swift */; };
 		92B4A79D2022093F00276B3F /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7622022093E00276B3F /* Request.swift */; };
@@ -92,10 +89,7 @@
 		92B4A7512022093E00276B3F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		92B4A7522022093E00276B3F /* DepartmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsViewController.swift; sourceTree = "<group>"; };
 		92B4A7532022093E00276B3F /* EditDepartmentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDepartmentController.swift; sourceTree = "<group>"; };
-		92B4A7572022093E00276B3F /* Executable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Executable.swift; sourceTree = "<group>"; };
-		92B4A7582022093E00276B3F /* DepartmentSyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentSyncManager.swift; sourceTree = "<group>"; };
 		92B4A7592022093E00276B3F /* PersistentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentModel.swift; sourceTree = "<group>"; };
-		92B4A75C2022093E00276B3F /* RequestOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestOperation.swift; sourceTree = "<group>"; };
 		92B4A75D2022093E00276B3F /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		92B4A75E2022093E00276B3F /* FirebaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseRequest.swift; sourceTree = "<group>"; };
 		92B4A7622022093E00276B3F /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -191,6 +185,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		926B8E61202B193C00171293 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				92B4A7522022093E00276B3F /* DepartmentsViewController.swift */,
+				92B4A7532022093E00276B3F /* EditDepartmentController.swift */,
+				92B4A76D2022093E00276B3F /* EmployeesViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		929E0735200CAC5B004F8BA1 = {
 			isa = PBXGroup;
 			children = (
@@ -236,22 +240,20 @@
 			children = (
 				92B4A7502022093E00276B3F /* BridgingHeader.h */,
 				92B4A7512022093E00276B3F /* Constants.swift */,
-				92B4A7522022093E00276B3F /* DepartmentsViewController.swift */,
-				92B4A7532022093E00276B3F /* EditDepartmentController.swift */,
+				926B8E61202B193C00171293 /* Controllers */,
+				92B4A7872022093E00276B3F /* AppDelegate.swift */,
+				92B4A7882022093E00276B3F /* EditEmployeeController.swift */,
 				929FC09A202AE96700B949B6 /* Repositories */,
 				925611CF2029E6F200B25194 /* Models */,
 				92B4A7552022093E00276B3F /* CoreDataNetworkLayer */,
-				92B4A76B2022093E00276B3F /* Caching.xcdatamodeld */,
-				92B4A76D2022093E00276B3F /* EmployeesViewController.swift */,
-				92B4A76E2022093E00276B3F /* Assets.xcassets */,
 				92B4A76F2022093E00276B3F /* CoreData Models */,
 				92B4A77C2022093E00276B3F /* Protocol */,
+				92B4A7852022093E00276B3F /* Extensions */,
 				92B4A77E2022093E00276B3F /* LaunchScreen.storyboard */,
 				92B4A7802022093E00276B3F /* Main.storyboard */,
+				92B4A76E2022093E00276B3F /* Assets.xcassets */,
+				92B4A76B2022093E00276B3F /* Caching.xcdatamodeld */,
 				92B4A7822022093E00276B3F /* Company.xcdatamodeld */,
-				92B4A7852022093E00276B3F /* Extensions */,
-				92B4A7872022093E00276B3F /* AppDelegate.swift */,
-				92B4A7882022093E00276B3F /* EditEmployeeController.swift */,
 				92B4A7892022093E00276B3F /* Info.plist */,
 			);
 			path = CoreDataNetworkLayer;
@@ -260,8 +262,6 @@
 		92B4A7552022093E00276B3F /* CoreDataNetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
-				92B4A7572022093E00276B3F /* Executable.swift */,
-				92B4A7582022093E00276B3F /* DepartmentSyncManager.swift */,
 				92B4A7592022093E00276B3F /* PersistentModel.swift */,
 				92B4A75A2022093E00276B3F /* Network */,
 				92B4A7662022093E00276B3F /* CoreData */,
@@ -273,7 +273,6 @@
 		92B4A75A2022093E00276B3F /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				92B4A75C2022093E00276B3F /* RequestOperation.swift */,
 				92B4A75D2022093E00276B3F /* Environment.swift */,
 				925611CA2029DE7700B25194 /* Requests */,
 				92B4A7632022093E00276B3F /* SessionManager.swift */,
@@ -681,7 +680,6 @@
 				9212C7912028430400B23B09 /* OperationExtension.swift in Sources */,
 				92B4A7A32022093F00276B3F /* RequestCacheManager.swift in Sources */,
 				9245961720235B9700C4F591 /* FirebaseListData.swift in Sources */,
-				92B4A7972022093F00276B3F /* RequestOperation.swift in Sources */,
 				92B4A7A52022093F00276B3F /* Caching.xcdatamodeld in Sources */,
 				925611CE2029E6ED00B25194 /* Employee.swift in Sources */,
 				92B4A7A22022093F00276B3F /* Managed.swift in Sources */,
@@ -700,11 +698,9 @@
 				92B4A7A62022093F00276B3F /* EmployeesViewController.swift in Sources */,
 				92B4A7982022093F00276B3F /* Environment.swift in Sources */,
 				92B4A7A02022093F00276B3F /* BackendlessRequest.swift in Sources */,
-				92B4A7932022093F00276B3F /* Executable.swift in Sources */,
 				92B4A7A12022093F00276B3F /* CoreDataStack.swift in Sources */,
 				92B4A7B62022093F00276B3F /* EditEmployeeController.swift in Sources */,
 				925611D12029E9AE00B25194 /* DepartmentRepository.swift in Sources */,
-				92B4A7942022093F00276B3F /* DepartmentSyncManager.swift in Sources */,
 				92B4A78E2022093F00276B3F /* Constants.swift in Sources */,
 				92B4A7992022093F00276B3F /* FirebaseRequest.swift in Sources */,
 				92B4A7AB2022093F00276B3F /* BackendlessSyncRequest+CoreDataProperties.swift in Sources */,

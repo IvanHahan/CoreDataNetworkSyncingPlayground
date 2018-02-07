@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C205" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="DepartmentModel" representedClassName="DepartmentModel" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="remoteId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="employees" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="EmployeeModel" syncable="YES"/>
     </entity>
     <entity name="EmployeeModel" representedClassName="EmployeeModel" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="position" attributeType="String" syncable="YES"/>
         <attribute name="remoteId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="salary" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="salary" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
         <element name="DepartmentModel" positionX="9" positionY="36" width="128" height="90"/>

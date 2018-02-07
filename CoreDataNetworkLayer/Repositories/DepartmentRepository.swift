@@ -21,15 +21,7 @@ struct DepartmentRepository {
     }
     
     func create(_ model: Department) -> Promise<Void> {
-        let promise = createLocally(model)
-        promise.then(createRemotely)
-        return Promise { fulfill, reject in
-            promise
-                .then { _ in
-                    fulfill(())
-                }
-                .catch(reject)
-        }
+        return createLocally(model).then(createRemotely)
     }
     
     func get() -> Promise<[Department]> {
@@ -49,9 +41,10 @@ struct DepartmentRepository {
         }
     }
     
-    private func createRemotely(_ model: Department, localId: URL) {
+    private func createRemotely(_ model: Department, localId: URL) -> Promise<Void> {
         requestCacher.cache(FirebaseRequest.department.create(department: model,
                                                               localId: localId))
+        return Promise(value: ())
     }
     
     private func createLocally(_ model: Department) -> Promise<(Department, URL)> {

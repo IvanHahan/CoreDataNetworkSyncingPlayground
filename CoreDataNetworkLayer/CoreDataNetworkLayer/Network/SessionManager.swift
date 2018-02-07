@@ -43,13 +43,13 @@ class SessionManager {
     }
     
     @discardableResult
-    func execute<R: Request>(_ request: R) -> (result: Promise<R.Model>, task: Cancellable) {
+    func execute<R: Request>(_ request: R) -> Promise<R.Model> {
         state = .executing
-        var task: URLSessionDataTask!
-        let result = Promise<R.Model> { [weak self] handle, reject in
+        var task: URLSessionDataTask?
+        return Promise<R.Model> { [weak self] handle, reject in
             guard let strongSelf = self else { return }
             task = strongSelf.session.dataTask(with: request.asURLRequest(baseUrl: strongSelf.baseUrl)) { [weak self] (data, response, error) in
-                strongSelf.executingTasks.remove(task)
+                strongSelf.executingTasks.remove(task!)
                 debugPrint(response)
                 if let error = error {
                     reject(error)
@@ -62,10 +62,9 @@ class SessionManager {
                 }
                 self?.state = .finished
             }
-            task.resume()
-            strongSelf.executingTasks.insert(task)
+            task?.resume()
+            strongSelf.executingTasks.insert(task!)
         }
-        return (result: result, task: task)
     }
     
     func cancel() {
@@ -76,7 +75,7 @@ class SessionManager {
     func synchronize<R: DecodableResultRequest>(_ requests: [R], completion: Closure<Void>? = nil) {
         requests.forEach {
             syncGroup.enter()
-            execute($0).result.always { [weak self] in
+            execute($0).always { [weak self] in
                 self?.syncGroup.leave()
             }
         }

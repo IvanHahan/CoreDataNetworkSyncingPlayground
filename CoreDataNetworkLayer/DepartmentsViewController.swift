@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 class DepartmentsViewController: UIViewController {
     
@@ -16,41 +15,54 @@ class DepartmentsViewController: UIViewController {
     }
 
     @IBOutlet weak var tableView: UITableView!
-    
-    var context: NSManagedObjectContext!
-    var tableViewDataSource: TableViewDataSource<DepartmentModel, UITableViewCell>!
+    var departments: [Department] = []
+    var repository: DepartmentRepository!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        context = (UIApplication.shared.delegate as! AppDelegate).domainContainer.viewContext
-        tableViewDataSource = TableViewDataSource<DepartmentModel, UITableViewCell>(tableView: tableView,
-                                                                               context: context,
-                                                                               cellConfiguration: { (cell, department) in
-                                                                                cell.textLabel?.text = department.name
-        })
-        tableViewDataSource.didSelectRow = { [unowned self] department in
-            self.performSegue(withIdentifier: Segue.employees.rawValue, sender: department)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UITableViewCell.self)
+        let context = (UIApplication.shared.delegate as! AppDelegate).domainContainer.newBackgroundContext()
+        let requestManager = (UIApplication.shared.delegate as! AppDelegate).requestManager!
+        repository = DepartmentRepository(requestCacher: requestManager, context: context)
+        repository.get().then {
+            self.departments = $0
+            self.tableView.reloadData()
         }
-        tableViewDataSource.reload()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? EditDepartmentController {
-            vc.context = context
         } else if let vc = segue.destination as? EmployeesViewController {
             vc.department = sender as? DepartmentModel
-            vc.context = context
         }
     }
     
     @IBAction func unwindToDepartments(_ sender: UIStoryboardSegue) {
-        do {
-            guard let vc = sender.source as? EditDepartmentController else { return }
-            vc.department.name = vc.nameField.text
-            try context.save()
-            tableViewDataSource.reload()
-        } catch {
-            print(error)
+        guard let vc = sender.source as? EditDepartmentController else { return }
+        vc.department.name = vc.nameField.text!
+        repository.create(vc.department).then(repository.get).then {
+            self.departments = $0
+            self.tableView.reloadData()
         }
+    }
+}
+
+extension DepartmentsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return departments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(resource: UITableViewCell.self, for: indexPath)
+        cell.textLabel?.text = departments[indexPath.row].name
+        return cell
+    }
+}
+
+extension DepartmentsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: Segue.employees.rawValue, sender: departments[indexPath.row])
     }
 }

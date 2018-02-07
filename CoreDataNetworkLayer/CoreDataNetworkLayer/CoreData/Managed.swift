@@ -58,7 +58,7 @@ extension Sequence where Iterator.Element: NSManagedObject & Managed {
 
 extension NSManagedObjectContext {
     func new<T: NSManagedObject>() -> T {
-        return NSEntityDescription.insertNewObject(forEntityName: T.identifier, into: self) as! T
+        return NSEntityDescription.insertNewObject(forEntityName: T.entity().name!, into: self) as! T
     }
     
     @discardableResult

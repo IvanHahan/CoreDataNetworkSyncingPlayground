@@ -12,24 +12,20 @@
 		9245961720235B9700C4F591 /* FirebaseListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9245961620235B9700C4F591 /* FirebaseListData.swift */; };
 		925611CC2029E6E200B25194 /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925611CB2029E6E200B25194 /* Department.swift */; };
 		925611CE2029E6ED00B25194 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925611CD2029E6ED00B25194 /* Employee.swift */; };
-		925611D12029E9AE00B25194 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925611D02029E9AE00B25194 /* Repository.swift */; };
+		925611D12029E9AE00B25194 /* DepartmentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925611D02029E9AE00B25194 /* DepartmentRepository.swift */; };
 		929E0757200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E0756200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.swift */; };
+		929FC09C202AE98300B949B6 /* EmployeeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929FC09B202AE98300B949B6 /* EmployeeRepository.swift */; };
 		92B4A78E2022093F00276B3F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7512022093E00276B3F /* Constants.swift */; };
 		92B4A78F2022093F00276B3F /* DepartmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7522022093E00276B3F /* DepartmentsViewController.swift */; };
 		92B4A7902022093F00276B3F /* EditDepartmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7532022093E00276B3F /* EditDepartmentController.swift */; };
-		92B4A7912022093F00276B3F /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7542022093E00276B3F /* TableViewDataSource.swift */; };
-		92B4A7922022093F00276B3F /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7562022093E00276B3F /* SyncManager.swift */; };
 		92B4A7932022093F00276B3F /* Executable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7572022093E00276B3F /* Executable.swift */; };
 		92B4A7942022093F00276B3F /* DepartmentSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7582022093E00276B3F /* DepartmentSyncManager.swift */; };
 		92B4A7952022093F00276B3F /* PersistentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7592022093E00276B3F /* PersistentModel.swift */; };
-		92B4A7962022093F00276B3F /* EmployeeProcessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A75B2022093E00276B3F /* EmployeeProcessors.swift */; };
 		92B4A7972022093F00276B3F /* RequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A75C2022093E00276B3F /* RequestOperation.swift */; };
 		92B4A7982022093F00276B3F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A75D2022093E00276B3F /* Environment.swift */; };
 		92B4A7992022093F00276B3F /* FirebaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A75E2022093E00276B3F /* FirebaseRequest.swift */; };
-		92B4A79B2022093F00276B3F /* ChangeProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7602022093E00276B3F /* ChangeProcessor.swift */; };
 		92B4A79D2022093F00276B3F /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7622022093E00276B3F /* Request.swift */; };
 		92B4A79E2022093F00276B3F /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7632022093E00276B3F /* SessionManager.swift */; };
-		92B4A79F2022093F00276B3F /* DepartmentProcessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7642022093E00276B3F /* DepartmentProcessors.swift */; };
 		92B4A7A02022093F00276B3F /* BackendlessRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7652022093E00276B3F /* BackendlessRequest.swift */; };
 		92B4A7A12022093F00276B3F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7672022093E00276B3F /* CoreDataStack.swift */; };
 		92B4A7A22022093F00276B3F /* Managed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7682022093E00276B3F /* Managed.swift */; };
@@ -41,10 +37,10 @@
 		92B4A7A92022093F00276B3F /* CachedRequest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7722022093E00276B3F /* CachedRequest+CoreDataProperties.swift */; };
 		92B4A7AA2022093F00276B3F /* BackendlessSyncRequest+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7742022093E00276B3F /* BackendlessSyncRequest+CoreDataClass.swift */; };
 		92B4A7AB2022093F00276B3F /* BackendlessSyncRequest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7752022093E00276B3F /* BackendlessSyncRequest+CoreDataProperties.swift */; };
-		92B4A7AC2022093F00276B3F /* Department+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7772022093E00276B3F /* Department+CoreDataClass.swift */; };
-		92B4A7AD2022093F00276B3F /* Department+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7782022093E00276B3F /* Department+CoreDataProperties.swift */; };
-		92B4A7AE2022093F00276B3F /* Employee+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A77A2022093E00276B3F /* Employee+CoreDataProperties.swift */; };
-		92B4A7AF2022093F00276B3F /* Employee+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A77B2022093E00276B3F /* Employee+CoreDataClass.swift */; };
+		92B4A7AC2022093F00276B3F /* DepartmentModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7772022093E00276B3F /* DepartmentModel+CoreDataClass.swift */; };
+		92B4A7AD2022093F00276B3F /* DepartmentModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7782022093E00276B3F /* DepartmentModel+CoreDataProperties.swift */; };
+		92B4A7AE2022093F00276B3F /* EmployeeModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A77A2022093E00276B3F /* EmployeeModel+CoreDataProperties.swift */; };
+		92B4A7AF2022093F00276B3F /* EmployeeModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A77B2022093E00276B3F /* EmployeeModel+CoreDataClass.swift */; };
 		92B4A7B02022093F00276B3F /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A77D2022093E00276B3F /* Identifiable.swift */; };
 		92B4A7B12022093F00276B3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92B4A77E2022093E00276B3F /* LaunchScreen.storyboard */; };
 		92B4A7B22022093F00276B3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92B4A7802022093E00276B3F /* Main.storyboard */; };
@@ -85,29 +81,25 @@
 		9245961620235B9700C4F591 /* FirebaseListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListData.swift; sourceTree = "<group>"; };
 		925611CB2029E6E200B25194 /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
 		925611CD2029E6ED00B25194 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
-		925611D02029E9AE00B25194 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		925611D02029E9AE00B25194 /* DepartmentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentRepository.swift; sourceTree = "<group>"; };
 		929E073E200CAC5B004F8BA1 /* CoreDataNetworkLayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataNetworkLayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		929E0752200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataNetworkLayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		929E0756200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataNetworkLayerTests.swift; sourceTree = "<group>"; };
 		929E0758200CAC5C004F8BA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		929E075D200CAC5C004F8BA1 /* CoreDataNetworkLayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataNetworkLayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		929FC09B202AE98300B949B6 /* EmployeeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeRepository.swift; sourceTree = "<group>"; };
 		92B4A7502022093E00276B3F /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		92B4A7512022093E00276B3F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		92B4A7522022093E00276B3F /* DepartmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsViewController.swift; sourceTree = "<group>"; };
 		92B4A7532022093E00276B3F /* EditDepartmentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDepartmentController.swift; sourceTree = "<group>"; };
-		92B4A7542022093E00276B3F /* TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
-		92B4A7562022093E00276B3F /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		92B4A7572022093E00276B3F /* Executable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Executable.swift; sourceTree = "<group>"; };
 		92B4A7582022093E00276B3F /* DepartmentSyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentSyncManager.swift; sourceTree = "<group>"; };
 		92B4A7592022093E00276B3F /* PersistentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentModel.swift; sourceTree = "<group>"; };
-		92B4A75B2022093E00276B3F /* EmployeeProcessors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeProcessors.swift; sourceTree = "<group>"; };
 		92B4A75C2022093E00276B3F /* RequestOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestOperation.swift; sourceTree = "<group>"; };
 		92B4A75D2022093E00276B3F /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		92B4A75E2022093E00276B3F /* FirebaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseRequest.swift; sourceTree = "<group>"; };
-		92B4A7602022093E00276B3F /* ChangeProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeProcessor.swift; sourceTree = "<group>"; };
 		92B4A7622022093E00276B3F /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		92B4A7632022093E00276B3F /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
-		92B4A7642022093E00276B3F /* DepartmentProcessors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentProcessors.swift; sourceTree = "<group>"; };
 		92B4A7652022093E00276B3F /* BackendlessRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendlessRequest.swift; sourceTree = "<group>"; };
 		92B4A7672022093E00276B3F /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		92B4A7682022093E00276B3F /* Managed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Managed.swift; sourceTree = "<group>"; };
@@ -119,10 +111,10 @@
 		92B4A7722022093E00276B3F /* CachedRequest+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CachedRequest+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		92B4A7742022093E00276B3F /* BackendlessSyncRequest+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BackendlessSyncRequest+CoreDataClass.swift"; sourceTree = "<group>"; };
 		92B4A7752022093E00276B3F /* BackendlessSyncRequest+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BackendlessSyncRequest+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		92B4A7772022093E00276B3F /* Department+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Department+CoreDataClass.swift"; sourceTree = "<group>"; };
-		92B4A7782022093E00276B3F /* Department+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Department+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		92B4A77A2022093E00276B3F /* Employee+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		92B4A77B2022093E00276B3F /* Employee+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataClass.swift"; sourceTree = "<group>"; };
+		92B4A7772022093E00276B3F /* DepartmentModel+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DepartmentModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		92B4A7782022093E00276B3F /* DepartmentModel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DepartmentModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		92B4A77A2022093E00276B3F /* EmployeeModel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EmployeeModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		92B4A77B2022093E00276B3F /* EmployeeModel+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EmployeeModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		92B4A77D2022093E00276B3F /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		92B4A77F2022093E00276B3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92B4A7812022093E00276B3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -230,6 +222,15 @@
 			path = CoreDataNetworkLayerTests;
 			sourceTree = "<group>";
 		};
+		929FC09A202AE96700B949B6 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				925611D02029E9AE00B25194 /* DepartmentRepository.swift */,
+				929FC09B202AE98300B949B6 /* EmployeeRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		92B4A74F2022093E00276B3F /* CoreDataNetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,8 +238,7 @@
 				92B4A7512022093E00276B3F /* Constants.swift */,
 				92B4A7522022093E00276B3F /* DepartmentsViewController.swift */,
 				92B4A7532022093E00276B3F /* EditDepartmentController.swift */,
-				92B4A7542022093E00276B3F /* TableViewDataSource.swift */,
-				925611D02029E9AE00B25194 /* Repository.swift */,
+				929FC09A202AE96700B949B6 /* Repositories */,
 				925611CF2029E6F200B25194 /* Models */,
 				92B4A7552022093E00276B3F /* CoreDataNetworkLayer */,
 				92B4A76B2022093E00276B3F /* Caching.xcdatamodeld */,
@@ -260,7 +260,6 @@
 		92B4A7552022093E00276B3F /* CoreDataNetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
-				92B4A7562022093E00276B3F /* SyncManager.swift */,
 				92B4A7572022093E00276B3F /* Executable.swift */,
 				92B4A7582022093E00276B3F /* DepartmentSyncManager.swift */,
 				92B4A7592022093E00276B3F /* PersistentModel.swift */,
@@ -274,13 +273,10 @@
 		92B4A75A2022093E00276B3F /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				92B4A75B2022093E00276B3F /* EmployeeProcessors.swift */,
 				92B4A75C2022093E00276B3F /* RequestOperation.swift */,
 				92B4A75D2022093E00276B3F /* Environment.swift */,
-				92B4A7602022093E00276B3F /* ChangeProcessor.swift */,
 				925611CA2029DE7700B25194 /* Requests */,
 				92B4A7632022093E00276B3F /* SessionManager.swift */,
-				92B4A7642022093E00276B3F /* DepartmentProcessors.swift */,
 				9245961620235B9700C4F591 /* FirebaseListData.swift */,
 				9212C7902028430400B23B09 /* OperationExtension.swift */,
 			);
@@ -329,8 +325,8 @@
 		92B4A7762022093E00276B3F /* Department */ = {
 			isa = PBXGroup;
 			children = (
-				92B4A7772022093E00276B3F /* Department+CoreDataClass.swift */,
-				92B4A7782022093E00276B3F /* Department+CoreDataProperties.swift */,
+				92B4A7772022093E00276B3F /* DepartmentModel+CoreDataClass.swift */,
+				92B4A7782022093E00276B3F /* DepartmentModel+CoreDataProperties.swift */,
 			);
 			path = Department;
 			sourceTree = "<group>";
@@ -338,8 +334,8 @@
 		92B4A7792022093E00276B3F /* Employee */ = {
 			isa = PBXGroup;
 			children = (
-				92B4A77A2022093E00276B3F /* Employee+CoreDataProperties.swift */,
-				92B4A77B2022093E00276B3F /* Employee+CoreDataClass.swift */,
+				92B4A77A2022093E00276B3F /* EmployeeModel+CoreDataProperties.swift */,
+				92B4A77B2022093E00276B3F /* EmployeeModel+CoreDataClass.swift */,
 			);
 			path = Employee;
 			sourceTree = "<group>";
@@ -676,10 +672,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92B4A7912022093F00276B3F /* TableViewDataSource.swift in Sources */,
 				92B4A78F2022093F00276B3F /* DepartmentsViewController.swift in Sources */,
 				92B4A7A92022093F00276B3F /* CachedRequest+CoreDataProperties.swift in Sources */,
-				92B4A7962022093F00276B3F /* EmployeeProcessors.swift in Sources */,
 				92B4A79E2022093F00276B3F /* SessionManager.swift in Sources */,
 				92B4A7B42022093F00276B3F /* UITableViewExtensions.swift in Sources */,
 				92B4A7BA202209FF00276B3F /* FirebaseSyncRequest+CoreDataClass.swift in Sources */,
@@ -688,20 +682,18 @@
 				92B4A7A32022093F00276B3F /* RequestCacheManager.swift in Sources */,
 				9245961720235B9700C4F591 /* FirebaseListData.swift in Sources */,
 				92B4A7972022093F00276B3F /* RequestOperation.swift in Sources */,
-				92B4A7922022093F00276B3F /* SyncManager.swift in Sources */,
 				92B4A7A52022093F00276B3F /* Caching.xcdatamodeld in Sources */,
 				925611CE2029E6ED00B25194 /* Employee.swift in Sources */,
 				92B4A7A22022093F00276B3F /* Managed.swift in Sources */,
-				92B4A79B2022093F00276B3F /* ChangeProcessor.swift in Sources */,
-				92B4A79F2022093F00276B3F /* DepartmentProcessors.swift in Sources */,
 				92B4A7B02022093F00276B3F /* Identifiable.swift in Sources */,
 				92B4A79D2022093F00276B3F /* Request.swift in Sources */,
 				92B4A7AA2022093F00276B3F /* BackendlessSyncRequest+CoreDataClass.swift in Sources */,
-				92B4A7AE2022093F00276B3F /* Employee+CoreDataProperties.swift in Sources */,
-				92B4A7AC2022093F00276B3F /* Department+CoreDataClass.swift in Sources */,
+				92B4A7AE2022093F00276B3F /* EmployeeModel+CoreDataProperties.swift in Sources */,
+				929FC09C202AE98300B949B6 /* EmployeeRepository.swift in Sources */,
+				92B4A7AC2022093F00276B3F /* DepartmentModel+CoreDataClass.swift in Sources */,
 				92B4A7B52022093F00276B3F /* AppDelegate.swift in Sources */,
 				92B4A7A82022093F00276B3F /* CachedRequest+CoreDataClass.swift in Sources */,
-				92B4A7AD2022093F00276B3F /* Department+CoreDataProperties.swift in Sources */,
+				92B4A7AD2022093F00276B3F /* DepartmentModel+CoreDataProperties.swift in Sources */,
 				92B4A7B32022093F00276B3F /* Company.xcdatamodeld in Sources */,
 				92B4A7BB202209FF00276B3F /* FirebaseSyncRequest+CoreDataProperties.swift in Sources */,
 				92B4A7952022093F00276B3F /* PersistentModel.swift in Sources */,
@@ -711,12 +703,12 @@
 				92B4A7932022093F00276B3F /* Executable.swift in Sources */,
 				92B4A7A12022093F00276B3F /* CoreDataStack.swift in Sources */,
 				92B4A7B62022093F00276B3F /* EditEmployeeController.swift in Sources */,
-				925611D12029E9AE00B25194 /* Repository.swift in Sources */,
+				925611D12029E9AE00B25194 /* DepartmentRepository.swift in Sources */,
 				92B4A7942022093F00276B3F /* DepartmentSyncManager.swift in Sources */,
 				92B4A78E2022093F00276B3F /* Constants.swift in Sources */,
 				92B4A7992022093F00276B3F /* FirebaseRequest.swift in Sources */,
 				92B4A7AB2022093F00276B3F /* BackendlessSyncRequest+CoreDataProperties.swift in Sources */,
-				92B4A7AF2022093F00276B3F /* Employee+CoreDataClass.swift in Sources */,
+				92B4A7AF2022093F00276B3F /* EmployeeModel+CoreDataClass.swift in Sources */,
 				92B4A7902022093F00276B3F /* EditDepartmentController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

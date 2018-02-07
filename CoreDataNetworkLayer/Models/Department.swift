@@ -10,7 +10,7 @@ import Foundation
 
 struct Department: Codable {
     var name: String?
-    var employees: [String]?
+    var employees: [Employee]?
     var head: Employee?
     var id: String?
     
@@ -23,6 +23,10 @@ struct Department: Codable {
         try container.encode(name, forKey: .name)
         try container.encode(employees, forKey: .employees)
         try container.encode(head, forKey: .head)
+    }
+    
+    init() {
+        employees = []
     }
     
 }

@@ -22,12 +22,9 @@ enum FirebaseRequest {
             var priority: Priority { return .high }
             let localId: URL
             
-            private let context: NSManagedObjectContext
-            
-            init(employee: Employee, context: NSManagedObjectContext) {
-                self.context = context
+            init(employee: Employee, localId: URL) {
                 body = try! JSONEncoder().encode(employee)
-                self.localId = employee.objectID.uriRepresentation().absoluteURL
+                self.localId = localId
             }
             
         }
@@ -42,13 +39,11 @@ enum FirebaseRequest {
             let path: String = department.path
             let method: Method = .post
             let body: Data?
-            private let context: NSManagedObjectContext
             let localId: URL
             
-            init(department: DepartmentModel, context: NSManagedObjectContext) {
+            init(department: Department, localId: URL) {
                 body = try! JSONEncoder().encode(department)
-                self.context = context
-                self.localId = department.objectID.uriRepresentation().absoluteURL
+                self.localId = localId
             }
             
         }

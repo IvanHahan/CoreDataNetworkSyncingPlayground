@@ -22,43 +22,13 @@ enum BackendlessRequest {
             var priority: Priority { return .high }
             let localId: URL
             
-            private let context: NSManagedObjectContext
-            
-            init(employee: EmployeeModel, context: NSManagedObjectContext) {
-                self.context = context
+            init(employee: Employee, localId: URL) {
                 body = try! JSONEncoder().encode(employee)
-                self.localId = employee.objectID.uriRepresentation().absoluteURL
+                self.localId = localId
             }
 
         }
-        
-        struct update: DecodableResultRequest {
-            
-            typealias Model = EmployeeModel
-            
-            let path: String = ""
-            let method: Method = .put
-            let body: Data?
-        }
-        
-        struct get: DecodableResultRequest {
-            
-            typealias Model = EmployeeModel
-            
-            let path: String = ""
-        }
-        
-        struct delete: DecodableResultRequest {            
-            
-            typealias Model = EmployeeModel
-            
-            let path: String = ""
-            let method: Method = .delete
-            
-            init(employeeId id: String) {
-                
-            }
-        }
+
     }
     
     enum department {
@@ -69,31 +39,13 @@ enum BackendlessRequest {
             let path: String = department.path
             let method: Method = .post
             let body: Data?
-            private let context: NSManagedObjectContext
             let localId: URL
             
-            init(department: DepartmentModel, context: NSManagedObjectContext) {
+            init(department: Department, localId: URL) {
                 body = try! JSONEncoder().encode(department)
-                self.context = context
-                self.localId = department.objectID.uriRepresentation().absoluteURL
+                self.localId = localId
             }
 
-        }
-        
-        struct update: DecodableResultRequest {
-            
-            typealias Model = DepartmentModel
-            
-            var path: String { return department.path + "\(id)" }
-            let method: Method = .post
-            let body: Data?
-            
-            private let id: String
-            
-            init(id: String, department: Department) {
-                self.id = id
-                body = try! JSONEncoder().encode(department)
-            }
         }
         
         struct establishRelationsWithEmployees: Request {

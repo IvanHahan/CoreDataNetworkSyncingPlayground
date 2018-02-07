@@ -12,24 +12,16 @@ import CoreData
 class EditDepartmentController: UIViewController {
 
     @IBOutlet weak var nameField: UITextField!
-    var employees = Set<EmployeeModel>()
-    var context: NSManagedObjectContext!
-    var department: DepartmentModel!
+    var department: Department = Department()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let dep: DepartmentModel = context.new()
-        department = dep
     }
 
     @IBAction func unwind(sender: UIStoryboardSegue) {
         guard let vc = sender.source as? EditEmployeeController else { return }
-        EmployeeModel.insert(name: vc.nameField.text!,
-                        position: vc.positionField.text!,
-                        salary: Double(vc.salaryField.text!)!,
-                        department: self.department,
-                        into: self.context)
+        let employee = Employee(name: vc.nameField.text!, position: vc.positionField.text!, salary: Double(vc.salaryField.text!)!, id: nil)
+        department.employees?.append(employee)
     }
 
 }

@@ -1,5 +1,5 @@
 //
-//  Department+CoreDataProperties.swift
+//  DepartmentModel+CoreDataProperties.swift
 //  CoreDataNetworkLayer
 //
 //  Created by  Ivan Hahanov on 1/15/18.
@@ -19,7 +19,6 @@ extension DepartmentModel {
 
     @NSManaged public var name: String?
     @NSManaged public var employees: Set<EmployeeModel>?
-    @NSManaged public var head: EmployeeModel?
     @NSManaged public var remoteId: String?
     @NSManaged public var employeeRemoteIds: [String: Bool]?
 

@@ -13,10 +13,9 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var departmentSyncManager: SyncManager<DepartmentProcessor>!
-    var employeeSyncManager: SyncManager<EmployeeProcessor>!
     var domainContainer: NSPersistentContainer!
     var cachingContainer: NSPersistentContainer!
+    var requestManager: RequestCacheManager!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -26,17 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         loadPersistentStore("Caching") { container in
             let cachingContext = container.newBackgroundContext()
-            let domainContext = self.domainContainer.newBackgroundContext()
             let sessionManager = SessionManager(baseUrl: Environment.firebase.baseUrl, config: URLSessionConfiguration.default)
             let requestCacheManager = RequestCacheManager(sessionManager: sessionManager, context: cachingContext, domainContainer: self.domainContainer)
             requestCacheManager.run()
-            self.departmentSyncManager = SyncManager(name: "department",
-                                                     context: domainContext,
-                                                     changeProcessor: DepartmentProcessor(requestCacher: requestCacheManager))
-            self.employeeSyncManager = SyncManager(name: "employee",
-                                                   context: domainContext,
-                                                   changeProcessor: EmployeeProcessor(requestCacher: requestCacheManager))
-            self.departmentSyncManager.addDependency(self.employeeSyncManager)
+            self.requestManager = requestCacheManager
             self.cachingContainer = container
         }
         return true

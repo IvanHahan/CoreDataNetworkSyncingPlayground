@@ -77,7 +77,7 @@ class RequestOperation<Resource: Request>: Operation {
     
     func execute() {
         if !self.isCancelled {
-            service.execute(request).result.then { model in
+            service.execute(request).then { model in
                     DispatchQueue.main.async {
                         self.completion?(.success(model))
                     }

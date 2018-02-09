@@ -18,13 +18,13 @@ final public class DepartmentModel: EncodableModel, Managed, SyncedModel {
         department.employees = employees
     }
     
-    enum CodingKeys: String, CodingKey {
-        case name, employees
-    }
-    
-    override public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
-        try container.encode(employees, forKey: .employees)
-    }
+//    enum CodingKeys: String, CodingKey {
+//        case name, employees
+//    }
+//
+//    override public func encode(to encoder: Encoder) throws {
+//        var container = encoder.container(keyedBy: CodingKeys.self)
+//        try container.encode(name, forKey: .name)
+//        try container.encode(employees, forKey: .employees)
+//    }
 }

@@ -56,6 +56,14 @@ extension Sequence where Iterator.Element: NSManagedObject & Managed {
     }
 }
 
+extension NSManagedObject {
+    func toJsonData() -> Data {
+        let keys = Array(entity.attributesByName.keys)
+        let dict = dictionaryWithValues(forKeys: keys)
+        return try! JSONSerialization.data(withJSONObject: dict, options: [])
+    }
+}
+
 extension NSManagedObjectContext {
     func new<T: NSManagedObject>() -> T {
         return NSEntityDescription.insertNewObject(forEntityName: T.entity().name!, into: self) as! T

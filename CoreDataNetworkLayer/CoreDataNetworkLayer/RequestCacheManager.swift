@@ -12,8 +12,9 @@ import CoreData
 class RequestCacheManager {
     
     var errorHandler: Closure<Error>?
-    var syncCompletion: Closure<Void>?
     private let sessionManager: SessionManager
+    var completion: Closure<Void>?
+    var config
     
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
@@ -51,9 +52,9 @@ class RequestCacheManager {
         guard isExecuting else { return }
         if let request = FirebaseSyncRequest.findOrFetchFirst(in: context),
             let localId = request.localIdOptional,
-            let managedObjectId = container.managedObjectID(from: localId),
-            let object = syncContext.object(with: managedObjectId) as? EncodableModel {
-            request.request?.body = try! JSONEncoder().encode(object)
+            let managedObjectId = container.managedObjectID(from: localId) {
+            let object = syncContext.object(with: managedObjectId)
+            request.request?.body = object.toJsonData()
             sessionManager.execute(request).then { [weak self] remoteId in
                 (object as? SyncedModel)?.remoteId = remoteId
                 self?.syncContext.saveOrRollback()
@@ -72,7 +73,6 @@ class RequestCacheManager {
             }
         } else {
             isExecuting = false
-            syncCompletion?(())
         }
     }
 }

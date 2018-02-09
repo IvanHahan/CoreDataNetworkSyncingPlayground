@@ -69,6 +69,7 @@ class SessionManager {
     
     func cancel() {
         executingTasks.forEach { $0.cancel() }
+        executingTasks.removeAll()
         state = .cancelled
     }
     

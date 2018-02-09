@@ -49,12 +49,13 @@ class RequestCacheManager {
     
     private func executeNext() {
         guard isExecuting else { return }
-        if let request = FirebaseSyncRequest.findOrFetchFirst(in: context) {
+        if let request = FirebaseSyncRequest.findOrFetchFirst(in: context),
+            let localId = request.localIdOptional,
+            let managedObjectId = container.managedObjectID(from: localId),
+            let object = syncContext.object(with: managedObjectId) as? EncodableModel {
+            request.request?.body = try! JSONEncoder().encode(object)
             sessionManager.execute(request).then { [weak self] remoteId in
-                guard let localId = request.localIdOptional,
-                    let managedObjectId = self?.container.managedObjectID(from: localId),
-                    let object = self?.syncContext.object(with: managedObjectId) as? SyncedModel else { return }
-                object.remoteId = remoteId
+                (object as? SyncedModel)?.remoteId = remoteId
                 self?.syncContext.saveOrRollback()
                 self?.context.delete(request)
                 self?.context.saveOrRollback()

@@ -14,7 +14,6 @@ class RequestCacheManager {
     var errorHandler: Closure<Error>?
     private let sessionManager: SessionManager
     var completion: Closure<Void>?
-    var config
     
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
@@ -50,24 +49,11 @@ class RequestCacheManager {
     
     private func executeNext() {
         guard isExecuting else { return }
-        if let request = FirebaseSyncRequest.findOrFetchFirst(in: context),
-            let localId = request.localIdOptional,
-            let managedObjectId = container.managedObjectID(from: localId) {
-            let object = syncContext.object(with: managedObjectId)
-            request.request?.body = object.toJsonData()
-            sessionManager.execute(request).then { [weak self] remoteId in
-                (object as? SyncedModel)?.remoteId = remoteId
-                self?.syncContext.saveOrRollback()
-                self?.context.delete(request)
-                self?.context.saveOrRollback()
-                self?.executeNext()
-                }.catch { [weak self] _ in
-                    self?.executeNext()
-            }
-        } else if let request = CachedRequest.findOrFetchFirst(in: context) {
+        if let request = CachedRequest.findOrFetchFirst(in: context) {
             sessionManager.execute(request).then { [weak self] result in
                 self?.context.delete(request)
                 try? self?.context.save()
+                Notification
                 }.always { [weak self] in
                     self?.executeNext()
             }

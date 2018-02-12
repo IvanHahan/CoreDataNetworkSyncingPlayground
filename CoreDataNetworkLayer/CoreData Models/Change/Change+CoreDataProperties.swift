@@ -17,6 +17,6 @@ extension Change {
     }
 
     @NSManaged public var changedObjectId: URL?
-    @NSManaged public var changeType: String?
+    @NSManaged public var request: CachedRequest?
     
 }

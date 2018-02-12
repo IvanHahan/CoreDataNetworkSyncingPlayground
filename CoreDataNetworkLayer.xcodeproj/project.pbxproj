@@ -13,7 +13,6 @@
 		921ABEB3202DA5F400AB525B /* EncodableModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921ABEB1202DA5F400AB525B /* EncodableModel+CoreDataClass.swift */; };
 		921ABEB6202DB29700AB525B /* FirebaseSyncRequestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921ABEB5202DB29700AB525B /* FirebaseSyncRequestRepository.swift */; };
 		921ABEB8202DB58A00AB525B /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921ABEB7202DB58A00AB525B /* RepositoryError.swift */; };
-		921ABEBA202DF30E00AB525B /* SyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921ABEB9202DF30E00AB525B /* SyncCoordinator.swift */; };
 		921ABEBD202DF55100AB525B /* Change+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921ABEBB202DF55100AB525B /* Change+CoreDataProperties.swift */; };
 		921ABEBE202DF55100AB525B /* Change+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921ABEBC202DF55100AB525B /* Change+CoreDataClass.swift */; };
 		9245961720235B9700C4F591 /* FirebaseListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9245961620235B9700C4F591 /* FirebaseListData.swift */; };
@@ -82,7 +81,6 @@
 		921ABEB1202DA5F400AB525B /* EncodableModel+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EncodableModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		921ABEB5202DB29700AB525B /* FirebaseSyncRequestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSyncRequestRepository.swift; sourceTree = "<group>"; };
 		921ABEB7202DB58A00AB525B /* RepositoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryError.swift; sourceTree = "<group>"; };
-		921ABEB9202DF30E00AB525B /* SyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncCoordinator.swift; sourceTree = "<group>"; };
 		921ABEBB202DF55100AB525B /* Change+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Change+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		921ABEBC202DF55100AB525B /* Change+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Change+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9245961620235B9700C4F591 /* FirebaseListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListData.swift; sourceTree = "<group>"; };
@@ -292,7 +290,6 @@
 				92B4A75A2022093E00276B3F /* Network */,
 				92B4A7662022093E00276B3F /* CoreData */,
 				92B4A7692022093E00276B3F /* RequestCacheManager.swift */,
-				921ABEB9202DF30E00AB525B /* SyncCoordinator.swift */,
 			);
 			path = CoreDataNetworkLayer;
 			sourceTree = "<group>";
@@ -703,7 +700,6 @@
 				92B4A7A82022093F00276B3F /* CachedRequest+CoreDataClass.swift in Sources */,
 				92B4A7AD2022093F00276B3F /* DepartmentModel+CoreDataProperties.swift in Sources */,
 				92B4A7B32022093F00276B3F /* Company.xcdatamodeld in Sources */,
-				921ABEBA202DF30E00AB525B /* SyncCoordinator.swift in Sources */,
 				92B4A7952022093F00276B3F /* PersistentModel.swift in Sources */,
 				92B4A7A62022093F00276B3F /* EmployeesViewController.swift in Sources */,
 				92B4A7982022093F00276B3F /* Environment.swift in Sources */,

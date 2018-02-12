@@ -10,8 +10,14 @@ import Foundation
 import CoreData
 
 @objc(Change)
-public class Change: NSManagedObject {
-    enum ChangeType: String {
-        case .create
+final public class Change: NSManagedObject {
+    
+}
+
+extension Change: Managed {
+    static var defaultSortDescriptors: [NSSortDescriptor] {
+        return [
+            NSSortDescriptor(key: #keyPath(request.priorityRaw), ascending: false)
+        ]
     }
 }

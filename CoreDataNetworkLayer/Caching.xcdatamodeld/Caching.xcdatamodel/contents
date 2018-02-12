@@ -7,12 +7,13 @@
     <entity name="CachedRequest" representedClassName="CachedRequest" syncable="YES">
         <attribute name="body" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="methodString" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pathOptional" attributeType="String" syncable="YES"/>
         <attribute name="priorityRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Change" representedClassName="Change" syncable="YES">
         <attribute name="changedObjectId" attributeType="URI" syncable="YES"/>
-        <attribute name="changeType" attributeType="String" syncable="YES"/>
+        <relationship name="request" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CachedRequest" syncable="YES"/>
     </entity>
     <entity name="FirebaseSyncRequest" representedClassName="FirebaseSyncRequest" syncable="YES">
         <attribute name="localIdOptional" optional="YES" attributeType="URI" syncable="YES"/>
@@ -20,8 +21,8 @@
     </entity>
     <elements>
         <element name="BackendlessSyncRequest" positionX="-63" positionY="18" width="128" height="75"/>
-        <element name="CachedRequest" positionX="-63" positionY="-18" width="128" height="30"/>
-        <element name="FirebaseSyncRequest" positionX="-54" positionY="27" width="128" height="75"/>
+        <element name="CachedRequest" positionX="-63" positionY="-18" width="128" height="120"/>
         <element name="Change" positionX="-36" positionY="36" width="128" height="75"/>
+        <element name="FirebaseSyncRequest" positionX="-54" positionY="27" width="128" height="75"/>
     </elements>
 </model>

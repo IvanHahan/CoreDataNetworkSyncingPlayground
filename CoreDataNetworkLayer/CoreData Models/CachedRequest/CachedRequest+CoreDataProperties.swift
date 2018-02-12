@@ -16,20 +16,21 @@ extension CachedRequest {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CachedRequest> {
         return NSFetchRequest<CachedRequest>(entityName: "CachedRequest")
     }
-
+    
     @NSManaged public var pathOptional: String?
     @NSManaged public var body: Data?
     @NSManaged public var methodString: String?
     @NSManaged public var priorityRaw: Int16
+    @NSManaged public var name: String?
 }
 
 extension CachedRequest: Request {
-    typealias Model = Void
+    typealias Model = Data
 
     var method: Method { return Method(rawValue: methodString!)! }
     var path: String { return pathOptional! }
     
-    func map(from data: Data) -> Void? {
-        return ()
+    func map(from data: Data) -> Data? {
+        return data
     }
 }

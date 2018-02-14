@@ -6,6 +6,18 @@ import PlaygroundSupport
 
 PlaygroundPage.current.needsIndefiniteExecution = true
 
+enum A {case a(Int)}
+
+NotificationCenter.default.addObserver(forName: Notification.Name("bla"), object: nil, queue: nil) { (note) in
+    let fg = note.userInfo?["a"] as? A
+    switch fg! {
+    case .a(let num):
+        print(num)
+    }
+}
+
+NotificationCenter.default.post(name: Notification.Name("bla"), object: nil, userInfo: ["a":A.a(4)])
+
 enum PlaygroundError: Error {
     case invalidNumber
 }

@@ -21,12 +21,17 @@ struct Department: Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
-        try container.encode(employees, forKey: .employees)
+        try container.encode(employees?.map { $0.id }, forKey: .employees)
         try container.encode(head, forKey: .head)
     }
     
     init() {
         employees = []
+    }
+    
+    init(name: String, employees: [Employee]) {
+        self.name = name
+        self.employees = employees
     }
     
 }

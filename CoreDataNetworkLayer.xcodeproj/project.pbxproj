@@ -12,6 +12,7 @@
 		921ABEB8202DB58A00AB525B /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921ABEB7202DB58A00AB525B /* RepositoryError.swift */; };
 		921CBDCD203469EA00735C7D /* Action+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921CBDCB203469EA00735C7D /* Action+CoreDataProperties.swift */; };
 		921CBDCE203469EA00735C7D /* Action+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921CBDCC203469EA00735C7D /* Action+CoreDataClass.swift */; };
+		921CBDD02034734F00735C7D /* ActionCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921CBDCF2034734F00735C7D /* ActionCacheManager.swift */; };
 		9245961720235B9700C4F591 /* FirebaseListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9245961620235B9700C4F591 /* FirebaseListData.swift */; };
 		925611CC2029E6E200B25194 /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925611CB2029E6E200B25194 /* Department.swift */; };
 		925611CE2029E6ED00B25194 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925611CD2029E6ED00B25194 /* Employee.swift */; };
@@ -78,6 +79,7 @@
 		921ABEB7202DB58A00AB525B /* RepositoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryError.swift; sourceTree = "<group>"; };
 		921CBDCB203469EA00735C7D /* Action+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Action+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		921CBDCC203469EA00735C7D /* Action+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Action+CoreDataClass.swift"; sourceTree = "<group>"; };
+		921CBDCF2034734F00735C7D /* ActionCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCacheManager.swift; sourceTree = "<group>"; };
 		9245961620235B9700C4F591 /* FirebaseListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListData.swift; sourceTree = "<group>"; };
 		925611CB2029E6E200B25194 /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
 		925611CD2029E6ED00B25194 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
@@ -273,10 +275,10 @@
 		92B4A7552022093E00276B3F /* CoreDataNetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
-				92B4A7592022093E00276B3F /* PersistentModel.swift */,
 				92B4A75A2022093E00276B3F /* Network */,
 				92B4A7662022093E00276B3F /* CoreData */,
 				92B4A7692022093E00276B3F /* RequestCacheManager.swift */,
+				921CBDCF2034734F00735C7D /* ActionCacheManager.swift */,
 			);
 			path = CoreDataNetworkLayer;
 			sourceTree = "<group>";
@@ -343,6 +345,7 @@
 		92B4A77C2022093E00276B3F /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				92B4A7592022093E00276B3F /* PersistentModel.swift */,
 				92B4A77D2022093E00276B3F /* Identifiable.swift */,
 			);
 			path = Protocol;
@@ -675,6 +678,7 @@
 				925611CE2029E6ED00B25194 /* Employee.swift in Sources */,
 				92B4A7A22022093F00276B3F /* Managed.swift in Sources */,
 				92B4A7B02022093F00276B3F /* Identifiable.swift in Sources */,
+				921CBDD02034734F00735C7D /* ActionCacheManager.swift in Sources */,
 				92B4A79D2022093F00276B3F /* Request.swift in Sources */,
 				92B4A7AE2022093F00276B3F /* EmployeeModel+CoreDataProperties.swift in Sources */,
 				929FC09C202AE98300B949B6 /* EmployeeRepository.swift in Sources */,

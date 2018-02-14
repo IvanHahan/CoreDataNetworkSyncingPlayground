@@ -20,11 +20,9 @@ enum FirebaseRequest {
             let method: Method = .post
             let body: Data?
             var priority: Priority { return .high }
-            let localId: URL
             
-            init(employee: Employee, localId: URL) {
+            init(employee: Employee) {
                 body = try! JSONEncoder().encode(employee)
-                self.localId = localId
             }
             
         }
@@ -39,11 +37,9 @@ enum FirebaseRequest {
             let path: String = department.path
             let method: Method = .post
             let body: Data?
-            let localId: URL
             
-            init(department: Department, localId: URL) {
+            init(department: Department) {
                 body = try! JSONEncoder().encode(department)
-                self.localId = localId
             }
             
         }

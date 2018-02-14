@@ -15,7 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var domainContainer: NSPersistentContainer!
     var cachingContainer: NSPersistentContainer!
-    var requestManager: RequestCacheManager!
+    var actionManager: ActionCacheManager!
+    var departmentRepository: DepartmentRepository!
+    var employeeRepository: EmployeeRepository!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -25,10 +27,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         loadPersistentStore("Caching") { container in
             let cachingContext = container.newBackgroundContext()
+            let domainContext = self.domainContainer.newBackgroundContext()
             let sessionManager = SessionManager(baseUrl: Environment.firebase.baseUrl, config: URLSessionConfiguration.default)
-            let requestCacheManager = RequestCacheManager(sessionManager: sessionManager, context: cachingContext, domainContainer: self.domainContainer)
-            requestCacheManager.run()
-            self.requestManager = requestCacheManager
+            let actionCacheManager = ActionCacheManager(context: cachingContext)
+            actionCacheManager.triggerNext()
+            let depRep = DepartmentRepository(actionCacher: actionCacheManager, sessionManager: sessionManager, context: domainContext, container: self.domainContainer)
+            let empRep = EmployeeRepository(actionCacher: actionCacheManager, sessionManager: sessionManager, context: domainContext, container: self.domainContainer)
+            self.departmentRepository = depRep
+            self.employeeRepository = empRep
+            self.actionManager = actionCacheManager
             self.cachingContainer = container
         }
         return true

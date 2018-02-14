@@ -10,6 +10,21 @@ import Foundation
 import CoreData
 
 @objc(Action)
-public class Action: NSManagedObject {
+final public class Action: NSManagedObject, Managed {
 
+    static var defaultSortDescriptors: [NSSortDescriptor] {
+        return [
+            NSSortDescriptor(key: #keyPath(index), ascending: false)
+        ]
+    }
+    
+    static var descendingSorting: [NSSortDescriptor] {
+        return self.defaultSortDescriptors
+    }
+    
+    static var ascendingSorting: [NSSortDescriptor] {
+        return [
+            NSSortDescriptor(key: #keyPath(index), ascending: true)
+        ]
+    }
 }

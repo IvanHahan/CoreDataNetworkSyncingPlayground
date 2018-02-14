@@ -29,6 +29,7 @@ protocol Request {
     var method: Method { get }
     var body: Data? { get }
     var priority: Priority { get }
+    static var name: String { get }
     
     func asURLRequest(baseUrl: String) -> URLRequest
     func map(from data: Data) -> Model?
@@ -41,6 +42,9 @@ extension Request {
     var method: Method { return .get }
     var body: Data? { return nil }
     var priority: Priority { return .medium }
+    static var name: String {
+        return String(describing: Self.self)
+    }
     
     func map(from data: Data) -> Model? {
         return nil
@@ -65,7 +69,28 @@ extension Request {
         cached.methodString = method.rawValue
         cached.pathOptional = path
         cached.priorityRaw = priority.rawValue
+        cached.name = Self.name
         return cached
+    }
+}
+
+protocol BackendlessModelSyncRequest: Request where Model == String {
+}
+
+extension BackendlessModelSyncRequest {
+    func map(from data: Data) -> String? {
+        let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+        return json??["objectId"] as? String
+    }
+}
+
+protocol FirebaseModelSyncRequest: Request where Model == String {
+}
+
+extension FirebaseModelSyncRequest {
+    func map(from data: Data) -> String? {
+        let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+        return json??["name"] as? String
     }
 }
 
@@ -76,68 +101,6 @@ protocol DecodableResultRequest: Request where Model: Decodable {
 extension DecodableResultRequest {
     func map(from data: Data) -> Model? {
         let decoder = JSONDecoder()
-        return try? decoder.decode(Model.self, from: data)
-    }
-}
-
-
-protocol BackendlessModelSyncRequest: Request where Model == String {
-    var localId: URL { get }
-}
-
-extension BackendlessModelSyncRequest {
-    func map(from data: Data) -> String? {
-        let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-        return json??["objectId"] as? String
-    }
-    
-    @discardableResult
-    func cache(into context: NSManagedObjectContext) -> NSManagedObject {
-        let backendlessRequest: BackendlessSyncRequest = context.new()
-        let request: CachedRequest = context.new()
-        request.body = body
-        request.methodString = method.rawValue
-        request.pathOptional = path
-        request.priorityRaw = priority.rawValue
-        backendlessRequest.localIdOptional = localId
-        backendlessRequest.request = request
-        return backendlessRequest
-    }
-}
-
-protocol FirebaseModelSyncRequest: Request where Model == String {
-    var localId: URL { get }
-}
-
-extension FirebaseModelSyncRequest {
-    func map(from data: Data) -> String? {
-        let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-        return json??["name"] as? String
-    }
-    
-    @discardableResult
-    func cache(into context: NSManagedObjectContext) -> NSManagedObject {
-        let firebaseRequest: FirebaseSyncRequest = context.new()
-        let request: CachedRequest = context.new()
-        request.body = body
-        request.methodString = method.rawValue
-        request.pathOptional = path
-        request.priorityRaw = priority.rawValue
-        firebaseRequest.request = request
-        firebaseRequest.localIdOptional = localId
-        return firebaseRequest
-    }
-}
-
-protocol DecodableManagedResultRequest: DecodableResultRequest where Model: NSManagedObject & Managed {
-    func map(from data: Data, into context: NSManagedObjectContext) -> Model?
-}
-
-extension DecodableManagedResultRequest {
-    func map(from data: Data, into context: NSManagedObjectContext) -> Model? {
-        guard let key = CodingUserInfoKey.context else { return nil }
-        let decoder = JSONDecoder()
-        decoder.userInfo = [key: context]
         return try? decoder.decode(Model.self, from: data)
     }
 }

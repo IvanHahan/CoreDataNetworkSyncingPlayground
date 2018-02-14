@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 @objc(DepartmentModel)
-final public class DepartmentModel: EncodableModel, Managed, SyncedModel {
+final public class DepartmentModel: NSManagedObject, Managed, SyncedModel {
     
     static func insert(name: String, employees: Set<EmployeeModel>, head: EmployeeModel, into context: NSManagedObjectContext) {
         let department: DepartmentModel = context.new()

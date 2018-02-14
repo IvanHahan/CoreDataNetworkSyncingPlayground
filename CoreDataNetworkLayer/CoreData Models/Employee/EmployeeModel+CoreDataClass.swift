@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 @objc(EmployeeModel)
-final public class EmployeeModel: EncodableModel, SyncedModel {
+final public class EmployeeModel: NSManagedObject, SyncedModel {
 
     @discardableResult
     static func insert(name: String, position: String, salary: Double, department: DepartmentModel, into context: NSManagedObjectContext) -> EmployeeModel {

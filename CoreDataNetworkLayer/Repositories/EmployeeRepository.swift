@@ -10,14 +10,22 @@ import Foundation
 import CoreData
 import Promise
 
-struct EmployeeRepository {
+class EmployeeRepository: Syncer {
     
     private let requestCacher: RequestCacheManager
-    private let context: NSManagedObjectContext
+    let context: NSManagedObjectContext
+    let container: NSPersistentContainer
     
-    init(requestCacher: RequestCacheManager, context: NSManagedObjectContext) {
+    init(requestCacher: RequestCacheManager, context: NSManagedObjectContext, container: NSPersistentContainer) {
         self.requestCacher = requestCacher
         self.context = context
+        self.container = container
+        NotificationCenter.default.addObserver(forName: Notification.Name(FirebaseRequest.employee.create.name),
+                                               object: nil,
+                                               queue: .main) { note in
+                                                self.syncLocally(with: note.object)
+                                                
+        }
     }
     
     func create(_ model: Employee) {

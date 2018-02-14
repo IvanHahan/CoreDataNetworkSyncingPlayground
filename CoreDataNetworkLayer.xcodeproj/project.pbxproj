@@ -9,18 +9,16 @@
 /* Begin PBXBuildFile section */
 		52795A851E06309882272307 /* Pods_CoreDataNetworkLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D84CC30091B58AA78E22867 /* Pods_CoreDataNetworkLayer.framework */; };
 		9212C7912028430400B23B09 /* OperationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9212C7902028430400B23B09 /* OperationExtension.swift */; };
-		921ABEB2202DA5F400AB525B /* EncodableModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921ABEB0202DA5F300AB525B /* EncodableModel+CoreDataProperties.swift */; };
-		921ABEB3202DA5F400AB525B /* EncodableModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921ABEB1202DA5F400AB525B /* EncodableModel+CoreDataClass.swift */; };
-		921ABEB6202DB29700AB525B /* FirebaseSyncRequestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921ABEB5202DB29700AB525B /* FirebaseSyncRequestRepository.swift */; };
 		921ABEB8202DB58A00AB525B /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921ABEB7202DB58A00AB525B /* RepositoryError.swift */; };
-		921ABEBD202DF55100AB525B /* Change+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921ABEBB202DF55100AB525B /* Change+CoreDataProperties.swift */; };
-		921ABEBE202DF55100AB525B /* Change+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921ABEBC202DF55100AB525B /* Change+CoreDataClass.swift */; };
+		921CBDCD203469EA00735C7D /* Action+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921CBDCB203469EA00735C7D /* Action+CoreDataProperties.swift */; };
+		921CBDCE203469EA00735C7D /* Action+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921CBDCC203469EA00735C7D /* Action+CoreDataClass.swift */; };
 		9245961720235B9700C4F591 /* FirebaseListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9245961620235B9700C4F591 /* FirebaseListData.swift */; };
 		925611CC2029E6E200B25194 /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925611CB2029E6E200B25194 /* Department.swift */; };
 		925611CE2029E6ED00B25194 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925611CD2029E6ED00B25194 /* Employee.swift */; };
 		925611D12029E9AE00B25194 /* DepartmentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925611D02029E9AE00B25194 /* DepartmentRepository.swift */; };
 		929E0757200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E0756200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.swift */; };
 		929FC09C202AE98300B949B6 /* EmployeeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929FC09B202AE98300B949B6 /* EmployeeRepository.swift */; };
+		92A7780D203448C900777782 /* Syncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A7780C203448C900777782 /* Syncer.swift */; };
 		92B4A78E2022093F00276B3F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7512022093E00276B3F /* Constants.swift */; };
 		92B4A78F2022093F00276B3F /* DepartmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7522022093E00276B3F /* DepartmentsViewController.swift */; };
 		92B4A7902022093F00276B3F /* EditDepartmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7532022093E00276B3F /* EditDepartmentController.swift */; };
@@ -77,12 +75,9 @@
 		5B91A9337701688CD139EC25 /* Pods_CoreDataNetworkLayerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreDataNetworkLayerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C08E25EA287EA8D4F3AEDE9 /* Pods-CoreDataNetworkLayerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreDataNetworkLayerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoreDataNetworkLayerUITests/Pods-CoreDataNetworkLayerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9212C7902028430400B23B09 /* OperationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationExtension.swift; sourceTree = "<group>"; };
-		921ABEB0202DA5F300AB525B /* EncodableModel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EncodableModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		921ABEB1202DA5F400AB525B /* EncodableModel+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EncodableModel+CoreDataClass.swift"; sourceTree = "<group>"; };
-		921ABEB5202DB29700AB525B /* FirebaseSyncRequestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSyncRequestRepository.swift; sourceTree = "<group>"; };
 		921ABEB7202DB58A00AB525B /* RepositoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryError.swift; sourceTree = "<group>"; };
-		921ABEBB202DF55100AB525B /* Change+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Change+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		921ABEBC202DF55100AB525B /* Change+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Change+CoreDataClass.swift"; sourceTree = "<group>"; };
+		921CBDCB203469EA00735C7D /* Action+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Action+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		921CBDCC203469EA00735C7D /* Action+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Action+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9245961620235B9700C4F591 /* FirebaseListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListData.swift; sourceTree = "<group>"; };
 		925611CB2029E6E200B25194 /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
 		925611CD2029E6ED00B25194 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
@@ -93,6 +88,7 @@
 		929E0758200CAC5C004F8BA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		929E075D200CAC5C004F8BA1 /* CoreDataNetworkLayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataNetworkLayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		929FC09B202AE98300B949B6 /* EmployeeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeRepository.swift; sourceTree = "<group>"; };
+		92A7780C203448C900777782 /* Syncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syncer.swift; sourceTree = "<group>"; };
 		92B4A7502022093E00276B3F /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		92B4A7512022093E00276B3F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		92B4A7522022093E00276B3F /* DepartmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsViewController.swift; sourceTree = "<group>"; };
@@ -170,22 +166,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		921ABEB4202DA5F800AB525B /* EncodableModel */ = {
+		921CBDCA203469C900735C7D /* Action */ = {
 			isa = PBXGroup;
 			children = (
-				921ABEB1202DA5F400AB525B /* EncodableModel+CoreDataClass.swift */,
-				921ABEB0202DA5F300AB525B /* EncodableModel+CoreDataProperties.swift */,
+				921CBDCC203469EA00735C7D /* Action+CoreDataClass.swift */,
+				921CBDCB203469EA00735C7D /* Action+CoreDataProperties.swift */,
 			);
-			path = EncodableModel;
-			sourceTree = "<group>";
-		};
-		921ABEBF202DF55500AB525B /* Change */ = {
-			isa = PBXGroup;
-			children = (
-				921ABEBC202DF55100AB525B /* Change+CoreDataClass.swift */,
-				921ABEBB202DF55100AB525B /* Change+CoreDataProperties.swift */,
-			);
-			path = Change;
+			path = Action;
 			sourceTree = "<group>";
 		};
 		925611CA2029DE7700B25194 /* Requests */ = {
@@ -253,8 +240,8 @@
 			children = (
 				925611D02029E9AE00B25194 /* DepartmentRepository.swift */,
 				929FC09B202AE98300B949B6 /* EmployeeRepository.swift */,
-				921ABEB5202DB29700AB525B /* FirebaseSyncRequestRepository.swift */,
 				921ABEB7202DB58A00AB525B /* RepositoryError.swift */,
+				92A7780C203448C900777782 /* Syncer.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -318,8 +305,7 @@
 		92B4A76F2022093E00276B3F /* CoreData Models */ = {
 			isa = PBXGroup;
 			children = (
-				921ABEBF202DF55500AB525B /* Change */,
-				921ABEB4202DA5F800AB525B /* EncodableModel */,
+				921CBDCA203469C900735C7D /* Action */,
 				92B4A7702022093E00276B3F /* CachedRequest */,
 				92B4A7762022093E00276B3F /* Department */,
 				92B4A7792022093E00276B3F /* Employee */,
@@ -678,7 +664,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				92B4A78F2022093F00276B3F /* DepartmentsViewController.swift in Sources */,
-				921ABEB3202DA5F400AB525B /* EncodableModel+CoreDataClass.swift in Sources */,
 				92B4A7A92022093F00276B3F /* CachedRequest+CoreDataProperties.swift in Sources */,
 				92B4A79E2022093F00276B3F /* SessionManager.swift in Sources */,
 				92B4A7B42022093F00276B3F /* UITableViewExtensions.swift in Sources */,
@@ -691,22 +676,21 @@
 				92B4A7A22022093F00276B3F /* Managed.swift in Sources */,
 				92B4A7B02022093F00276B3F /* Identifiable.swift in Sources */,
 				92B4A79D2022093F00276B3F /* Request.swift in Sources */,
-				921ABEB6202DB29700AB525B /* FirebaseSyncRequestRepository.swift in Sources */,
 				92B4A7AE2022093F00276B3F /* EmployeeModel+CoreDataProperties.swift in Sources */,
 				929FC09C202AE98300B949B6 /* EmployeeRepository.swift in Sources */,
 				92B4A7AC2022093F00276B3F /* DepartmentModel+CoreDataClass.swift in Sources */,
 				92B4A7B52022093F00276B3F /* AppDelegate.swift in Sources */,
-				921ABEBE202DF55100AB525B /* Change+CoreDataClass.swift in Sources */,
 				92B4A7A82022093F00276B3F /* CachedRequest+CoreDataClass.swift in Sources */,
 				92B4A7AD2022093F00276B3F /* DepartmentModel+CoreDataProperties.swift in Sources */,
 				92B4A7B32022093F00276B3F /* Company.xcdatamodeld in Sources */,
 				92B4A7952022093F00276B3F /* PersistentModel.swift in Sources */,
 				92B4A7A62022093F00276B3F /* EmployeesViewController.swift in Sources */,
 				92B4A7982022093F00276B3F /* Environment.swift in Sources */,
-				921ABEBD202DF55100AB525B /* Change+CoreDataProperties.swift in Sources */,
+				92A7780D203448C900777782 /* Syncer.swift in Sources */,
 				92B4A7A02022093F00276B3F /* BackendlessRequest.swift in Sources */,
-				921ABEB2202DA5F400AB525B /* EncodableModel+CoreDataProperties.swift in Sources */,
+				921CBDCD203469EA00735C7D /* Action+CoreDataProperties.swift in Sources */,
 				92B4A7A12022093F00276B3F /* CoreDataStack.swift in Sources */,
+				921CBDCE203469EA00735C7D /* Action+CoreDataClass.swift in Sources */,
 				92B4A7B62022093F00276B3F /* EditEmployeeController.swift in Sources */,
 				921ABEB8202DB58A00AB525B /* RepositoryError.swift in Sources */,
 				925611D12029E9AE00B25194 /* DepartmentRepository.swift in Sources */,

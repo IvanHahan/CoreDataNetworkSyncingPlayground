@@ -53,7 +53,7 @@ class RequestCacheManager {
             sessionManager.execute(request).then { [weak self] result in
                 self?.context.delete(request)
                 try? self?.context.save()
-                Notification
+                NotificationCenter.default.post(name: Notification.Name(rawValue: request.name!), object: result)
                 }.always { [weak self] in
                     self?.executeNext()
             }

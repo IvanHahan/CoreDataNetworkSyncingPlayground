@@ -47,7 +47,7 @@ class DepartmentRepository {
     }
     
     private func addCreateAction(modelId: URL) {
-        actionCacher.enqueue(table: Employee.self, actionType: .create, localId: modelId, remoteId: nil)
+        actionCacher.enqueue(table: Department.self, actionType: .create, localId: modelId, remoteId: nil)
     }
     
     private func createRemotely(_ model: Department) -> Promise<String> {
@@ -62,15 +62,7 @@ class DepartmentRepository {
                 do {
                     let managed: DepartmentModel = self.context.new()
                     managed.name = model.name
-                    model.employees.flatMap {
-                        managed.employees = Set($0.map { emp in
-                            let empManaged: EmployeeModel = self.context.new()
-                            empManaged.name = emp.name
-                            empManaged.remoteId = emp.id
-                            empManaged.salary = emp.salary
-                            return empManaged
-                        })
-                    }
+                    managed.employees = Set<EmployeeModel>()
                     try self.context.save()
                     fulfill(managed.objectID.uriRepresentation().absoluteURL)
                 } catch {
@@ -89,13 +81,13 @@ class DepartmentRepository {
                                                 switch payload {
                                                 case .create(let localId):
                                                     if let managedId = strongSelf.container.managedObjectID(from: localId),
-                                                        let model = try! strongSelf.context.existingObject(with: managedId) as? DepartmentModel {
+                                                        let model = strongSelf.context.object(with: managedId) as? DepartmentModel {
                                                         let employees = model.employees?.map { Employee(name: $0.name!, position: $0.position!, salary: $0.salary, id: $0.remoteId!) } ?? []
                                                         let department = Department(name: model.name!, employees: employees)
                                                         strongSelf.createRemotely(department).then { remoteId in
                                                             strongSelf.context.performChanges {
                                                                 model.remoteId = remoteId
-                                                                strongSelf.actionCacher.triggerNext()
+                                                                strongSelf.actionCacher.run()
                                                             }
                                                         }
                                                     }

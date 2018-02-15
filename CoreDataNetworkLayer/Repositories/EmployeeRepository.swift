@@ -50,15 +50,15 @@ class EmployeeRepository {
         return Promise { fulfill, reject in
             self.context.perform {
                 do {
-                    let ids: [URL] = models.map { model in
+                    let managedModels: [NSManagedObject] = models.map { model in
                         let managed: EmployeeModel = self.context.new()
                         managed.name = model.name
                         managed.position = model.position
                         managed.salary = model.salary
-                        return managed.objectID.uriRepresentation().absoluteURL
+                        return managed
                     }
                     try self.context.save()
-                    fulfill(ids)
+                    fulfill(managedModels.map { $0.objectID.uriRepresentation().absoluteURL })
                 } catch {
                     reject(error)
                 }
@@ -79,7 +79,7 @@ class EmployeeRepository {
                                                         strongSelf.createRemotely(employee).then { remoteId in
                                                             strongSelf.context.performChanges {
                                                                 model.remoteId = remoteId
-                                                                strongSelf.actionCacher.triggerNext()
+                                                                strongSelf.actionCacher.run()
                                                             }
                                                         }
                                                     }

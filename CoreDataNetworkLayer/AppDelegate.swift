@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let domainContext = self.domainContainer.newBackgroundContext()
             let sessionManager = SessionManager(baseUrl: Environment.firebase.baseUrl, config: URLSessionConfiguration.default)
             let actionCacheManager = ActionCacheManager(context: cachingContext)
-            actionCacheManager.triggerNext()
+            actionCacheManager.run()
             let depRep = DepartmentRepository(actionCacher: actionCacheManager, sessionManager: sessionManager, context: domainContext, container: self.domainContainer)
             let empRep = EmployeeRepository(actionCacher: actionCacheManager, sessionManager: sessionManager, context: domainContext, container: self.domainContainer)
             self.departmentRepository = depRep

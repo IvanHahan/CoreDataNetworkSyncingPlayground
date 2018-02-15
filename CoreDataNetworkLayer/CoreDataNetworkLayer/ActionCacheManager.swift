@@ -32,31 +32,9 @@ class ActionCacheManager {
         self.context = context
     }
     
-    func triggerNext() {
+    func run() {
         context.perform {
-            if let action = self.currentAction {
-                self.context.delete(action)
-                self.context.saveOrRollback()
-            }
-            
-            guard let action = try! self.context.fetch(Action.fetchRequest(configured: { request in
-                request.fetchBatchSize = 1
-                request.includesPropertyValues = true
-            })).first else { return }
-            let actionType = ActionType(rawValue: action.type!)!
-            var payload: ActionPayload
-            switch actionType {
-            case .create:
-                payload = .create(localId: action.localId!)
-            case .delete:
-                payload = .delete(remoteId: action.remoteId!)
-            case .update:
-                payload = .update(localId: action.localId!)
-            }
-            self.currentAction = action
-            NotificationCenter.default.post(name: Notification.Name(action.modelName!),
-                                            object: nil,
-                                            userInfo: [ActionKey.payload: payload])
+            self.triggerNext()
         }
     }
     
@@ -64,7 +42,7 @@ class ActionCacheManager {
         context.perform {
             let action: Action = self.context.new()
             action.index = (try! self.context.fetch(Action.fetchRequest(configured: { request in
-                request.sortDescriptors = Action.ascendingSorting
+                request.fetchBatchSize = 1
             })).first?.index ?? 0) + 1
             action.localId = localId
             action.remoteId = remoteId
@@ -75,5 +53,33 @@ class ActionCacheManager {
                 self.triggerNext()
             }
         }
+    }
+    
+    private func triggerNext() {
+        if let action = self.currentAction {
+            self.context.delete(action)
+            self.context.saveOrRollback()
+            self.currentAction = nil
+        }
+        
+        guard let action = try! self.context.fetch(Action.fetchRequest(configured: { request in
+            request.fetchBatchSize = 1
+            request.includesPropertyValues = true
+            request.sortDescriptors = Action.ascendingSorting
+        })).first else { return }
+        let actionType = ActionType(rawValue: action.type!)!
+        var payload: ActionPayload
+        switch actionType {
+        case .create:
+            payload = .create(localId: action.localId!)
+        case .delete:
+            payload = .delete(remoteId: action.remoteId!)
+        case .update:
+            payload = .update(localId: action.localId!)
+        }
+        self.currentAction = action
+        NotificationCenter.default.post(name: Notification.Name(action.modelName!),
+                                        object: nil,
+                                        userInfo: [ActionKey.payload: payload])
     }
 }

@@ -40,6 +40,19 @@ class ActionCacheManager {
     
     func enqueue<T>(table: T.Type, actionType: ActionType, localId: URL?, remoteId: String?) {
         context.perform {
+            if remoteId == nil { // i.e. if object hasn't yet been created remotely
+                switch actionType {
+                case .delete: // just remove create action
+                    guard let createAction = try! self.context.fetch(Action.fetchRequest(configured: { request in
+                        request.predicate = NSPredicate(format: "type == create && localId == %@", localId! as CVarArg)
+                    })).first else { return }
+                    self.context.delete(createAction)
+                    return
+                case .update: //do nothing
+                    return
+                default: ()
+                }
+            }
             let action: Action = self.context.new()
             action.timestamp = Date().timeIntervalSince1970
             action.localId = localId

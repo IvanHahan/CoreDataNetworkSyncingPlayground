@@ -44,6 +44,8 @@ class DepartmentsViewController: UIViewController {
         self.departmentRepository.create(vc.department).then(self.departmentRepository.get).then {
             self.departments = $0
             self.tableView.reloadData()
+            }.catch { error in
+                print(error.localizedDescription)
         }
     }
 }

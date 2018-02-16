@@ -41,9 +41,7 @@ class ActionCacheManager {
     func enqueue<T>(table: T.Type, actionType: ActionType, localId: URL?, remoteId: String?) {
         context.perform {
             let action: Action = self.context.new()
-            action.index = (try! self.context.fetch(Action.fetchRequest(configured: { request in
-                request.fetchBatchSize = 1
-            })).first?.index ?? 0) + 1
+            action.timestamp = Date().timeIntervalSince1970
             action.localId = localId
             action.remoteId = remoteId
             action.type = actionType.rawValue
@@ -65,7 +63,6 @@ class ActionCacheManager {
         guard let action = try! self.context.fetch(Action.fetchRequest(configured: { request in
             request.fetchBatchSize = 1
             request.includesPropertyValues = true
-            request.sortDescriptors = Action.ascendingSorting
         })).first else { return }
         let actionType = ActionType(rawValue: action.type!)!
         var payload: ActionPayload

@@ -19,7 +19,7 @@ extension Action {
     @NSManaged public var localId: URL?
     @NSManaged public var remoteId: String?
     @NSManaged public var type: String?
-    @NSManaged public var index: Int64
+    @NSManaged public var timestamp: TimeInterval
 }
 
 // MARK: Generated accessors for dependencies

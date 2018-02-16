@@ -21,7 +21,9 @@ struct Department: Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
-        try container.encode(employees?.map { $0.id }, forKey: .employees)
+        try container.encode(employees?.reduce(into: [String: Bool](), { (res, emp) in
+            res[emp.id!] = true
+        }), forKey: .employees)
         try container.encode(head, forKey: .head)
     }
     

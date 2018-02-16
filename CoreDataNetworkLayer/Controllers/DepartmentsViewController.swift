@@ -17,7 +17,6 @@ class DepartmentsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var departments: [Department] = []
     var departmentRepository: DepartmentRepository!
-    var employeeRepository: EmployeeRepository!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +25,6 @@ class DepartmentsViewController: UIViewController {
         tableView.register(UITableViewCell.self)
         let delegate = (UIApplication.shared.delegate as! AppDelegate)
         departmentRepository = delegate.departmentRepository
-        employeeRepository = delegate.employeeRepository
         departmentRepository.get().then {
             self.departments = $0
             self.tableView.reloadData()
@@ -43,11 +41,9 @@ class DepartmentsViewController: UIViewController {
     @IBAction func unwindToDepartments(_ sender: UIStoryboardSegue) {
         guard let vc = sender.source as? EditDepartmentController else { return }
         vc.department.name = vc.nameField.text!
-        employeeRepository.create(vc.department.employees!).then {
-            self.departmentRepository.create(vc.department).then(self.departmentRepository.get).then {
-                self.departments = $0
-                self.tableView.reloadData()
-                }
+        self.departmentRepository.create(vc.department).then(self.departmentRepository.get).then {
+            self.departments = $0
+            self.tableView.reloadData()
         }
     }
 }

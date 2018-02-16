@@ -25,32 +25,19 @@ class EmployeeRepository {
         configureObservers()
     }
     
-    func create(_ model: Employee) -> Promise<Void> {
+    func create(_ model: Employee) -> Promise<[EmployeeModel]> {
         return createLocally([model]).then(addCreateAction)
     }
     
-    func create(_ models: [Employee]) -> Promise<Void> {
+    func create(_ models: [Employee]) -> Promise<[EmployeeModel]> {
         return createLocally(models).then(addCreateAction)
     }
     
-    private func addCreateAction(ids: [URL]) -> Promise<Void> {
-        ids.forEach { localId in
-            actionCacher.enqueue(table: Employee.self, actionType: .create, localId: localId, remoteId: nil)
-        }
-        return Promise(value: ())
-    }
-    
-    private func createRemotely(_ model: Employee) -> Promise<String> {
-        return sessionManager.execute(FirebaseRequest.employee.create(employee: model)).recover { _ in
-            return self.createRemotely(model)
-        }
-    }
-    
-    private func createLocally(_ models: [Employee]) -> Promise<[URL]> {
-        return Promise { fulfill, reject in
+    private func createLocally(_ models: [Employee]) -> Promise<[EmployeeModel]> {
+        return Promise(queue: DispatchQueue.global()) { fulfill, reject in
             self.context.perform {
                 do {
-                    let managedModels: [NSManagedObject] = models.map { model in
+                    let managedModels: [EmployeeModel] = models.map { model in
                         let managed: EmployeeModel = self.context.new()
                         managed.name = model.name
                         managed.position = model.position
@@ -58,11 +45,24 @@ class EmployeeRepository {
                         return managed
                     }
                     try self.context.save()
-                    fulfill(managedModels.map { $0.objectID.uriRepresentation().absoluteURL })
+                    fulfill(managedModels)
                 } catch {
                     reject(error)
                 }
             }
+        }
+    }
+    
+    private func addCreateAction(models: [EmployeeModel]) -> Promise<[EmployeeModel]> {
+        models.forEach { model in
+            actionCacher.enqueue(table: Employee.self, actionType: .create, localId: model.objectID.uriRepresentation().absoluteURL, remoteId: nil)
+        }
+        return Promise(value: models)
+    }
+    
+    private func createRemotely(_ model: Employee) -> Promise<String> {
+        return sessionManager.execute(FirebaseRequest.employee.create(employee: model)).recover { _ in
+            return self.createRemotely(model)
         }
     }
     

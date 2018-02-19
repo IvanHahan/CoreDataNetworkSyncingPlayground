@@ -26,7 +26,7 @@ enum ActionPayload {
 class ActionCacheManager {
     
     private let context: NSManagedObjectContext
-    private var currentAction: Action?
+    private var currentAction: ModelChange?
     
     init(context: NSManagedObjectContext) {
         self.context = context
@@ -43,7 +43,7 @@ class ActionCacheManager {
             if remoteId == nil { // i.e. if object hasn't yet been created remotely
                 switch actionType {
                 case .delete: // just remove create action
-                    guard let createAction = try! self.context.fetch(Action.fetchRequest(configured: { request in
+                    guard let createAction = try! self.context.fetch(ModelChange.fetchRequest(configured: { request in
                         request.predicate = NSPredicate(format: "type == create && localId == %@", localId! as CVarArg)
                     })).first else { return }
                     self.context.delete(createAction)
@@ -53,7 +53,7 @@ class ActionCacheManager {
                 default: ()
                 }
             }
-            let action: Action = self.context.new()
+            let action: ModelChange = self.context.new()
             action.timestamp = Date().timeIntervalSince1970
             action.localId = localId
             action.remoteId = remoteId
@@ -73,7 +73,7 @@ class ActionCacheManager {
             self.currentAction = nil
         }
         
-        guard let action = try! self.context.fetch(Action.fetchRequest(configured: { request in
+        guard let action = try! self.context.fetch(ModelChange.fetchRequest(configured: { request in
             request.fetchBatchSize = 1
             request.includesPropertyValues = true
         })).first else { return }

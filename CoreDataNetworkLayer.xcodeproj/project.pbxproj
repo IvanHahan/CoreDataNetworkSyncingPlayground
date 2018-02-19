@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		52795A851E06309882272307 /* Pods_CoreDataNetworkLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D84CC30091B58AA78E22867 /* Pods_CoreDataNetworkLayer.framework */; };
+		92007F56203AC32B00678E52 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92007F55203AC32B00678E52 /* States.swift */; };
+		92007F58203AC38000678E52 /* Reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92007F57203AC38000678E52 /* Reducers.swift */; };
 		9212C7912028430400B23B09 /* OperationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9212C7902028430400B23B09 /* OperationExtension.swift */; };
 		921ABEB8202DB58A00AB525B /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921ABEB7202DB58A00AB525B /* RepositoryError.swift */; };
 		921CBDCD203469EA00735C7D /* Action+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921CBDCB203469EA00735C7D /* Action+CoreDataProperties.swift */; };
@@ -49,6 +51,8 @@
 		92B4A7B52022093F00276B3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7872022093E00276B3F /* AppDelegate.swift */; };
 		92B4A7B62022093F00276B3F /* EditEmployeeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7882022093E00276B3F /* EditEmployeeController.swift */; };
 		92B4A7B72022093F00276B3F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92B4A7892022093E00276B3F /* Info.plist */; };
+		92C1B345203AFCAF00A0DAD4 /* MainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C1B344203AFCAF00A0DAD4 /* MainStore.swift */; };
+		92DBE0B620373D1A002E3B85 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DBE0B520373D1A002E3B85 /* Actions.swift */; };
 		AF9BA42442ADBD5E81E41040 /* Pods_CoreDataNetworkLayerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2165B236AF1D196724AE665 /* Pods_CoreDataNetworkLayerTests.framework */; };
 		F3D278D03F9E553867CDB016 /* Pods_CoreDataNetworkLayerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B91A9337701688CD139EC25 /* Pods_CoreDataNetworkLayerUITests.framework */; };
 /* End PBXBuildFile section */
@@ -75,6 +79,8 @@
 		2D84CC30091B58AA78E22867 /* Pods_CoreDataNetworkLayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreDataNetworkLayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B91A9337701688CD139EC25 /* Pods_CoreDataNetworkLayerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreDataNetworkLayerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C08E25EA287EA8D4F3AEDE9 /* Pods-CoreDataNetworkLayerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreDataNetworkLayerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoreDataNetworkLayerUITests/Pods-CoreDataNetworkLayerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		92007F55203AC32B00678E52 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		92007F57203AC38000678E52 /* Reducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducers.swift; sourceTree = "<group>"; };
 		9212C7902028430400B23B09 /* OperationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationExtension.swift; sourceTree = "<group>"; };
 		921ABEB7202DB58A00AB525B /* RepositoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryError.swift; sourceTree = "<group>"; };
 		921CBDCB203469EA00735C7D /* Action+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Action+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -122,6 +128,8 @@
 		92B4A7872022093E00276B3F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92B4A7882022093E00276B3F /* EditEmployeeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEmployeeController.swift; sourceTree = "<group>"; };
 		92B4A7892022093E00276B3F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92C1B344203AFCAF00A0DAD4 /* MainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStore.swift; sourceTree = "<group>"; };
+		92DBE0B520373D1A002E3B85 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		92F3E94E2029CBF800C78DE9 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9922C9E5E406772BF51E32E3 /* Pods-CoreDataNetworkLayerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreDataNetworkLayerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoreDataNetworkLayerUITests/Pods-CoreDataNetworkLayerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B2165B236AF1D196724AE665 /* Pods_CoreDataNetworkLayerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreDataNetworkLayerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +174,17 @@
 				5B91A9337701688CD139EC25 /* Pods_CoreDataNetworkLayerUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		92007F59203AC38500678E52 /* RE */ = {
+			isa = PBXGroup;
+			children = (
+				92DBE0B520373D1A002E3B85 /* Actions.swift */,
+				92007F55203AC32B00678E52 /* States.swift */,
+				92007F57203AC38000678E52 /* Reducers.swift */,
+				92C1B344203AFCAF00A0DAD4 /* MainStore.swift */,
+			);
+			path = RE;
 			sourceTree = "<group>";
 		};
 		921CBDCA203469C900735C7D /* Action */ = {
@@ -256,6 +275,7 @@
 				926B8E61202B193C00171293 /* Controllers */,
 				92B4A7872022093E00276B3F /* AppDelegate.swift */,
 				92B4A7882022093E00276B3F /* EditEmployeeController.swift */,
+				92007F59203AC38500678E52 /* RE */,
 				929FC09A202AE96700B949B6 /* Repositories */,
 				925611CF2029E6F200B25194 /* Models */,
 				92B4A7552022093E00276B3F /* CoreDataNetworkLayer */,
@@ -619,10 +639,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CoreDataNetworkLayer/Pods-CoreDataNetworkLayer-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Promises/Promise.framework",
+				"${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ReSwiftRouter/ReSwiftRouter.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveReSwift/ReactiveReSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Promise.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReSwiftRouter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveReSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -675,6 +701,7 @@
 				92B4A7A32022093F00276B3F /* RequestCacheManager.swift in Sources */,
 				9245961720235B9700C4F591 /* FirebaseListData.swift in Sources */,
 				92B4A7A52022093F00276B3F /* Caching.xcdatamodeld in Sources */,
+				92007F56203AC32B00678E52 /* States.swift in Sources */,
 				925611CE2029E6ED00B25194 /* Employee.swift in Sources */,
 				92B4A7A22022093F00276B3F /* Managed.swift in Sources */,
 				92B4A7B02022093F00276B3F /* Identifiable.swift in Sources */,
@@ -683,6 +710,7 @@
 				92B4A7AE2022093F00276B3F /* EmployeeModel+CoreDataProperties.swift in Sources */,
 				929FC09C202AE98300B949B6 /* EmployeeRepository.swift in Sources */,
 				92B4A7AC2022093F00276B3F /* DepartmentModel+CoreDataClass.swift in Sources */,
+				92DBE0B620373D1A002E3B85 /* Actions.swift in Sources */,
 				92B4A7B52022093F00276B3F /* AppDelegate.swift in Sources */,
 				92B4A7A82022093F00276B3F /* CachedRequest+CoreDataClass.swift in Sources */,
 				92B4A7AD2022093F00276B3F /* DepartmentModel+CoreDataProperties.swift in Sources */,
@@ -700,6 +728,8 @@
 				925611D12029E9AE00B25194 /* DepartmentRepository.swift in Sources */,
 				92B4A78E2022093F00276B3F /* Constants.swift in Sources */,
 				92B4A7992022093F00276B3F /* FirebaseRequest.swift in Sources */,
+				92C1B345203AFCAF00A0DAD4 /* MainStore.swift in Sources */,
+				92007F58203AC38000678E52 /* Reducers.swift in Sources */,
 				92B4A7AF2022093F00276B3F /* EmployeeModel+CoreDataClass.swift in Sources */,
 				92B4A7902022093F00276B3F /* EditDepartmentController.swift in Sources */,
 			);

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ReSwift
 
-class DepartmentsViewController: UIViewController {
+class DepartmentsViewController: UIViewController, StoreSubscriber {
     
     enum Segue: String {
         case employees
@@ -16,19 +17,18 @@ class DepartmentsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var departments: [Department] = []
-    var departmentRepository: DepartmentRepository!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self)
-        let delegate = (UIApplication.shared.delegate as! AppDelegate)
-        departmentRepository = delegate.departmentRepository
-        departmentRepository.get().then {
-            self.departments = $0
-            self.tableView.reloadData()
+        store.subscribe(self) {
+            $0.select {
+                $0.departmentsState
+            }
         }
+        store.dispatch(AppAction.fetchDepartments)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -41,11 +41,15 @@ class DepartmentsViewController: UIViewController {
     @IBAction func unwindToDepartments(_ sender: UIStoryboardSegue) {
         guard let vc = sender.source as? EditDepartmentController else { return }
         vc.department.name = vc.nameField.text!
-        self.departmentRepository.create(vc.department).then(self.departmentRepository.get).then {
-            self.departments = $0
-            self.tableView.reloadData()
-            }.catch { error in
-                print(error.localizedDescription)
+        let department = vc.department
+        store.dispatch(AppAction.CreateDepartment(department: department))
+    }
+    
+    func newState(state: DepartmentsState) {
+        self.departments = state.departments
+        tableView.reloadData()
+        if let current = state.currentDepartment {
+            store.dispatch(AppAction.createDepartment)
         }
     }
 }

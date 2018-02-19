@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import Promise
+import ReSwift
 
 class DepartmentRepository {
     
@@ -30,7 +31,7 @@ class DepartmentRepository {
         self.employeeRepository = employeeRepository
         configureObservers()
     }
-    
+
     func create(_ model: Department) -> Promise<Void> {
         return createLocally(model).then(addCreateAction)
     }

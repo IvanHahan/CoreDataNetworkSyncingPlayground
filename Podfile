@@ -6,6 +6,9 @@ target 'CoreDataNetworkLayer' do
   use_frameworks!
 
   pod 'Promises'
+  pod 'ReSwift'
+  pod 'ReactiveReSwift'
+  pod 'ReSwiftRouter'
 
   target 'CoreDataNetworkLayerTests' do
     inherit! :search_paths

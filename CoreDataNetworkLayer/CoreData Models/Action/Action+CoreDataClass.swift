@@ -9,8 +9,8 @@
 import Foundation
 import CoreData
 
-@objc(Action)
-final public class Action: NSManagedObject, Managed {
+@objc(ModelChange)
+final public class ModelChange: NSManagedObject, Managed {
 
     static var defaultSortDescriptors: [NSSortDescriptor] {
         return [

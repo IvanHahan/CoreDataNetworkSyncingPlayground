@@ -8,6 +8,9 @@
 
 import UIKit
 import CoreData
+import ReSwift
+
+var store: MainStore!
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             actionCacheManager.run()
             let empRep = EmployeeRepository(actionCacher: actionCacheManager, sessionManager: sessionManager, context: domainContext, container: self.domainContainer)
             let depRep = DepartmentRepository(actionCacher: actionCacheManager, sessionManager: sessionManager, context: domainContext, container: self.domainContainer, employeeRepository: empRep)
+            store = MainStore(reducer: appReducer, departmentRepository: depRep)
             self.departmentRepository = depRep
             self.employeeRepository = empRep
             self.actionManager = actionCacheManager

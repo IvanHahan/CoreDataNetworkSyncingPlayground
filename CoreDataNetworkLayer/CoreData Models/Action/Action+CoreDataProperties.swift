@@ -1,5 +1,5 @@
 //
-//  Action+CoreDataProperties.swift
+//  ModelChange+CoreDataProperties.swift
 //  
 //
 //  Created by Ivan Hahanov on 2/14/18.
@@ -9,10 +9,10 @@
 import Foundation
 import CoreData
 
-extension Action {
+extension ModelChange {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Action> {
-        return NSFetchRequest<Action>(entityName: "Action")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<ModelChange> {
+        return NSFetchRequest<ModelChange>(entityName: "Action")
     }
 
     @NSManaged public var modelName: String?
@@ -23,6 +23,6 @@ extension Action {
 }
 
 // MARK: Generated accessors for dependencies
-extension Action {
+extension ModelChange {
 
 }

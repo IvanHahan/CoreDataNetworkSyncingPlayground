@@ -26,7 +26,9 @@ class DepartmentsViewController: UIViewController {
         tableView.register(UITableViewCell.self)
         
         store = DepartmentStore(reducer: departmentReducer, departmentRepository: (UIApplication.shared.delegate as! AppDelegate).departmentRepository)
-        store.subscribe(self)
+        store.subscribe(self) {
+            $0.skipRepeats { $0.departments.count == $1.departments.count }
+        }
         store.dispatch(DepartmentAction.fetchDepartments)
     }
     
@@ -44,8 +46,6 @@ class DepartmentsViewController: UIViewController {
         store.dispatch(DepartmentAction.selectDepartment(department: department))
         store.dispatch(DepartmentAction.createDepartment)
     }
-    
-    
 }
 
 extension DepartmentsViewController: StoreSubscriber {

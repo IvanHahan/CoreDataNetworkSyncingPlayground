@@ -9,7 +9,7 @@
 import UIKit
 import ReSwift
 
-class DepartmentsViewController: UIViewController, StoreSubscriber {
+class DepartmentsViewController: UIViewController {
     
     enum Segue: String {
         case employees
@@ -45,6 +45,10 @@ class DepartmentsViewController: UIViewController, StoreSubscriber {
         store.dispatch(DepartmentAction.createDepartment)
     }
     
+    
+}
+
+extension DepartmentsViewController: StoreSubscriber {
     func newState(state: DepartmentsState) {
         self.departments = state.departments
         tableView.reloadData()

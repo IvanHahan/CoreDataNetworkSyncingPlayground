@@ -9,28 +9,30 @@
 import Foundation
 import ReSwift
 
-enum AppAction {
-    struct AddDepartment: Action { var department: Department }
-    struct GetDepartments: Action { var departments: [Department] }
-    struct CreateDepartment: Action { var department: Department }
-    struct WaitAction: Action { }
+struct waitAction: Action { }
+
+enum DepartmentAction {
+    struct addDepartment: Action { var department: Department }
+    struct getDepartments: Action { var departments: [Department] }
+    struct selectDepartment: Action { var department: Department }
     
-    static func createDepartment(state: AppState, store: Store<AppState>) -> WaitAction {
-        let store = store as! MainStore
-        let department = state.departmentsState.currentDepartment!
+    static func createDepartment(state: DepartmentsState, store: Store<DepartmentsState>) -> waitAction {
+        let store = store as! DepartmentStore
+        let department = state.currentDepartment!
         
         store.departmentsRepository.create(department).then {
-            store.dispatch(AppAction.AddDepartment(department: department))
+            store.dispatch(addDepartment(department: department))
         }
         
-        return WaitAction()
+        return waitAction()
     }
     
-    static func fetchDepartments(state: AppState, store: Store<AppState>) -> GetDepartments {
-        let store = store as! MainStore
+    static func fetchDepartments(state: DepartmentsState, store: Store<DepartmentsState>) -> waitAction {
+        let store = store as! DepartmentStore
         store.departmentsRepository.get().then {
-            store.dispatch(GetDepartments(departments:$0))
+            store.dispatch(getDepartments(departments: $0))
         }
-        return GetDepartments(departments: [])
+        return waitAction()
     }
 }
+

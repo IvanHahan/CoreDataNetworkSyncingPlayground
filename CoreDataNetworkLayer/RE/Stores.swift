@@ -1,5 +1,5 @@
 //
-//  MainStore.swift
+//  Stores.swift
 //  CoreDataNetworkLayer
 //
 //  Created by Ivan Hahanov on 2/19/18.
@@ -9,11 +9,11 @@
 import Foundation
 import ReSwift
 
-class MainStore: Store<AppState> {
+class DepartmentStore: Store<DepartmentsState> {
     
     let departmentsRepository: DepartmentRepository
     
-    init(reducer: @escaping Reducer<AppState>, departmentRepository: DepartmentRepository) {
+    init(reducer: @escaping Reducer<DepartmentsState>, departmentRepository: DepartmentRepository) {
         self.departmentsRepository = departmentRepository
         super.init(reducer: reducer, state: nil)
     }

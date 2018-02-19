@@ -16,15 +16,13 @@ func appReducer(action: Action, state: AppState?) -> AppState {
 func departmentReducer(action: Action, state: DepartmentsState?) -> DepartmentsState {
     var state = state ?? DepartmentsState(currentDepartment: nil, departments: [])
     switch action {
-    case let action as AppAction.CreateDepartment:
+    case let action as DepartmentAction.selectDepartment:
         state.currentDepartment = action.department
-    case let action as AppAction.AddDepartment:
+    case let action as DepartmentAction.addDepartment:
         state.currentDepartment = nil
         state.departments.append(action.department)
-    case let action as AppAction.GetDepartments:
+    case let action as DepartmentAction.getDepartments:
         state.departments = action.departments
-    case let action as AppAction.WaitAction:
-        state.currentDepartment = nil
     default: ()
     }
     return state

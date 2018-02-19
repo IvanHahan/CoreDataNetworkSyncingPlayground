@@ -17,18 +17,17 @@ class DepartmentsViewController: UIViewController, StoreSubscriber {
 
     @IBOutlet weak var tableView: UITableView!
     var departments: [Department] = []
+    var store: DepartmentStore!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self)
-        store.subscribe(self) {
-            $0.select {
-                $0.departmentsState
-            }
-        }
-        store.dispatch(AppAction.fetchDepartments)
+        
+        store = DepartmentStore(reducer: departmentReducer, departmentRepository: (UIApplication.shared.delegate as! AppDelegate).departmentRepository)
+        store.subscribe(self)
+        store.dispatch(DepartmentAction.fetchDepartments)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -42,15 +41,13 @@ class DepartmentsViewController: UIViewController, StoreSubscriber {
         guard let vc = sender.source as? EditDepartmentController else { return }
         vc.department.name = vc.nameField.text!
         let department = vc.department
-        store.dispatch(AppAction.CreateDepartment(department: department))
+        store.dispatch(DepartmentAction.selectDepartment(department: department))
+        store.dispatch(DepartmentAction.createDepartment)
     }
     
     func newState(state: DepartmentsState) {
         self.departments = state.departments
         tableView.reloadData()
-        if let current = state.currentDepartment {
-            store.dispatch(AppAction.createDepartment)
-        }
     }
 }
 

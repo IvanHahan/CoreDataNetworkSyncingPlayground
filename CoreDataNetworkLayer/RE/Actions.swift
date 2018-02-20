@@ -9,8 +9,8 @@
 import Foundation
 import ReSwift
 
-struct LoadingAction: Action {}
-struct FailureAction: Action { let error: Error }
+struct Loading: Action {}
+struct Failure: Action { let error: Error }
 
 enum DepartmentAction {
     struct AddDepartment: Action { var department: Department }
@@ -21,9 +21,9 @@ enum DepartmentAction {
             repository.create(department).then {
                     store.dispatch(AddDepartment(department: department))
                 }.catch {
-                    store.dispatch(FailureAction(error: $0))
+                    store.dispatch(Failure(error: $0))
             }
-            return LoadingAction()
+            return Loading()
         }
     }
     
@@ -32,9 +32,9 @@ enum DepartmentAction {
             repository.get().then {
                     store.dispatch(SetDepartments(departments: $0))
                 }.catch {
-                    store.dispatch(FailureAction(error: $0))
+                    store.dispatch(Failure(error: $0))
             }
-            return LoadingAction()
+            return Loading()
         }
     }
 }

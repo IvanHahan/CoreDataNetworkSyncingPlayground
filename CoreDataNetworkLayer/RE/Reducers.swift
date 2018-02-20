@@ -20,6 +20,10 @@ func departmentReducer(action: Action, state: DepartmentsState?) -> DepartmentsS
         return .added(action.department)
     case let action as DepartmentAction.SetDepartments:
         return .finished(action.departments)
+    case _ as Loading:
+        return .loading
+    case let action as Failure:
+        return .failure(action.error)
     default:
         return state
     }

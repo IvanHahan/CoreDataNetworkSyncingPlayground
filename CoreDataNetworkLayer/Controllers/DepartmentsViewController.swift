@@ -17,17 +17,18 @@ class DepartmentsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var departments: [Department] = []
-    var store: DepartmentStore!
+    var store: Store<DepartmentsState>!
+    var departmentsRepository: DepartmentRepository!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self)
-        
-        store = DepartmentStore(reducer: departmentReducer, departmentRepository: (UIApplication.shared.delegate as! AppDelegate).departmentRepository)
+        departmentsRepository = (UIApplication.shared.delegate as! AppDelegate).departmentRepository
+        store = Store(reducer: departmentReducer, state: nil)
         store.subscribe(self)
-        store.dispatch(DepartmentAction.fetchDepartments)
+        store.dispatch(DepartmentAction.GetDepartments(repository: departmentsRepository))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -41,15 +42,24 @@ class DepartmentsViewController: UIViewController {
         guard let vc = sender.source as? EditDepartmentController else { return }
         vc.department.name = vc.nameField.text!
         let department = vc.department
-        store.dispatch(DepartmentAction.selectDepartment(department: department))
-        store.dispatch(DepartmentAction.createDepartment)
+        store.dispatch(DepartmentAction.CreateDepartment(department: department, repository: departmentsRepository))
     }
 }
 
 extension DepartmentsViewController: StoreSubscriber {
     func newState(state: DepartmentsState) {
-        self.departments = state.departments
-        tableView.reloadData()
+        switch state {
+        case .finished(let departments):
+            self.departments = departments
+            tableView.reloadData()
+        case .added(let department):
+            departments.append(department)
+            tableView.insertRows(at: [IndexPath.init(row: departments.count - 1, section: 0)], with: .automatic)
+        case .failure(let error):
+            print(error)
+        case .loading:
+            print("loading")
+        }
     }
 }
 

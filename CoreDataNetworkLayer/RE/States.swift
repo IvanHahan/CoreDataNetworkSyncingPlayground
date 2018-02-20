@@ -13,7 +13,6 @@ struct AppState: StateType {
     let departmentsState: DepartmentsState
 }
 
-struct DepartmentsState: StateType {
-    var currentDepartment: Department?
-    var departments: [Department] = []
+enum DepartmentsState: StateType {
+    case loading, finished([Department]), added(Department), failure(Error)
 }

@@ -14,18 +14,15 @@ func appReducer(action: Action, state: AppState?) -> AppState {
 }
 
 func departmentReducer(action: Action, state: DepartmentsState?) -> DepartmentsState {
-    var state = state ?? DepartmentsState(currentDepartment: nil, departments: [])
+    let state = state ?? .finished([])
     switch action {
-    case let action as DepartmentAction.selectDepartment:
-        state.currentDepartment = action.department
-    case let action as DepartmentAction.addDepartment:
-        state.currentDepartment = nil
-        state.departments.append(action.department)
-    case let action as DepartmentAction.getDepartments:
-        state.departments = action.departments
-    default: ()
+    case let action as DepartmentAction.AddDepartment:
+        return .added(action.department)
+    case let action as DepartmentAction.SetDepartments:
+        return .finished(action.departments)
+    default:
+        return state
     }
-    return state
 }
 
 

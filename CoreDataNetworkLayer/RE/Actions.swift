@@ -9,30 +9,33 @@
 import Foundation
 import ReSwift
 
-struct waitAction: Action { }
+struct LoadingAction: Action {}
+struct FailureAction: Action { let error: Error }
 
 enum DepartmentAction {
-    struct addDepartment: Action { var department: Department }
-    struct getDepartments: Action { var departments: [Department] }
-    struct selectDepartment: Action { var department: Department }
+    struct AddDepartment: Action { var department: Department }
+    struct SetDepartments: Action { var departments: [Department] }
     
-    static func createDepartment(state: DepartmentsState, store: Store<DepartmentsState>) -> waitAction {
-        let store = store as! DepartmentStore
-        let department = state.currentDepartment!
-        
-        store.departmentsRepository.create(department).then {
-            store.dispatch(addDepartment(department: department))
+    static func CreateDepartment(department: Department, repository: DepartmentRepository) -> (DepartmentsState, Store<DepartmentsState>) -> Action? {
+        return { state, store in
+            repository.create(department).then {
+                    store.dispatch(AddDepartment(department: department))
+                }.catch {
+                    store.dispatch(FailureAction(error: $0))
+            }
+            return LoadingAction()
         }
-        
-        return waitAction()
     }
     
-    static func fetchDepartments(state: DepartmentsState, store: Store<DepartmentsState>) -> waitAction {
-        let store = store as! DepartmentStore
-        store.departmentsRepository.get().then {
-            store.dispatch(getDepartments(departments: $0))
+    static func GetDepartments(repository: DepartmentRepository) -> (DepartmentsState, Store<DepartmentsState>) -> Action? {
+        return { state, store in
+            repository.get().then {
+                    store.dispatch(SetDepartments(departments: $0))
+                }.catch {
+                    store.dispatch(FailureAction(error: $0))
+            }
+            return LoadingAction()
         }
-        return waitAction()
     }
 }
 

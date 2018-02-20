@@ -54,7 +54,6 @@ class DepartmentRepository {
     }
     
     private func addCreateAction(modelId: URL) {
-        print("addCreateAction: ",try! self.context.fetch(DepartmentModel.fetchRequest(configured: {_ in})).first?.employees?.count)
         actionCacher.enqueue(table: Department.self, actionType: .create, localId: modelId, remoteId: nil)
     }
     
@@ -84,40 +83,6 @@ class DepartmentRepository {
         }
     }
     
-    func testCreate(_ model: Department) {
-        context.perform {
-            let managedModels: [EmployeeModel] = model.employees!.map { model in
-                let managed: EmployeeModel = self.context.new()
-                managed.name = model.name
-                managed.position = model.position
-                managed.salary = model.salary
-                return managed
-            }
-            
-            try! self.context.save()
-            
-            let managed: DepartmentModel = self.context.new()
-            managed.name = model.name
-//            try! self.context.save()
-            managed.employees = Set(managedModels)
-            try! self.context.save()
-            self.context.reset()
-            print("create locally1: ",try! self.context.fetch(DepartmentModel.fetchRequest(configured: {_ in})).last?.employees?.count)
-            
-//            DispatchQueue.main.async {
-//                self.context.perform {
-//                    let managed: DepartmentModel = self.context.new()
-//                    managed.name = model.name
-//                    managed.employees = Set(managedModels)
-//                    try! self.context.save()
-//                    self.context.reset()
-//                    print("create locally1: ",try! self.context.fetch(DepartmentModel.fetchRequest(configured: {_ in})).last?.employees?.count)
-//                    print("")
-//                }
-//            }
-        }
-    }
-    
     private func configureObservers() {
         NotificationCenter.default.addObserver(forName: Notification.Name(String(describing: Department.self)),
                                                object: nil,
@@ -126,8 +91,6 @@ class DepartmentRepository {
                                                 strongSelf.context.refreshAllObjects()
                                                 switch payload {
                                                 case .create(let localId):
-                                                    print("notification come: ",try! strongSelf.context.fetch(DepartmentModel.fetchRequest(configured: {_ in})).first?.employees?.count)
-                                                    print("notification come: ",try! strongSelf.context.fetch(DepartmentModel.fetchRequest(configured: {_ in})).count)
                                                     if let managedId = strongSelf.container.managedObjectID(from: localId),
                                                         let model = strongSelf.context.object(with: managedId) as? DepartmentModel {
                                                         let employees = model.employees?.map { Employee(name: $0.name!, position: $0.position!, salary: $0.salary, id: $0.remoteId!) } ?? []

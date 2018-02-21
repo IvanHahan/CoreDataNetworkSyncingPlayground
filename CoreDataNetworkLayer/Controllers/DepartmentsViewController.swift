@@ -25,10 +25,21 @@ class DepartmentsViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self)
+        
         departmentsRepository = (UIApplication.shared.delegate as! AppDelegate).departmentRepository
         store = Store(reducer: departmentReducer, state: nil)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         store.subscribe(self)
         store.dispatch(DepartmentAction.GetDepartments(repository: departmentsRepository))
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        store.unsubscribe(self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

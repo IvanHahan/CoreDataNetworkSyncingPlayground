@@ -21,7 +21,6 @@
 		925611D12029E9AE00B25194 /* DepartmentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925611D02029E9AE00B25194 /* DepartmentRepository.swift */; };
 		929E0757200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E0756200CAC5C004F8BA1 /* CoreDataNetworkLayerTests.swift */; };
 		929FC09C202AE98300B949B6 /* EmployeeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929FC09B202AE98300B949B6 /* EmployeeRepository.swift */; };
-		92A7780D203448C900777782 /* Syncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A7780C203448C900777782 /* Syncer.swift */; };
 		92B4A78E2022093F00276B3F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7512022093E00276B3F /* Constants.swift */; };
 		92B4A78F2022093F00276B3F /* DepartmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7522022093E00276B3F /* DepartmentsViewController.swift */; };
 		92B4A7902022093F00276B3F /* EditDepartmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4A7532022093E00276B3F /* EditDepartmentController.swift */; };
@@ -95,7 +94,6 @@
 		929E0758200CAC5C004F8BA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		929E075D200CAC5C004F8BA1 /* CoreDataNetworkLayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataNetworkLayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		929FC09B202AE98300B949B6 /* EmployeeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeRepository.swift; sourceTree = "<group>"; };
-		92A7780C203448C900777782 /* Syncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syncer.swift; sourceTree = "<group>"; };
 		92B4A7502022093E00276B3F /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		92B4A7512022093E00276B3F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		92B4A7522022093E00276B3F /* DepartmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +216,7 @@
 				92B4A7522022093E00276B3F /* DepartmentsViewController.swift */,
 				92B4A7532022093E00276B3F /* EditDepartmentController.swift */,
 				92B4A76D2022093E00276B3F /* EmployeesViewController.swift */,
+				92B4A7882022093E00276B3F /* EditEmployeeController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -259,7 +258,6 @@
 				925611D02029E9AE00B25194 /* DepartmentRepository.swift */,
 				929FC09B202AE98300B949B6 /* EmployeeRepository.swift */,
 				921ABEB7202DB58A00AB525B /* RepositoryError.swift */,
-				92A7780C203448C900777782 /* Syncer.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -271,7 +269,6 @@
 				92B4A7512022093E00276B3F /* Constants.swift */,
 				926B8E61202B193C00171293 /* Controllers */,
 				92B4A7872022093E00276B3F /* AppDelegate.swift */,
-				92B4A7882022093E00276B3F /* EditEmployeeController.swift */,
 				92007F59203AC38500678E52 /* RE */,
 				929FC09A202AE96700B949B6 /* Repositories */,
 				925611CF2029E6F200B25194 /* Models */,
@@ -715,7 +712,6 @@
 				92B4A7952022093F00276B3F /* PersistentModel.swift in Sources */,
 				92B4A7A62022093F00276B3F /* EmployeesViewController.swift in Sources */,
 				92B4A7982022093F00276B3F /* Environment.swift in Sources */,
-				92A7780D203448C900777782 /* Syncer.swift in Sources */,
 				92B4A7A02022093F00276B3F /* BackendlessRequest.swift in Sources */,
 				921CBDCD203469EA00735C7D /* Action+CoreDataProperties.swift in Sources */,
 				92B4A7A12022093F00276B3F /* CoreDataStack.swift in Sources */,

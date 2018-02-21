@@ -8,8 +8,7 @@
 *.perspectivev3
 *.xcuserstate
 *.xcworkspace/
-CoreDataNetworkLayer.xcworkspace/
 xcuserdata/
 
 # Podfiles
-# Pods/
+ Pods/

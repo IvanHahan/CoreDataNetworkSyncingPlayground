@@ -6,7 +6,3 @@ import PlaygroundSupport
 import ReSwift
 
 PlaygroundPage.current.needsIndefiniteExecution = true
-
-
-
-

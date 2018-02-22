@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -103,7 +103,7 @@
 		032BEDF787446E020938694D92DF3AFE /* Router.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Router.swift; path = ReSwiftRouter/Router.swift; sourceTree = "<group>"; };
 		03C371B75D334E5D073860CC379B239E /* Middleware.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Middleware.swift; path = Sources/CoreTypes/Middleware.swift; sourceTree = "<group>"; };
 		046C4CA0ABD4D100064B8E18CB766FEA /* Coding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Coding.swift; path = ReSwift/Utils/Coding.swift; sourceTree = "<group>"; };
-		047502E9DD9BC213E909788196DCAF78 /* ReSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ReSwift.modulemap; sourceTree = "<group>"; };
+		047502E9DD9BC213E909788196DCAF78 /* ReSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ReSwift.modulemap; sourceTree = "<group>"; };
 		04CB3FF3ED31E95DAE1FB41C64D6339B /* Pods-CoreDataNetworkLayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CoreDataNetworkLayer-dummy.m"; sourceTree = "<group>"; };
 		056A727CB153D00FE620E55E2E3D2913 /* ReactiveReSwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ReactiveReSwift.xcconfig; sourceTree = "<group>"; };
 		06C23DE93F6434F7C91EE63BF1516369 /* Coding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Coding.swift; path = Sources/Utils/Coding.swift; sourceTree = "<group>"; };
@@ -115,10 +115,10 @@
 		134D854A652F0734710E06955FF01A09 /* ReSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14ACEA1771A9B3B2356223560388C73F /* Store.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Store.swift; path = ReSwift/CoreTypes/Store.swift; sourceTree = "<group>"; };
 		17A1EE64C1236415B2C013EC095B7CD3 /* Middleware.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Middleware.swift; path = ReSwift/CoreTypes/Middleware.swift; sourceTree = "<group>"; };
-		17B0ECC3EA8DEFFBEDE811C700C94844 /* ReSwiftRouter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ReSwiftRouter.framework; path = ReSwiftRouter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		17B0ECC3EA8DEFFBEDE811C700C94844 /* ReSwiftRouter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReSwiftRouter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A3140D739D91C596574EB43EA43EC47 /* NavigationReducer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavigationReducer.swift; path = ReSwiftRouter/NavigationReducer.swift; sourceTree = "<group>"; };
 		1D29A188EDD670E680898EB01E7F92B2 /* Pods-CoreDataNetworkLayer-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CoreDataNetworkLayer-frameworks.sh"; sourceTree = "<group>"; };
-		1F8C17BEFE1756B1622651D6CFAF4A08 /* ReactiveReSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ReactiveReSwift.modulemap; sourceTree = "<group>"; };
+		1F8C17BEFE1756B1622651D6CFAF4A08 /* ReactiveReSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ReactiveReSwift.modulemap; sourceTree = "<group>"; };
 		216F0F2616D24CD4523DF85696A7A97C /* Promise+Extras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Promise+Extras.swift"; path = "Promise/Promise+Extras.swift"; sourceTree = "<group>"; };
 		297CF51E36488C1648A10C7FA9A4B984 /* Action.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Action.swift; path = ReSwift/CoreTypes/Action.swift; sourceTree = "<group>"; };
 		29EA1E3D82888082F9608A5BB8202751 /* Reducer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reducer.swift; path = Sources/CoreTypes/Reducer.swift; sourceTree = "<group>"; };
@@ -147,35 +147,35 @@
 		71D83C143091A61F03DB3CF266EB1664 /* Routable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Routable.swift; path = ReSwiftRouter/Routable.swift; sourceTree = "<group>"; };
 		740E45BCCF60E9E00154A5BC390E965A /* Pods-CoreDataNetworkLayerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CoreDataNetworkLayerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		772AB9482A7E1EEA14CD35D1E19976CE /* ReactiveReSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ReactiveReSwift-dummy.m"; sourceTree = "<group>"; };
-		7920E09526047B04F9E6CDFC2952467A /* Pods_CoreDataNetworkLayerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CoreDataNetworkLayerUITests.framework; path = "Pods-CoreDataNetworkLayerUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7920E09526047B04F9E6CDFC2952467A /* Pods_CoreDataNetworkLayerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreDataNetworkLayerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AD3F3B8EBE65A2CF1ADE1306297FC0F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BD471A001EF0B3007E35B6F7985D41C /* ReSwiftRouter-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ReSwiftRouter-dummy.m"; sourceTree = "<group>"; };
 		7DD8CD4DA1F675FF50B77D1358A04E8E /* Pods-CoreDataNetworkLayerTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CoreDataNetworkLayerTests-dummy.m"; sourceTree = "<group>"; };
-		86DDF15193E3AA30C64E7654E6D7F49E /* Pods_CoreDataNetworkLayerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CoreDataNetworkLayerTests.framework; path = "Pods-CoreDataNetworkLayerTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		86DDF15193E3AA30C64E7654E6D7F49E /* Pods_CoreDataNetworkLayerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreDataNetworkLayerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8803C40480F1E1345633B7BA717362A0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		8A1BD605A12D740FB147442666216D2F /* ReSwiftRouter-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReSwiftRouter-prefix.pch"; sourceTree = "<group>"; };
 		8D39F0F376D0371EA009ED25C8ECEB2A /* NavigationState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavigationState.swift; path = ReSwiftRouter/NavigationState.swift; sourceTree = "<group>"; };
 		8F540F54CC5353E5A3C24BA90FDB63FE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90DDB2F0768F7489F27D6EB214652731 /* StoreSubscriber.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StoreSubscriber.swift; path = ReSwift/CoreTypes/StoreSubscriber.swift; sourceTree = "<group>"; };
-		91A5225EED703ECA2808A03E2E8470C0 /* Promises.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Promises.modulemap; sourceTree = "<group>"; };
+		91A5225EED703ECA2808A03E2E8470C0 /* Promises.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Promises.modulemap; sourceTree = "<group>"; };
 		91AB5296A3B24EDF93AB0DF9CA2F1A57 /* Promises.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Promises.xcconfig; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		93B68FBD3378E8F3423AA4A1364ECDB7 /* ReSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ReSwift.framework; path = ReSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93B68FBD3378E8F3423AA4A1364ECDB7 /* ReSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9654B540F82B98DEE2E5961BD7101F8D /* ReactiveReSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReactiveReSwift-umbrella.h"; sourceTree = "<group>"; };
 		9812C7E09FD126BBE6AA87D046ECC86B /* ReSwiftRouter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ReSwiftRouter.xcconfig; sourceTree = "<group>"; };
 		9D98EA31B8514FCBB205D35D750AD444 /* DispatchingStoreType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DispatchingStoreType.swift; path = ReSwift/CoreTypes/DispatchingStoreType.swift; sourceTree = "<group>"; };
 		9EECB94C96EF3C9A78DC0216816E11F3 /* Promises-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Promises-umbrella.h"; sourceTree = "<group>"; };
 		9FB46C9F2EB6CA3ED1DBDDAD57FBEBA1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A197DED66255DB9A6F1FC1A0E2DBDCB2 /* ReSwiftRouter.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ReSwiftRouter.modulemap; sourceTree = "<group>"; };
+		A197DED66255DB9A6F1FC1A0E2DBDCB2 /* ReSwiftRouter.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ReSwiftRouter.modulemap; sourceTree = "<group>"; };
 		A29A2F8570928DAAA582C766A0006A11 /* Pods-CoreDataNetworkLayer-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CoreDataNetworkLayer-acknowledgements.plist"; sourceTree = "<group>"; };
 		A32904DA7E9364ADC6170BA8C217513A /* Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Promise.swift; path = Promise/Promise.swift; sourceTree = "<group>"; };
 		A8E4D5862982567BE82DB58CA51492B4 /* Pods-CoreDataNetworkLayer-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CoreDataNetworkLayer-acknowledgements.markdown"; sourceTree = "<group>"; };
 		AB9E4FD25D0A0C00A58BA128E9173C6F /* Pods-CoreDataNetworkLayerTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CoreDataNetworkLayerTests-frameworks.sh"; sourceTree = "<group>"; };
 		AD627F22B91A7B979ECF12A3FCA97A74 /* Pods-CoreDataNetworkLayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CoreDataNetworkLayer.release.xcconfig"; sourceTree = "<group>"; };
-		AD9E68B2F79B91C3D64FE785CCA074CE /* Pods_CoreDataNetworkLayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CoreDataNetworkLayer.framework; path = "Pods-CoreDataNetworkLayer.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD9E68B2F79B91C3D64FE785CCA074CE /* Pods_CoreDataNetworkLayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreDataNetworkLayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B42405EBEFD82FB210DB98EBDD9A4E5E /* Store.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Store.swift; path = Sources/CoreTypes/Store.swift; sourceTree = "<group>"; };
 		B5B697CB852437D64124DB612CBFD71C /* Pods-CoreDataNetworkLayerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CoreDataNetworkLayerUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		B673932EBB15C8CE8D2B1C22B145C77E /* Promise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Promise.framework; path = Promises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B673932EBB15C8CE8D2B1C22B145C77E /* Promise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Promise.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB1E433B21FD8137B977CC9BE6D933B1 /* Pods-CoreDataNetworkLayerTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CoreDataNetworkLayerTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		BC065224922B64FA9A712AAABE66A84B /* Promises-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Promises-prefix.pch"; sourceTree = "<group>"; };
 		BC3DA8CDFCBA8326E059CA45CFA7C99F /* Pods-CoreDataNetworkLayerUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CoreDataNetworkLayerUITests-umbrella.h"; sourceTree = "<group>"; };
@@ -183,17 +183,17 @@
 		C5DDF569E6340C0DEBB848E6E0F4C226 /* Subscription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Subscription.swift; path = ReSwift/CoreTypes/Subscription.swift; sourceTree = "<group>"; };
 		C8DA2973575D7C19AB98EE1188FB6C2E /* Pods-CoreDataNetworkLayerTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CoreDataNetworkLayerTests-umbrella.h"; sourceTree = "<group>"; };
 		C9CB7268EEA9B3E40E09F470F38471F4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D26855894C8D85112203CED2A7993DD0 /* Pods-CoreDataNetworkLayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-CoreDataNetworkLayer.modulemap"; sourceTree = "<group>"; };
+		D26855894C8D85112203CED2A7993DD0 /* Pods-CoreDataNetworkLayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CoreDataNetworkLayer.modulemap"; sourceTree = "<group>"; };
 		D37146806F011FD94946872785E638D8 /* SubscriptionReferenceBag.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SubscriptionReferenceBag.swift; path = Sources/Reactive/SubscriptionReferenceBag.swift; sourceTree = "<group>"; };
 		D5E129C198C12793AF7D5A1D2AEE46F7 /* ReSwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ReSwift.xcconfig; sourceTree = "<group>"; };
 		D65C070473A9C4FD6E810F7A0A670311 /* StoreType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StoreType.swift; path = ReSwift/CoreTypes/StoreType.swift; sourceTree = "<group>"; };
 		D74D10DB4B4CBACE55F776FD8DF55131 /* TypeHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypeHelper.swift; path = ReSwift/Utils/TypeHelper.swift; sourceTree = "<group>"; };
-		D7CE4592F89298EEC3259B43C22D1CEB /* Pods-CoreDataNetworkLayerTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-CoreDataNetworkLayerTests.modulemap"; sourceTree = "<group>"; };
-		D9619CF72096DC0DC4A6AC12DB0E191E /* ReactiveReSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ReactiveReSwift.framework; path = ReactiveReSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7CE4592F89298EEC3259B43C22D1CEB /* Pods-CoreDataNetworkLayerTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CoreDataNetworkLayerTests.modulemap"; sourceTree = "<group>"; };
+		D9619CF72096DC0DC4A6AC12DB0E191E /* ReactiveReSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReactiveReSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAD4DE7C479C385B20A849330925A55E /* Assertions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Assertions.swift; path = ReSwift/Utils/Assertions.swift; sourceTree = "<group>"; };
 		E7941545237140439FE91AEE851976D5 /* StreamType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StreamType.swift; path = Sources/Reactive/StreamType.swift; sourceTree = "<group>"; };
 		F2CBD42C396E79474BEF83BCEEAC03E1 /* ReSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReSwift-umbrella.h"; sourceTree = "<group>"; };
-		F6068DFF229EA3603F4F9C2BB999D1F0 /* Pods-CoreDataNetworkLayerUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-CoreDataNetworkLayerUITests.modulemap"; sourceTree = "<group>"; };
+		F6068DFF229EA3603F4F9C2BB999D1F0 /* Pods-CoreDataNetworkLayerUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CoreDataNetworkLayerUITests.modulemap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,7 +281,6 @@
 				032BEDF787446E020938694D92DF3AFE /* Router.swift */,
 				23AF16B1D070D8B042680664FA9F6C43 /* Support Files */,
 			);
-			name = ReSwiftRouter;
 			path = ReSwiftRouter;
 			sourceTree = "<group>";
 		};
@@ -400,7 +399,6 @@
 				505FF6723863CDC000E4C3D88E5DCDDB /* SubscriptionReferenceType.swift */,
 				4A7BC2F4A18D1062DBF5055E7586891E /* Support Files */,
 			);
-			name = ReactiveReSwift;
 			path = ReactiveReSwift;
 			sourceTree = "<group>";
 		};
@@ -471,7 +469,6 @@
 				D74D10DB4B4CBACE55F776FD8DF55131 /* TypeHelper.swift */,
 				7381E47E5E2D16024A72F405224292C1 /* Support Files */,
 			);
-			name = ReSwift;
 			path = ReSwift;
 			sourceTree = "<group>";
 		};
@@ -482,7 +479,6 @@
 				216F0F2616D24CD4523DF85696A7A97C /* Promise+Extras.swift */,
 				A3816B49B1D8F42944774A5C413D5A26 /* Support Files */,
 			);
-			name = Promises;
 			path = Promises;
 			sourceTree = "<group>";
 		};
